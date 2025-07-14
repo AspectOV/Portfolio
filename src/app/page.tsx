@@ -1,103 +1,247 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import React, { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+
+const HomePage: React.FC = () => {
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const featuredProjects = [
+    {
+      id: 'roblox-game',
+      title: 'Roblox Game Development',
+      description: 'Crafting high quality Roblox games of all genres using Roblox Studio.',
+      image: '/images/roblox-game.png',
+      category: 'game-dev',
+      tags: ['Lua', 'Roblox', 'Game Design'],
+      link: '/projects#roblox-games'
+    },
+    {
+      id: 'software-dev',
+      title: 'Software Development',
+      description: 'Developing scalable and maintainable software solutions.',
+      image: '/images/unity-game.jpg',
+      category: 'software-dev',
+      tags: ['C#', 'Windows', 'Software'],
+      link: '/portfolio#software-dev'
+    },
+    {
+      id: 'web-dev',
+      title: 'Web Development',
+      description: 'Building responsive and interactive websites like this portfolio.',
+      image: '/images/web-dev-project.png',
+      category: 'web-dev',
+      tags: ['HTML', 'CSS', 'JavaScript'],
+      link: '/projects#web-dev'
+    }
+  ]
+
+  const skills = [
+    { name: 'JavaScript', icon: 'fab fa-js' },
+    { name: 'HTML', icon: 'fab fa-html5' },
+    { name: 'CSS', icon: 'fab fa-css3-alt' },
+    { name: 'C#', icon: 'fas fa-code' },
+    { name: 'Lua/Luau', icon: 'fas fa-code' },
+    { name: 'Python', icon: 'fab fa-python' },
+    { name: 'Blender', icon: 'fas fa-cube' },
+    { name: 'Unity', icon: 'fas fa-gamepad' },
+    { name: 'Windows', icon: 'fab fa-windows' },
+    { name: 'Game Development', icon: 'fas fa-gamepad' },
+    { name: '3D Modeling', icon: 'fas fa-cube' },
+    { name: 'UI Design', icon: 'fas fa-palette' },
+    { name: 'Software Development', icon: 'fas fa-desktop' },
+    { name: 'Bot Development', icon: 'fa-brands fa-discord' }
+  ]
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!email) return
+
+    setIsSubmitting(true)
+    setMessage('')
+
+    try {
+      // Simulate API call (replace with actual newsletter subscription logic)
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      
+      setMessage('Thank you for subscribing!')
+      setEmail('')
+    } catch (error) {
+      setMessage('An error occurred. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2>Welcome</h2>
+        <p>
+          Hi, I'm Jeremy, a passionate high school developer specializing in scripting, game design, and computer science. 
+          Welcome to my digital portfolio, where I share my projects and connect with like-minded creators in tech!
+        </p>
+        <div className="mt-2">
+          <Link href="/projects" className="button">
+            <i className="fas fa-code"></i>
+            View My Projects
+          </Link>
+          <Link href="/contact" className="button secondary" style={{ marginLeft: '1rem' }}>
+            <i className="fas fa-envelope"></i>
+            Get In Touch
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+      </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <h2>Featured Work</h2>
+        <div className="project-grid">
+          {featuredProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              className="project"
+              data-category={project.category}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+            >
+              <div className="project-image">
+                <Image
+                  src={project.image}
+                  alt={`Image of ${project.title} Project`}
+                  width={400}
+                  height={225}
+                  loading="lazy"
+                />
+                <div className="project-overlay">
+                  <div className="project-links">
+                    <a href={`#project-details-${project.id}`} className="project-link" aria-label="View project details">
+                      <i className="fas fa-info-circle"></i>
+                    </a>
+                    <a href={`#project-demo-${project.id}`} className="project-link" aria-label="View project demo">
+                      <i className="fas fa-play-circle"></i>
+                    </a>
+                    <a href={`#project-code-${project.id}`} className="project-link" aria-label="View project code">
+                      <i className="fab fa-github"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div className="project-content">
+                <h3>
+                  <i className={`fas fa-${project.category === 'game-dev' ? 'gamepad' : project.category === 'web-dev' ? 'globe' : 'code'}`}></i>
+                  {project.title}
+                </h3>
+                <p>{project.description}</p>
+                <div className="project-tags">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="tag">{tag}</span>
+                  ))}
+                </div>
+                <Link href={project.link} className="button">
+                  {project.category === 'game-dev' ? 'Project Gallery' : 
+                   project.category === 'web-dev' ? 'See Examples' : 'View Portfolio'}
+                </Link>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.4 }}
+      >
+        <h2>Skills</h2>
+        <div className="skills-container">
+          {skills.map((skill, index) => (
+            <motion.span
+              key={skill.name}
+              className="skill-tag"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
+            >
+              <i className={skill.icon}></i> {skill.name}
+            </motion.span>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        className="resume-section"
+        style={{ margin: '2rem 0' }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.6 }}
+      >
+        <h2 style={{ textAlign: 'left' }}>My Resume</h2>
+        <Image
+          src="/images/resume.jpg"
+          alt="Jeremy M. Hayes Resume"
+          width={1000}
+          height={600}
+          style={{
+            maxWidth: '1000px',
+            width: '100%',
+            height: 'auto',
+            borderRadius: '8px',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+            marginTop: '1rem',
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto'
+          }}
+          loading="lazy"
+        />
+      </motion.section>
+
+      <motion.section
+        className="newsletter-section"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+      >
+        <h2>Stay Updated</h2>
+        <p>Subscribe to my newsletter for updates on new projects and tech insights.</p>
+        <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
+          <div className="form-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <button type="submit" className={`button ${isSubmitting ? 'loading' : ''}`}>
+              Subscribe
+            </button>
+          </div>
+          {message && (
+            <div className={`form-message ${message.includes('Thank you') ? 'success' : 'error'}`}>
+              {message}
+            </div>
+          )}
+        </form>
+      </motion.section>
+    </>
+  )
 }
+
+export default HomePage 

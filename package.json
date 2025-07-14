@@ -2,11 +2,13 @@
   "name": "portfolio-nextjs",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "scripts": {
+      "dev": "next dev --turbopack",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint",
+      "pages:build": "npx @cloudflare/next-on-pages --experimental-minify"
+    }
   },
   "dependencies": {
     "@next/font": "^14.2.15",

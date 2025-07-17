@@ -4,9 +4,8 @@ account_id = "b90dba6c5e1f55107587952a5503c452"
 workers_dev = true
 compatibility_date = "2024-07-13"
 
-[site]
-bucket = ".next"
-entry-point = "."
+[assets]
+directory = "./out"
 
 [env.production]
 workers_dev = false

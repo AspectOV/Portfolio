@@ -2,16 +2,22 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { GitHub, Linkedin, Send as Mail } from 'lucide-react'
+
+interface SocialLink {
+  name: string
+  url: string
+  icon: React.FC<{ size: number }>
+}
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear()
 
-  const socialLinks = [
+  const socialLinks: SocialLink[] = [
     {
       name: 'GitHub',
       url: 'https://github.com/aspectov',
-      icon: Github,
+      icon: GitHub,
     },
     {
       name: 'LinkedIn',
@@ -39,7 +45,7 @@ const Footer: React.FC = () => {
           </div>
           
           <div className="flex items-center space-x-6">
-            {socialLinks.map((link) => (
+            {socialLinks.map((link: SocialLink) => (
               <motion.a
                 key={link.name}
                 href={link.url}

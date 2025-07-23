@@ -10,22 +10,22 @@ const ProjectsPage: React.FC = () => {
   const projects = [
     {
       id: 'roblox-game-1',
-      title: 'Adventure Quest',
-      description: 'An immersive RPG game built in Roblox with custom scripting and 3D assets.',
+      title: 'Vacancy Filled',
+      description: 'An immersive horror experience inspired by The Closing Shift.',
       image: '/images/roblox-game.png',
       category: 'game-dev',
-      tags: ['Lua', 'Roblox', 'RPG', '3D Modeling'],
+      tags: ['Lua', 'Roblox', 'Horror'],
       demoUrl: '#',
       codeUrl: '#',
       detailsUrl: '#'
     },
     {
       id: 'roblox-game-2',
-      title: 'Racing Simulator',
-      description: 'High-speed racing game with physics-based vehicle mechanics and multiplayer support.',
+      title: 'Cookie Clicker',
+      description: "A faithful recreation of Orteil's Cookie Clicker.",
       image: '/images/roblox-game.png',
       category: 'game-dev',
-      tags: ['Lua', 'Roblox', 'Racing', 'Physics'],
+      tags: ['Lua', 'Roblox', 'UI Design'],
       demoUrl: '#',
       codeUrl: '#',
       detailsUrl: '#'

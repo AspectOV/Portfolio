@@ -43,8 +43,8 @@ const ProjectsPage: React.FC = () => {
     },
     {
       id: 'software-1',
-      title: 'Task Manager',
-      description: 'Windows desktop application for task management and productivity.',
+      title: 'File Encryptor',
+      description: 'Windows desktop application for file encryption and compression.',
       image: '/images/unity-game.jpg',
       category: 'software-dev',
       tags: ['C#', 'Windows', 'Desktop App'],

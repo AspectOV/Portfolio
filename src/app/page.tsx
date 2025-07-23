@@ -70,7 +70,7 @@ const HomePage: React.FC = () => {
       
       setMessage('Thank you for subscribing!')
       setEmail('')
-    } catch (error) {
+    } catch {
       setMessage('An error occurred. Please try again.')
     } finally {
       setIsSubmitting(false)
@@ -227,7 +227,7 @@ const HomePage: React.FC = () => {
               required
               autoComplete="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
             />
             <button type="submit" className={`button ${isSubmitting ? 'loading' : ''}`}>
               Subscribe

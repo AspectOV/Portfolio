@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
     {
       name: 'GitHub',
       url: 'https://github.com/aspectov',
-      icon: GitHub,
+      icon: Github,
     },
     {
       name: 'LinkedIn',

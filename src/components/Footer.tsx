@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { GitHub, Linkedin, Send as Mail } from 'lucide-react'
+import { Github, Linkedin, Mail } from 'lucide-react'
 
 interface SocialLink {
   name: string

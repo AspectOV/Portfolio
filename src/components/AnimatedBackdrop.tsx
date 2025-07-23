@@ -1,10 +1,16 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
+interface MousePosition {
+  x: number
+  y: number
+}
+
 const AnimatedBackdrop: React.FC = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 })
 
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {

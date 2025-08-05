@@ -30,14 +30,14 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }: DesktopNavPr
           <motion.div
             className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-xl ${
               pathname === item.href
-                ? 'text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 shadow-lg shadow-blue-500/10'
-                : 'text-gray-300 hover:text-white hover:bg-white/5'
+                ? 'text-text-primary bg-gradient-to-r from-accent/20 to-purple-500/20 shadow-lg shadow-accent/10'
+                : 'text-text-secondary hover:text-text-primary hover:bg-white/5'
             }`}
             whileHover={{
               y: -2,
               boxShadow:
                 pathname === item.href
-                  ? '0 10px 25px rgba(59, 130, 246, 0.2)'
+                  ? '0 10px 25px rgba(0, 180, 216, 0.2)'
                   : '0 5px 15px rgba(255, 255, 255, 0.1)',
             }}
             whileTap={{ scale: 0.95 }}
@@ -49,7 +49,7 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }: DesktopNavPr
             {item.label}
             {pathname === item.href && (
               <motion.div
-                className="absolute inset-x-2 -bottom-1 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                className="absolute inset-x-2 -bottom-1 h-0.5 bg-gradient-to-r from-accent to-purple-500 rounded-full"
                 layoutId="activeDesktopTab"
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />

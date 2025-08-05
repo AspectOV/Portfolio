@@ -3,10 +3,9 @@
 import React from 'react'
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { usePathname } from 'next/navigation'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { DesktopNav } from './header/DesktopNav'
 import { MobileNav } from './header/MobileNav'
-import { Brand } from './header/Brand'
 import { MenuButton } from './header/MenuButton'
 
 interface NavItem {
@@ -24,45 +23,14 @@ const navItems: NavItem[] = [
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [displayText, setDisplayText] = useState('')
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [isScrolled, setIsScrolled] = useState(false)
-  const pathname = usePathname()
   const headerRef = useRef<HTMLElement | null>(null)
-  
-  const { scrollY } = useScroll()
-  const headerOpacity = useTransform(scrollY, [0, 100], [1, 0.95])
-  const headerBlur = useTransform(scrollY, [0, 100], [8, 20])
-
-  const fullText = 'Jeremy Hayes'
-  const subtitle = 'Developer | Game Designer | Programmer'
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  useEffect(() => {
-    if (pathname === '/') {
-      setDisplayText('')
-      setCurrentIndex(0)
-    } else {
-      setDisplayText(fullText)
-      setCurrentIndex(fullText.length)
-    }
-  }, [pathname, fullText])
-
-  useEffect(() => {
-    if (pathname !== '/' || currentIndex >= fullText.length) return
-    const char = fullText[currentIndex]
-    const delay = char === ' ' ? 50 : Math.random() * 100 + 100
-    const timer = setTimeout(() => {
-      setDisplayText((prev: string) => fullText.slice(0, prev.length + 1))
-      setCurrentIndex((prev: number) => prev + 1)
-    }, delay)
-    return () => clearTimeout(timer)
-  }, [currentIndex, fullText, pathname])
 
   const closeMenu = useCallback(() => setIsOpen(false), [])
 
@@ -92,56 +60,77 @@ const Header: React.FC = () => {
       <a href="#main-content" className="sr-only focus:not-sr-only absolute top-2 left-2 z-[100] bg-black text-white px-3 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
         Skip to content
       </a>
-      <motion.header 
+      <motion.header
         ref={headerRef}
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-black/30 backdrop-blur-xl border-b border-white/20 shadow-lg' 
-            : 'bg-black/20 backdrop-blur-md border-b border-white/10'
+          isScrolled
+            ? 'bg-black/80 backdrop-blur-lg border-b border-white/20 shadow-lg'
+            : 'bg-transparent border-b border-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        style={{ 
-          opacity: headerOpacity,
-          backdropFilter: `blur(${headerBlur.get()}px)`
-        }}
         role="banner"
       >
-        <div className="container py-3">
+        <div className="container py-4">
           <div className="flex items-center justify-between">
-            <div className="hidden md:flex items-center space-x-2 w-8" />
-            
-            <Brand 
-              isScrolled={isScrolled}
-              displayText={displayText}
-              subtitle={subtitle}
-              fullText={fullText}
-              currentIndex={currentIndex}
-            />
+            <div className="flex items-center space-x-2">
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  textShadow: '0 0 20px rgba(59, 130, 246, 0.5)',
+                }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              >
+                <a href="/" className="font-bold text-2xl bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+                  Jeremy Hayes
+                </a>
+              </motion.div>
+            </div>
 
-            <MenuButton isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
+            <div className="hidden md:flex">
+              <DesktopNav navItems={navItems} />
+            </div>
+
+            <div className="md:hidden">
+              <MenuButton isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
+            </div>
           </div>
-
-          <DesktopNav navItems={navItems} />
         </div>
       </motion.header>
 
-      <MobileNav 
-        navItems={navItems} 
-        isOpen={isOpen} 
-        closeMenu={closeMenu} 
-        headerHeight={headerRef.current?.offsetHeight} 
+      <MobileNav
+        navItems={navItems}
+        isOpen={isOpen}
+        closeMenu={closeMenu}
+        headerHeight={headerRef.current?.offsetHeight}
       />
 
       <style jsx>{`
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+        header {
+          position: relative;
+          z-index: 1;
+          color: white;
+          text-align: center;
+          padding: 1rem 1.5rem;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+          overflow: hidden;
         }
-        .animate-gradient {
-          animation: gradient 8s ease infinite;
+
+        header::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: radial-gradient(circle at 50% 50%, rgba(0, 180, 216, 0.1), transparent 70%);
+          z-index: 0;
+        }
+        
+        header > * {
+          position: relative;
+          z-index: 1;
         }
       `}</style>
     </>

@@ -38,6 +38,7 @@ const AboutPage: React.FC = () => {
       </motion.section>
 
       <motion.section
+        className="resume-section"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
@@ -46,25 +47,26 @@ const AboutPage: React.FC = () => {
         <h3>York Community High School</h3>
         <p>Expected Graduation: 2027</p>
         <p>Relevant Coursework:</p>
-        <ul className="list-none p-0">
-          <li className="py-sm border-b border-border pl-lg relative before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold">AP Computer Science Principles</li>
-          <li className="py-sm border-b border-border pl-lg relative before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold">Technology Services Internship</li>
-          <li className="py-sm border-b border-border pl-lg relative before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold">Honors Physics</li>
-          <li className="py-sm border-b border-border pl-lg relative before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold">Computer Programming</li>
+        <ul>
+          <li>AP Computer Science Principles</li>
+          <li>Technology Services Internship</li>
+          <li>Honors Physics</li>
+          <li>Computer Programming</li>
         </ul>
       </motion.section>
 
       <motion.section
+        className="resume-section"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
         <h2>Skills</h2>
-        <div className="flex flex-wrap gap-sm mt-md">
+        <div className="skills-container">
           {skills.map((skill, index) => (
             <motion.span
               key={skill.name}
-              className="inline-flex items-center gap-xs px-sm py-xs bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/30 transition-all"
+              className="skill-tag"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
@@ -74,11 +76,11 @@ const AboutPage: React.FC = () => {
           ))}
         </div>
 
-        <h3 className="mt-6">Certifications</h3>
-        <ul className="list-none p-0">
-          <li className="py-sm border-b border-border pl-lg relative before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold">CompTIA Tech+</li>
-          <li className="py-sm border-b border-border pl-lg relative before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold">RDF Programming</li>
-          <li className="py-sm border-b border-border pl-lg relative before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold">Lenovo Laptop Repair</li>
+        <h3 className="mt-2">Certifications</h3>
+        <ul>
+          <li>CompTIA Tech+</li>
+          <li>RDF Programming</li>
+          <li>Lenovo Laptop Repair</li>
         </ul>
       </motion.section>
 

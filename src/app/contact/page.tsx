@@ -32,7 +32,7 @@ const ContactPage: React.FC = () => {
       
       setMessage('Thank you for your message! I\'ll get back to you soon.')
       setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch (error) {
+    } catch {
       setMessage('An error occurred. Please try again.')
     } finally {
       setIsSubmitting(false)

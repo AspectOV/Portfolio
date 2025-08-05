@@ -60,8 +60,8 @@ const ContactPage: React.FC = () => {
       >
         <h2>Contact Form</h2>
         <form onSubmit={handleSubmit} className="max-w-2xl">
-          <div className="mb-md">
-            <label htmlFor="name" className="block mb-xs font-semibold text-text-primary">Name</label>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               id="name"
@@ -69,12 +69,11 @@ const ContactPage: React.FC = () => {
               value={formData.name}
               onChange={handleInputChange}
               required
-              className="w-full p-sm border border-border rounded-md bg-bg-tertiary text-text-primary transition-all focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(0,180,216,0.1)]"
             />
           </div>
           
-          <div className="mb-md">
-            <label htmlFor="email" className="block mb-xs font-semibold text-text-primary">Email</label>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
@@ -82,12 +81,11 @@ const ContactPage: React.FC = () => {
               value={formData.email}
               onChange={handleInputChange}
               required
-              className="w-full p-sm border border-border rounded-md bg-bg-tertiary text-text-primary transition-all focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(0,180,216,0.1)]"
             />
           </div>
           
-          <div className="mb-md">
-            <label htmlFor="subject" className="block mb-xs font-semibold text-text-primary">Subject</label>
+          <div className="form-group">
+            <label htmlFor="subject">Subject</label>
             <input
               type="text"
               id="subject"
@@ -95,12 +93,11 @@ const ContactPage: React.FC = () => {
               value={formData.subject}
               onChange={handleInputChange}
               required
-              className="w-full p-sm border border-border rounded-md bg-bg-tertiary text-text-primary transition-all focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(0,180,216,0.1)]"
             />
           </div>
           
-          <div className="mb-md">
-            <label htmlFor="message" className="block mb-xs font-semibold text-text-primary">Message</label>
+          <div className="form-group">
+            <label htmlFor="message">Message</label>
             <textarea
               id="message"
               name="message"
@@ -108,16 +105,15 @@ const ContactPage: React.FC = () => {
               onChange={handleInputChange}
               required
               rows={6}
-              className="w-full p-sm border border-border rounded-md bg-bg-tertiary text-text-primary transition-all focus:outline-none focus:border-accent focus:shadow-[0_0_0_3px_rgba(0,180,216,0.1)] resize-y min-h-[120px]"
             />
           </div>
           
-          <button type="submit" className={`inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 ${isSubmitting ? 'relative pointer-events-none after:content-[""] after:absolute after:top-1/2 after:left-1/2 after:w-5 after:h-5 after:mt-[-10px] after:ml-[-10px] after:border-2 after:border-accent after:border-t-transparent after:rounded-full after:animate-spin' : ''}`}>
+          <button type="submit" className={`button ${isSubmitting ? 'loading' : ''}`}>
             Send Message
           </button>
           
           {message && (
-            <div className={`mt-sm text-center font-medium ${message.includes('Thank you') ? 'text-success' : 'text-error'}`}>
+            <div className={`form-message ${message.includes('Thank you') ? 'success' : 'error'}`}>
               {message}
             </div>
           )}
@@ -130,35 +126,35 @@ const ContactPage: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.4 }}
       >
         <h2>Connect With Me</h2>
-        <div className="grid grid-cols-2 gap-16">
-          <div className="bg-bg-secondary border border-border rounded-lg p-md transition-all hover:border-accent hover:shadow-md">
+        <div className="grid grid-2 gap-4">
+          <div className="card">
             <h3><i className="fab fa-github"></i> GitHub</h3>
             <p>Check out my open-source projects and contributions.</p>
-            <a href="https://github.com/AspectOV" className="inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/AspectOV" className="button" target="_blank" rel="noopener noreferrer">
               Visit GitHub
             </a>
           </div>
           
-          <div className="bg-bg-secondary border border-border rounded-lg p-md transition-all hover:border-accent hover:shadow-md">
+          <div className="card">
             <h3><i className="fab fa-linkedin"></i> LinkedIn</h3>
             <p>Connect with me professionally and see my experience.</p>
-            <a href="https://linkedin.com/in/jeremymhayes" className="inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0" target="_blank" rel="noopener noreferrer">
+            <a href="https://linkedin.com/in/jeremymhayes" className="button" target="_blank" rel="noopener noreferrer">
               Connect on LinkedIn
             </a>
           </div>
           
-          <div className="bg-bg-secondary border border-border rounded-lg p-md transition-all hover:border-accent hover:shadow-md">
+          <div className="card">
             <h3><i className="fab fa-twitter"></i> Twitter</h3>
             <p>Follow me for updates on projects and tech insights.</p>
-            <a href="https://twitter.com/realaspectdev" className="inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0" target="_blank" rel="noopener noreferrer">
+            <a href="https://twitter.com/realaspectdev" className="button" target="_blank" rel="noopener noreferrer">
               Follow on Twitter
             </a>
           </div>
           
-          <div className="bg-bg-secondary border border-border rounded-lg p-md transition-all hover:border-accent hover:shadow-md">
+          <div className="card">
             <h3><i className="fab fa-youtube"></i> YouTube</h3>
             <p>Watch tutorials and project showcases.</p>
-            <a href="https://www.youtube.com/channel/UCS3szLGePeV24qXKvFEgeWw" className="inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translatey-0" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.youtube.com/channel/UCS3szLGePeV24qXKvFEgeWw" className="button" target="_blank" rel="noopener noreferrer">
               Subscribe on YouTube
             </a>
           </div>

@@ -66,9 +66,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <script dangerouslySetInnerHTML={{
-          __html: `document.addEventListener('contextmenu', event => event.preventDefault());`
-        }} />
       </body>
     </html>
   )

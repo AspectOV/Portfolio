@@ -32,15 +32,15 @@ const Footer: React.FC = () => {
   ]
 
   return (
-    <motion.footer 
-      className="bg-black/20 backdrop-blur-md border-t border-white/10 mt-20"
+    <motion.footer
+      className="bg-bg-primary/20 backdrop-blur-md border-t border-border/10 mt-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5, delay: 0.2 }}
     >
       <div className="container py-8">
         <div className="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0">
-          <div className="text-gray-300 text-sm">
+          <div className="text-text-secondary text-sm">
             © {currentYear} Jeremy M. Hayes. All rights reserved.
           </div>
           
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-300 hover:text-white transition-colors"
+                className="text-text-secondary hover:text-text-primary transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -61,8 +61,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-6 pt-6 border-t border-white/5 text-center">
-          <p className="text-gray-400 text-xs">
+        <div className="mt-6 pt-6 border-t border-border/5 text-center">
+          <p className="text-text-secondary/80 text-xs">
             Built with Next.js, TypeScript, and Tailwind CSS
           </p>
         </div>

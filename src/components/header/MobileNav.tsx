@@ -62,8 +62,8 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                     <motion.div
                       className={`mx-4 mb-2 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
                         pathname === item.href
-                          ? 'text-text-primary bg-gradient-to-r from-accent/20 to-purple-500/20 border border-accent/30 shadow-lg'
-                          : 'text-text-secondary hover:text-text-primary hover:bg-white/5 border border-transparent'
+                          ? 'text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 shadow-lg'
+                          : 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent'
                       }`}
                       whileHover={{ x: 8, scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -75,7 +75,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                           <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="w-2 h-2 rounded-full bg-gradient-to-r from-accent to-purple-500"
+                            className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
                           />
                         )}
                       </div>

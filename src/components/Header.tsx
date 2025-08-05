@@ -92,19 +92,19 @@ const Header: React.FC = () => {
       <a href="#main-content" className="sr-only focus:not-sr-only absolute top-2 left-2 z-[100] bg-black text-white px-3 py-1 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
         Skip to content
       </a>
-      <motion.header 
+      <motion.header
         ref={headerRef}
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-black/30 backdrop-blur-xl border-b border-white/20 shadow-lg' 
-            : 'bg-black/20 backdrop-blur-md border-b border-white/10'
+          isScrolled
+            ? 'bg-bg-primary/30 backdrop-blur-xl border-b border-white/20 shadow-lg'
+            : 'bg-bg-primary/20 backdrop-blur-md border-b border-white/10'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        style={{ 
+        style={{
           opacity: headerOpacity,
-          backdropFilter: `blur(${headerBlur.get()}px)`
+          backdropFilter: `blur(${headerBlur.get()}px)`,
         }}
         role="banner"
       >
@@ -112,7 +112,7 @@ const Header: React.FC = () => {
           <div className="flex items-center justify-between">
             <div className="hidden md:flex items-center space-x-2 w-8" />
             
-            <Brand 
+            <Brand
               isScrolled={isScrolled}
               displayText={displayText}
               subtitle={subtitle}
@@ -127,23 +127,12 @@ const Header: React.FC = () => {
         </div>
       </motion.header>
 
-      <MobileNav 
-        navItems={navItems} 
-        isOpen={isOpen} 
-        closeMenu={closeMenu} 
-        headerHeight={headerRef.current?.offsetHeight} 
+      <MobileNav
+        navItems={navItems}
+        isOpen={isOpen}
+        closeMenu={closeMenu}
+        headerHeight={headerRef.current?.offsetHeight}
       />
-
-      <style jsx>{`
-        @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-gradient {
-          animation: gradient 8s ease infinite;
-        }
-      `}</style>
     </>
   )
 }

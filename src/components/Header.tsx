@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { DesktopNav } from './header/DesktopNav'
 import { MobileNav } from './header/MobileNav'
@@ -82,9 +82,9 @@ const Header: React.FC = () => {
                 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
-                <a href="/" className="font-bold text-2xl bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+                <Link href="/" className="font-bold text-2xl bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
                   Jeremy Hayes
-                </a>
+                </Link>
               </motion.div>
             </div>
 

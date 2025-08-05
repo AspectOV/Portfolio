@@ -40,7 +40,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
           />
           <motion.div
             id="mobile-menu"
-            className="md:hidden fixed inset-x-0 z-50 bg-gradient-to-b from-black/95 to-black/98 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+            className="md:hidden fixed inset-x-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-2xl"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -60,25 +60,16 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                 >
                   <Link href={item.href} scroll={false} onClick={closeMenu}>
                     <motion.div
-                      className={`mx-4 mb-2 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
+                      className={`mx-4 mb-2 px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
                         pathname === item.href
-                          ? 'text-white bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30 shadow-lg'
-                          : 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent'
+                          ? 'text-white bg-white/10'
+                          : 'text-gray-400 hover:text-white hover:bg-white/5'
                       }`}
-                      whileHover={{ x: 8, scale: 1.02 }}
+                      whileHover={{ x: 5 }}
                       whileTap={{ scale: 0.98 }}
                       aria-current={pathname === item.href ? 'page' : undefined}
                     >
-                      <div className="flex items-center justify-between">
-                        {item.label}
-                        {pathname === item.href && (
-                          <motion.div
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
-                          />
-                        )}
-                      </div>
+                      {item.label}
                     </motion.div>
                   </Link>
                 </motion.div>

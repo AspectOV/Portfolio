@@ -59,13 +59,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${inter.className} bg-bg-primary text-text-primary`}>
+      <body className={inter.className}>
         <AnimatedBackdrop />
         <Header />
-        <main id="main-content" className="relative z-1 max-w-6xl w-full mx-auto my-32 px-md bg-transparent opacity-100 transition-opacity ease-in-out duration-500">
+        <main>
           {children}
         </main>
         <Footer />
+        <script dangerouslySetInnerHTML={{
+          __html: `document.addEventListener('contextmenu', event => event.preventDefault());`
+        }} />
       </body>
     </html>
   )

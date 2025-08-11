@@ -1,7 +1,6 @@
 'use client'
 
 import React, { useState } from 'react'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import ProjectCard from '@/components/ProjectCard'
 

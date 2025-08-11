@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
   return (
     <>
       <motion.footer 
-        className="bg-black/20 backdrop-blur-md border-t border-white/10 mt-20"
+        className="bg-black/20 backdrop-blur-md border-t border-white/10 mt-40"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}

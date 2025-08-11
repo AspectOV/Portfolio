@@ -2,23 +2,9 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import Skills from '@/components/Skills'
 
 const AboutPage: React.FC = () => {
-  const skills = [
-    { name: 'JavaScript', icon: 'fab fa-js' },
-    { name: 'HTML', icon: 'fab fa-html5' },
-    { name: 'CSS', icon: 'fab fa-css3-alt' },
-    { name: 'C#', icon: 'fas fa-code' },
-    { name: 'Lua/Luau', icon: 'fas fa-code' },
-    { name: 'Python', icon: 'fab fa-python' },
-    { name: 'Blender', icon: 'fas fa-cube' },
-    { name: 'Unity', icon: 'fas fa-gamepad' },
-    { name: 'Windows', icon: 'fab fa-windows' },
-    { name: 'Game Development', icon: 'fas fa-gamepad' },
-    { name: '3D Modeling', icon: 'fas fa-cube' },
-    { name: 'UI Design', icon: 'fas fa-palette' }
-  ]
-
   return (
     <>
       <motion.section
@@ -62,19 +48,7 @@ const AboutPage: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.4 }}
       >
         <h2>Skills</h2>
-        <div className="skills-container">
-          {skills.map((skill, index) => (
-            <motion.span
-              key={skill.name}
-              className="skill-tag"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
-            >
-              <i className={skill.icon}></i> {skill.name}
-            </motion.span>
-          ))}
-        </div>
+        <Skills />
 
         <h3 className="mt-2">Certifications</h3>
         <ul>
@@ -103,4 +77,4 @@ const AboutPage: React.FC = () => {
   )
 }
 
-export default AboutPage 
+export default AboutPage

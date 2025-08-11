@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import ProjectCard from '@/components/ProjectCard'
+import Skills from '@/components/Skills'
 
 const HomePage: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -40,23 +42,6 @@ const HomePage: React.FC = () => {
     }
   ]
 
-  const skills = [
-    { name: 'JavaScript', icon: 'fab fa-js' },
-    { name: 'HTML', icon: 'fab fa-html5' },
-    { name: 'CSS', icon: 'fab fa-css3-alt' },
-    { name: 'C#', icon: 'fas fa-code' },
-    { name: 'Lua/Luau', icon: 'fas fa-code' },
-    { name: 'Python', icon: 'fab fa-python' },
-    { name: 'Blender', icon: 'fas fa-cube' },
-    { name: 'Unity', icon: 'fas fa-gamepad' },
-    { name: 'Windows', icon: 'fab fa-windows' },
-    { name: 'Game Development', icon: 'fas fa-gamepad' },
-    { name: '3D Modeling', icon: 'fas fa-cube' },
-    { name: 'UI Design', icon: 'fas fa-palette' },
-    { name: 'Software Development', icon: 'fas fa-desktop' },
-    { name: 'Bot Development', icon: 'fa-brands fa-discord' }
-  ]
-
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!email) return
@@ -90,11 +75,11 @@ const HomePage: React.FC = () => {
           Welcome to my digital portfolio, where I share my projects and connect with like-minded creators in tech!
         </p>
         <div className="mt-6">
-          <Link href="/projects" className="inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0">
+          <Link href="/projects" className="button">
             <i className="fas fa-code"></i>
             View My Projects
           </Link>
-          <Link href="/contact" className="inline-flex items-center gap-xs px-md py-sm bg-transparent text-accent border-2 border-accent rounded-md font-semibold transition-all cursor-pointer text-base hover:bg-accent hover:text-black" style={{ marginLeft: '1rem' }}>
+          <Link href="/contact" className="button secondary" style={{ marginLeft: '1rem' }}>
             <i className="fas fa-envelope"></i>
             Get In Touch
           </Link>
@@ -109,54 +94,7 @@ const HomePage: React.FC = () => {
         <h2>Featured Work</h2>
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg mt-md">
           {featuredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              className="bg-bg-tertiary rounded-lg overflow-hidden border border-border transition-all"
-              data-category={project.category}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-            >
-              <div className="relative overflow-hidden aspect-video">
-                <Image
-                  src={project.image}
-                  alt={`Image of ${project.title} Project`}
-                  width={400}
-                  height={225}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-                  <div className="flex gap-sm">
-                    <a href={`#project-details-${project.id}`} className="flex items-center justify-center w-12 h-12 bg-accent text-white rounded-full transition-all hover:bg-accent-hover hover:scale-110" aria-label="View project details">
-                      <i className="fas fa-info-circle"></i>
-                    </a>
-                    <a href={`#project-demo-${project.id}`} className="flex items-center justify-center w-12 h-12 bg-accent text-white rounded-full transition-all hover:bg-accent-hover hover:scale-110" aria-label="View project demo">
-                      <i className="fas fa-play-circle"></i>
-                    </a>
-                    <a href={`#project-code-${project.id}`} className="flex items-center justify-center w-12 h-12 bg-accent text-white rounded-full transition-all hover:bg-accent-hover hover:scale-110" aria-label="View project code">
-                      <i className="fab fa-github"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="p-md">
-                <h3>
-                  <i className={`fas fa-${project.category === 'game-dev' ? 'gamepad' : project.category === 'web-dev' ? 'globe' : 'code'}`}></i>
-                  {project.title}
-                </h3>
-                <p>{project.description}</p>
-                <div className="flex flex-wrap gap-xs mb-md">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="px-sm py-xs bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/30">{tag}</span>
-                  ))}
-                </div>
-                <Link href={project.link} className="inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0">
-                  {project.category === 'game-dev' ? 'Project Gallery' : 
-                   project.category === 'web-dev' ? 'See Examples' : 'View Portfolio'}
-                </Link>
-              </div>
-            </motion.div>
+            <ProjectCard key={project.id} {...project} index={index} />
           ))}
         </div>
       </motion.section>
@@ -167,19 +105,7 @@ const HomePage: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.4 }}
       >
         <h2>Skills</h2>
-        <div className="flex flex-wrap gap-sm mt-md">
-          {skills.map((skill, index) => (
-            <motion.span
-              key={skill.name}
-              className="inline-flex items-center gap-xs px-sm py-xs bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/30 transition-all"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
-            >
-              <i className={skill.icon}></i> {skill.name}
-            </motion.span>
-          ))}
-        </div>
+        <Skills />
       </motion.section>
 
       <motion.section
@@ -220,7 +146,7 @@ const HomePage: React.FC = () => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
               className="flex-1 rounded-full px-md py-sm border border-border focus:border-accent"
             />
-            <button type="submit" className={`inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 ${isSubmitting ? 'relative pointer-events-none after:content-[""] after:absolute after:top-1/2 after:left-1/2 after:w-5 after:h-5 after:mt-[-10px] after:ml-[-10px] after:border-2 after:border-accent after:border-t-transparent after:rounded-full after:animate-spin' : ''}`}>
+            <button type="submit" className={`button ${isSubmitting ? 'loading' : ''}`}>
               Subscribe
             </button>
           </div>
@@ -235,4 +161,4 @@ const HomePage: React.FC = () => {
   )
 }
 
-export default HomePage 
+export default HomePage

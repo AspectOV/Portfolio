@@ -74,7 +74,10 @@ const Header: React.FC = () => {
       >
         <div className="container py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
+            <div className="md:hidden">
+              <MenuButton isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
+            </div>
+            <div className="flex-grow flex items-center justify-center">
               <motion.div
                 whileHover={{
                   scale: 1.05,
@@ -82,7 +85,7 @@ const Header: React.FC = () => {
                 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
-                <Link href="/" className="font-bold text-2xl bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+                <Link href="/" className="font-bold text-4xl bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
                   Jeremy Hayes
                 </Link>
               </motion.div>
@@ -90,10 +93,6 @@ const Header: React.FC = () => {
 
             <div className="hidden md:flex">
               <DesktopNav navItems={navItems} />
-            </div>
-
-            <div className="md:hidden">
-              <MenuButton isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
             </div>
           </div>
         </div>
@@ -112,7 +111,7 @@ const Header: React.FC = () => {
           z-index: 1;
           color: white;
           text-align: center;
-          padding: 1rem 1.5rem;
+          padding: 1.5rem;
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
           overflow: hidden;
         }

@@ -40,7 +40,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
           />
           <motion.div
             id="mobile-menu"
-            className="md:hidden fixed inset-x-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-2xl"
+            className="md:hidden fixed inset-x-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-2xl rounded-b-lg"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -60,7 +60,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                 >
                   <Link href={item.href} scroll={false} onClick={closeMenu}>
                     <motion.div
-                      className={`mx-4 mb-2 px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
+                      className={`mx-4 mb-2 px-4 py-3 rounded-lg text-lg font-medium transition-all duration-300 ${
                         pathname === item.href
                           ? 'text-white bg-white/10'
                           : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -80,4 +80,4 @@ export const MobileNav: React.FC<MobileNavProps> = ({
       )}
     </AnimatePresence>
   )
-} 
+}

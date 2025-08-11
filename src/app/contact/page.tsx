@@ -10,8 +10,42 @@ const ContactPage: React.FC = () => {
     subject: '',
     message: ''
   })
+  const [errors, setErrors] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
+
+  const validate = () => {
+    let tempErrors = { name: '', email: '', subject: '', message: '' }
+    let isValid = true
+
+    if (!formData.name) {
+      tempErrors.name = 'Name is required'
+      isValid = false
+    }
+    if (!formData.email) {
+      tempErrors.email = 'Email is required'
+      isValid = false
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      tempErrors.email = 'Email is invalid'
+      isValid = false
+    }
+    if (!formData.subject) {
+      tempErrors.subject = 'Subject is required'
+      isValid = false
+    }
+    if (!formData.message) {
+      tempErrors.message = 'Message is required'
+      isValid = false
+    }
+
+    setErrors(tempErrors)
+    return isValid
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -23,6 +57,8 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (!validate()) return
+
     setIsSubmitting(true)
     setMessage('')
 
@@ -68,8 +104,8 @@ const ContactPage: React.FC = () => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              required
             />
+            {errors.name && <p className="text-error">{errors.name}</p>}
           </div>
           
           <div className="form-group">
@@ -80,8 +116,8 @@ const ContactPage: React.FC = () => {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              required
             />
+            {errors.email && <p className="text-error">{errors.email}</p>}
           </div>
           
           <div className="form-group">
@@ -92,8 +128,8 @@ const ContactPage: React.FC = () => {
               name="subject"
               value={formData.subject}
               onChange={handleInputChange}
-              required
             />
+            {errors.subject && <p className="text-error">{errors.subject}</p>}
           </div>
           
           <div className="form-group">
@@ -103,9 +139,9 @@ const ContactPage: React.FC = () => {
               name="message"
               value={formData.message}
               onChange={handleInputChange}
-              required
               rows={6}
             />
+            {errors.message && <p className="text-error">{errors.message}</p>}
           </div>
           
           <button type="submit" className={`button ${isSubmitting ? 'loading' : ''}`}>
@@ -164,4 +200,4 @@ const ContactPage: React.FC = () => {
   )
 }
 
-export default ContactPage 
+export default ContactPage

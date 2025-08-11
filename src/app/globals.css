@@ -111,7 +111,7 @@ main {
   z-index: 1;
   max-width: 1200px;
   width: 100%;
-  margin: 8rem auto 0; /* Adjusted for integrated header */
+  margin: 12rem auto 0; /* Adjusted for integrated header */
   padding: 0 var(--space-md);
   background-color: transparent;
   opacity: 1;

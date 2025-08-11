@@ -20,7 +20,7 @@ const ContactPage: React.FC = () => {
   const [message, setMessage] = useState('')
 
   const validate = () => {
-    let tempErrors = { name: '', email: '', subject: '', message: '' }
+    const tempErrors = { name: '', email: '', subject: '', message: '' }
     let isValid = true
 
     if (!formData.name) {

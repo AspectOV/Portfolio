@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import ProjectCard from '@/components/ProjectCard'
 
 const ProjectsPage: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all')
@@ -15,9 +16,7 @@ const ProjectsPage: React.FC = () => {
       image: '/images/roblox-game.png',
       category: 'game-dev',
       tags: ['Lua', 'Roblox', 'Horror'],
-      demoUrl: '#',
-      codeUrl: '#',
-      detailsUrl: '#'
+      link: '#'
     },
     {
       id: 'roblox-game-2',
@@ -26,9 +25,7 @@ const ProjectsPage: React.FC = () => {
       image: '/images/roblox-game.png',
       category: 'game-dev',
       tags: ['Lua', 'Roblox', 'UI Design'],
-      demoUrl: '#',
-      codeUrl: '#',
-      detailsUrl: '#'
+      link: '#'
     },
     {
       id: 'web-app-1',
@@ -37,9 +34,7 @@ const ProjectsPage: React.FC = () => {
       image: '/images/web-dev-project.png',
       category: 'web-dev',
       tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
-      demoUrl: '#',
-      codeUrl: '#',
-      detailsUrl: '#'
+      link: '#'
     },
     {
       id: 'software-1',
@@ -48,9 +43,7 @@ const ProjectsPage: React.FC = () => {
       image: '/images/unity-game.jpg',
       category: 'software-dev',
       tags: ['C#', 'Windows', 'Desktop App'],
-      demoUrl: '#',
-      codeUrl: '#',
-      detailsUrl: '#'
+      link: '#'
     }
   ]
 
@@ -105,59 +98,7 @@ const ProjectsPage: React.FC = () => {
       >
         <div className="project-grid">
           {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              className="project"
-              data-category={project.category}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
-            >
-              <div className="project-image">
-                <Image
-                  src={project.image}
-                  alt={`Image of ${project.title} Project`}
-                  width={400}
-                  height={225}
-                  loading="lazy"
-                />
-                <div className="project-overlay">
-                  <div className="project-links">
-                    <a href={project.detailsUrl} className="project-link" aria-label="View project details">
-                      <i className="fas fa-info-circle"></i>
-                    </a>
-                    <a href={project.demoUrl} className="project-link" aria-label="View project demo">
-                      <i className="fas fa-play-circle"></i>
-                    </a>
-                    <a href={project.codeUrl} className="project-link" aria-label="View project code">
-                      <i className="fab fa-github"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div className="project-content">
-                <h3>
-                  <i className={`fas fa-${project.category === 'game-dev' ? 'gamepad' : project.category === 'web-dev' ? 'globe' : 'code'}`}></i>
-                  {project.title}
-                </h3>
-                <p>{project.description}</p>
-                <div className="project-tags">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="tag">{tag}</span>
-                  ))}
-                </div>
-                <div className="flex gap-2 mt-4">
-                  <a href={project.demoUrl} className="button">
-                    <i className="fas fa-play"></i>
-                    Demo
-                  </a>
-                  <a href={project.codeUrl} className="button secondary">
-                    <i className="fab fa-github"></i>
-                    Code
-                  </a>
-                </div>
-              </div>
-            </motion.div>
+            <ProjectCard key={project.id} {...project} index={index} />
           ))}
         </div>
       </motion.section>
@@ -165,4 +106,4 @@ const ProjectsPage: React.FC = () => {
   )
 }
 
-export default ProjectsPage 
+export default ProjectsPage

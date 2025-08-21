@@ -62,7 +62,7 @@ const Header: React.FC = () => {
       </a>
       <motion.header
         ref={headerRef}
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 py-4 px-8 ${
           isScrolled
             ? 'bg-black/80 backdrop-blur-lg border-b border-white/20 shadow-lg'
             : 'bg-transparent border-b border-transparent'
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
         transition={{ duration: 0.6, ease: 'easeOut' }}
         role="banner"
       >
-        <div className="container py-4">
+        <div className="container">
           <div className="flex items-center justify-between">
             <div className="md:hidden">
               <MenuButton isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
@@ -104,34 +104,6 @@ const Header: React.FC = () => {
         closeMenu={closeMenu}
         headerHeight={headerRef.current?.offsetHeight}
       />
-
-      <style jsx>{`
-        header {
-          position: relative;
-          z-index: 1;
-          color: white;
-          text-align: center;
-          padding: 1.5rem;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-          overflow: hidden;
-        }
-
-        header::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: radial-gradient(circle at 50% 50%, rgba(0, 180, 216, 0.1), transparent 70%);
-          z-index: 0;
-        }
-        
-        header > * {
-          position: relative;
-          z-index: 1;
-        }
-      `}</style>
     </>
   )
 }

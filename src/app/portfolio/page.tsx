@@ -48,11 +48,11 @@ const PortfolioPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="grid grid-3">
+        <div className="grid grid-cols-3 gap-6">
           {portfolioItems.map((item, index) => (
             <motion.div
               key={item.id}
-              className="portfolio-item"
+              className="group relative overflow-hidden rounded-lg bg-bg-tertiary"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
@@ -63,8 +63,9 @@ const PortfolioPage: React.FC = () => {
                 width={400}
                 height={200}
                 loading="lazy"
+                className="w-full h-[200px] object-cover transition-transform duration-normal group-hover:scale-110"
               />
-              <div className="portfolio-overlay">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 transform translate-y-full transition-transform duration-normal group-hover:translate-y-0">
                 <h3>{item.title}</h3>
                 <p>{item.description}</p>
               </div>

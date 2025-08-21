@@ -40,12 +40,12 @@ export const MobileNav: React.FC<MobileNavProps> = ({
           />
           <motion.div
             id="mobile-menu"
-            className="md:hidden fixed inset-x-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-2xl rounded-b-lg"
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            style={{ top: headerHeight || 80 }}
+            style={{ '--header-height': `${headerHeight || 80}px` } as React.CSSProperties}
+            className="md:hidden fixed inset-x-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-2xl rounded-b-lg top-[var(--header-height)]"
             role="dialog"
             aria-modal="true"
           >

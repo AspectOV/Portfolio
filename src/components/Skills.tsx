@@ -22,11 +22,11 @@ const skills = [
 
 const Skills: React.FC = () => {
   return (
-    <div className="flex flex-wrap gap-sm mt-md">
+    <div className="flex flex-wrap gap-4 mt-6">
       {skills.map((skill, index) => (
         <motion.span
           key={skill.name}
-          className="inline-flex items-center gap-xs px-sm py-xs bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/30 transition-all"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/30 transition-all"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}

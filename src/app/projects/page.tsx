@@ -57,6 +57,9 @@ const ProjectsPage: React.FC = () => {
     ? projects 
     : projects.filter(project => project.category === activeFilter)
 
+  const buttonClasses = "inline-flex items-center gap-2 px-6 py-4 bg-accent text-black rounded-md font-semibold transition-all duration-fast cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-px hover:shadow-md active:translate-y-0";
+  const secondaryButtonClasses = "bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-black";
+
   return (
     <>
       <motion.section
@@ -82,7 +85,7 @@ const ProjectsPage: React.FC = () => {
             <button
               key={filter.id}
               onClick={() => setActiveFilter(filter.id)}
-              className={`button ${activeFilter === filter.id ? '' : 'secondary'}`}
+              className={`${buttonClasses} ${activeFilter !== filter.id ? secondaryButtonClasses : ''}`}
             >
               {filter.label}
             </button>
@@ -95,7 +98,7 @@ const ProjectsPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <div className="project-grid">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 mt-6">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} {...project} index={index} />
           ))}

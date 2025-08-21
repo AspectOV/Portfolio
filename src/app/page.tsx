@@ -62,6 +62,9 @@ const HomePage: React.FC = () => {
     }
   }
 
+  const buttonClasses = "inline-flex items-center gap-2 px-6 py-4 bg-accent text-black rounded-md font-semibold transition-all duration-fast cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-px hover:shadow-md active:translate-y-0";
+  const secondaryButtonClasses = "bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-black";
+
   return (
     <>
       <motion.section
@@ -75,11 +78,11 @@ const HomePage: React.FC = () => {
           Welcome to my digital portfolio, where I share my projects and connect with like-minded creators in tech!
         </p>
         <div className="mt-6">
-          <Link href="/projects" className="button">
+          <Link href="/projects" className={buttonClasses}>
             <i className="fas fa-code"></i>
             View My Projects
           </Link>
-          <Link href="/contact" className="button secondary" style={{ marginLeft: '1rem' }}>
+          <Link href="/contact" className={`${buttonClasses} ${secondaryButtonClasses} ml-4`}>
             <i className="fas fa-envelope"></i>
             Get In Touch
           </Link>
@@ -92,7 +95,7 @@ const HomePage: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.2 }}
       >
         <h2>Featured Work</h2>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-lg mt-md">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 mt-6">
           {featuredProjects.map((project, index) => (
             <ProjectCard key={project.id} {...project} index={index} />
           ))}
@@ -126,15 +129,15 @@ const HomePage: React.FC = () => {
       </motion.section>
 
       <motion.section
-        className="bg-gradient-to-r from-bg-secondary to-bg-tertiary border border-border p-lg rounded-lg"
+        className="bg-gradient-to-r from-bg-secondary to-bg-tertiary border border-border p-10 rounded-lg"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
       >
-        <h2 className="text-center mb-md after:left-1/2 after:-translate-x-1/2">Stay Updated</h2>
+        <h2 className="text-center mb-6 after:left-1/2 after:-translate-x-1/2">Stay Updated</h2>
         <p>Subscribe to my newsletter for updates on new projects and tech insights.</p>
         <form className="max-w-[500px] mx-auto" onSubmit={handleNewsletterSubmit}>
-          <div className="flex gap-sm">
+          <div className="flex gap-4">
             <input
               type="email"
               id="email"
@@ -144,14 +147,14 @@ const HomePage: React.FC = () => {
               autoComplete="email"
               value={email}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-              className="flex-1 rounded-full px-md py-sm border border-border focus:border-accent"
+              className="flex-1 rounded-full px-6 py-4 border border-border focus:border-accent"
             />
-            <button type="submit" className={`button ${isSubmitting ? 'loading' : ''}`}>
+            <button type="submit" className={`${buttonClasses} ${isSubmitting ? 'animate-loading-spinner' : ''}`}>
               Subscribe
             </button>
           </div>
           {message && (
-            <div className={`mt-sm text-center font-medium ${message.includes('Thank you') ? 'text-success' : 'text-error'}`}>
+            <div className={`mt-4 text-center font-medium ${message.includes('Thank you') ? 'text-success' : 'text-error'}`}>
               {message}
             </div>
           )}

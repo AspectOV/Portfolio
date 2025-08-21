@@ -18,7 +18,7 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }: DesktopNavPr
   const pathname = usePathname()
 
   return (
-    <nav className="hidden md:flex items-center justify-center gap-1" aria-label="Main Navigation">
+    <nav className="hidden md:flex items-center justify-center gap-4" aria-label="Main Navigation">
       {navItems.map((item: NavItem) => (
         <Link key={item.href} href={item.href} scroll={false}>
           <motion.div
@@ -44,4 +44,4 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }: DesktopNavPr
       ))}
     </nav>
   )
-} 
+}

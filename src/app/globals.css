@@ -1,9 +1,9 @@
-/* FIX: Replaced the three @tailwind directives with the new v4 @import rule */
 @import "tailwindcss";
 
 @layer base {
   html {
-    @apply bg-bg-primary;
+    /* FIX: Corrected utility class name */
+    @apply bg-primary;
     scroll-behavior: smooth;
     scroll-padding-top: 8rem;
     font-size: 15px;
@@ -11,7 +11,8 @@
   }
 
   body {
-    @apply bg-bg-primary text-text-primary;
+    /* FIX: Corrected utility class names */
+    @apply bg-primary text-primary;
     line-height: 1.6;
     cursor: url('/images/dot_cursor.png') 8 8, auto;
     overflow-x: hidden;
@@ -48,12 +49,14 @@
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-bg-tertiary rounded-sm;
+    /* FIX: Corrected utility class name */
+    @apply bg-tertiary rounded-sm;
   }
   ::-webkit-scrollbar-thumb {
     @apply rounded-sm;
     background: #444;
-    border: 2px solid #1a1a1a; /* Value from theme.colors.bg-tertiary */
+    /* FIX: Used the correct color name for the border */
+    border: 2px solid theme('colors.bg-tertiary');
     transition: background 300ms; /* Value from theme.transitionDuration.normal */
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -63,11 +66,13 @@
     @apply bg-accent;
   }
   ::-webkit-scrollbar-corner {
-    @apply bg-bg-tertiary;
+     /* FIX: Corrected utility class name */
+    @apply bg-tertiary;
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: #444 #1a1a1a; /* Value from theme.colors.bg-tertiary */
+    /* FIX: Used the correct color name for the scrollbar */
+    scrollbar-color: #444 theme('colors.bg-tertiary');
   }
 }

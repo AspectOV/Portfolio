@@ -27,8 +27,8 @@ export default {
       },
       // === Fonts ===
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        mono: ['JetBrains Mono', ...defaultTheme.fontFamily.mono],
+        sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        mono: ['var(--font-jetbrains-mono)', ...defaultTheme.fontFamily.mono],
       },
       // === Spacing (for padding, margin, gap, etc.) ===
       spacing: {

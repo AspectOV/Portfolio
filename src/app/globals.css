@@ -4,10 +4,11 @@
 
 @layer base {
   html {
+    /* FIX: Replaced theme() with @apply */
+    @apply bg-bg-primary;
     scroll-behavior: smooth;
     scroll-padding-top: 8rem;
     font-size: 15px;
-    background-color: theme('colors.bg-primary');
     overflow-x: hidden;
   }
 
@@ -22,13 +23,8 @@
 
   h2::after {
     content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 3px;
-    background: theme('colors.accent.DEFAULT');
-    border-radius: theme('borderRadius.full');
+    /* FIX: Replaced theme() with @apply */
+    @apply absolute bottom-0 left-0 h-[3px] w-[60px] rounded-full bg-accent;
   }
 
   header::before,
@@ -39,6 +35,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    /* This rgba value is based on the accent color #00b4d8 from your config */
     background: radial-gradient(circle at 50% 50%, rgba(0, 180, 216, 0.1), transparent 70%);
     z-index: 0;
   }
@@ -49,32 +46,32 @@
     z-index: 1;
   }
 
+  /* FIX: Replaced all theme() calls with direct values or @apply */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: theme('colors.bg-tertiary');
-    border-radius: theme('borderRadius.sm');
+    @apply bg-bg-tertiary rounded-sm;
   }
   ::-webkit-scrollbar-thumb {
+    @apply rounded-sm;
     background: #444;
-    border-radius: theme('borderRadius.sm');
-    border: 2px solid theme('colors.bg-tertiary');
-    transition: background theme('transitionDuration.normal');
+    border: 2px solid #1a1a1a; /* Value from theme.colors.bg-tertiary */
+    transition: background 300ms; /* Value from theme.transitionDuration.normal */
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
   ::-webkit-scrollbar-thumb:active {
-    background: theme('colors.accent.DEFAULT');
+    @apply bg-accent;
   }
   ::-webkit-scrollbar-corner {
-    background: theme('colors.bg-tertiary');
+    @apply bg-bg-tertiary;
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: #444 theme('colors.bg-tertiary');
+    scrollbar-color: #444 #1a1a1a; /* Value from theme.colors.bg-tertiary */
   }
 }

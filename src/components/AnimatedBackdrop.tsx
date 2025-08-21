@@ -28,10 +28,7 @@ const AnimatedBackdrop: React.FC = () => {
     <div className="fixed inset-0 -z-10 overflow-hidden">
       {/* Gradient Background */}
       <div 
-        className="absolute inset-0"
-        style={{
-          background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%)'
-        }}
+        className="absolute inset-0 bg-gradient-to-br from-bg-primary via-bg-tertiary to-bg-primary"
       />
       
       {/* Animated Grid */}
@@ -68,10 +65,7 @@ const AnimatedBackdrop: React.FC = () => {
 
       {/* Mouse Follow Effect */}
       <motion.div
-        className="absolute w-96 h-96 rounded-full blur-3xl pointer-events-none"
-        style={{
-          backgroundColor: 'rgba(0, 180, 216, 0.1)'
-        }}
+        className="absolute w-96 h-96 rounded-full blur-3xl pointer-events-none bg-accent/10"
         animate={{
           x: mousePosition.x - 192,
           y: mousePosition.y - 192,
@@ -87,7 +81,7 @@ const AnimatedBackdrop: React.FC = () => {
       {[...Array(5)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 rounded-full"
+          className="absolute w-2 h-2 rounded-full bg-white/20"
           animate={{
             x: [0, 100, 0],
             y: [0, -100, 0],
@@ -102,7 +96,6 @@ const AnimatedBackdrop: React.FC = () => {
           style={{
             left: `${20 + i * 15}%`,
             top: `${30 + i * 10}%`,
-            backgroundColor: 'rgba(255, 255, 255, 0.2)'
           }}
         />
       ))}

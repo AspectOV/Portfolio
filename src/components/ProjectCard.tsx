@@ -35,7 +35,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ id, title, description, image
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-black/80 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-          <div className="flex gap-sm">
+          <div className="flex gap-4">
             <a href={`#project-details-${id}`} className="flex items-center justify-center w-12 h-12 bg-accent text-white rounded-full transition-all hover:bg-accent-hover hover:scale-110" aria-label="View project details">
               <i className="fas fa-info-circle"></i>
             </a>
@@ -48,18 +48,18 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ id, title, description, image
           </div>
         </div>
       </div>
-      <div className="p-md">
+      <div className="p-6">
         <h3>
           <i className={`fas fa-${category === 'game-dev' ? 'gamepad' : category === 'web-dev' ? 'globe' : 'code'}`}></i>
           {title}
         </h3>
         <p>{description}</p>
-        <div className="flex flex-wrap gap-xs mb-md">
+        <div className="flex flex-wrap gap-2 mb-6">
           {tags.map(tag => (
-            <span key={tag} className="px-sm py-xs bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/30">{tag}</span>
+            <span key={tag} className="px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/30">{tag}</span>
           ))}
         </div>
-        <Link href={link} className="inline-flex items-center gap-xs px-md py-sm bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0">
+        <Link href={link} className="inline-flex items-center gap-2 px-6 py-4 bg-accent text-black rounded-md font-semibold transition-all border-none cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0">
           {category === 'game-dev' ? 'Project Gallery' : 
            category === 'web-dev' ? 'See Examples' : 'View Portfolio'}
         </Link>

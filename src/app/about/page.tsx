@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import Skills from '@/components/Skills'
 
 const AboutPage: React.FC = () => {
+  const liClasses = "py-4 border-b border-border relative pl-10 before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold";
+
   return (
     <>
       <motion.section
@@ -24,7 +26,6 @@ const AboutPage: React.FC = () => {
       </motion.section>
 
       <motion.section
-        className="resume-section"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
@@ -33,16 +34,15 @@ const AboutPage: React.FC = () => {
         <h3>York Community High School</h3>
         <p>Expected Graduation: 2027</p>
         <p>Relevant Coursework:</p>
-        <ul>
-          <li>AP Computer Science Principles</li>
-          <li>Technology Services Internship</li>
-          <li>Honors Physics</li>
-          <li>Computer Programming</li>
+        <ul className="list-none p-0">
+          <li className={liClasses}>AP Computer Science Principles</li>
+          <li className={liClasses}>Technology Services Internship</li>
+          <li className={liClasses}>Honors Physics</li>
+          <li className={liClasses}>Computer Programming</li>
         </ul>
       </motion.section>
 
       <motion.section
-        className="resume-section"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
@@ -50,11 +50,11 @@ const AboutPage: React.FC = () => {
         <h2>Skills</h2>
         <Skills />
 
-        <h3 className="mt-2">Certifications</h3>
-        <ul>
-          <li>CompTIA Tech+</li>
-          <li>RDF Programming</li>
-          <li>Lenovo Laptop Repair</li>
+        <h3 className="mt-6">Certifications</h3>
+        <ul className="list-none p-0">
+          <li className={liClasses}>CompTIA Tech+</li>
+          <li className={liClasses}>RDF Programming</li>
+          <li className={liClasses}>Lenovo Laptop Repair</li>
         </ul>
       </motion.section>
 
@@ -65,12 +65,12 @@ const AboutPage: React.FC = () => {
       >
         <h2>Hobbies & Interests</h2>
         <p>When I'm not coding or designing, you can find me:</p>
-        <ul>
-          <li>Competing in SkillsUSA competitions</li>
-          <li>Practicing wrestling and Jiu Jitsu</li>
-          <li>Learning new game engines</li>
-          <li>Help developer communities solve problems</li>
-          <li>Contributing to open-source game projects</li>
+        <ul className="list-none p-0">
+          <li className={liClasses}>Competing in SkillsUSA competitions</li>
+          <li className={liClasses}>Practicing wrestling and Jiu Jitsu</li>
+          <li className={liClasses}>Learning new game engines</li>
+          <li className={liClasses}>Help developer communities solve problems</li>
+          <li className={liClasses}>Contributing to open-source game projects</li>
         </ul>
       </motion.section>
     </>

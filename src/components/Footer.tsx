@@ -35,12 +35,12 @@ const Footer: React.FC = () => {
   return (
     <>
       <motion.footer 
-        className="bg-black/20 backdrop-blur-md border-t border-white/10 mt-40"
+        className="bg-black/20 backdrop-blur-md border-t border-white/10 mt-40 py-8 px-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div className="container py-8">
+        <div className="container">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0">
             <div className="text-gray-300 text-sm">
               © {currentYear} Jeremy M. Hayes. All rights reserved.
@@ -70,31 +70,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </motion.footer>
-      <style jsx>{`
-        footer {
-          position: relative;
-          z-index: 1;
-          background: linear-gradient(135deg, #111, #222);
-          color: white;
-          text-align: center;
-          padding: 2.5rem 1.5rem;
-          margin-top: 2.5rem;
-        }
-        
-        footer p {
-          margin: 0;
-          color: #e0e0e0;
-        }
-        
-        footer a {
-          color: #00b4d8;
-          text-decoration: none;
-        }
-        
-        footer a:hover {
-          color: #00d4f8;
-        }
-      `}</style>
     </>
   )
 }

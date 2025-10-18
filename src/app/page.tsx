@@ -50,9 +50,7 @@ const HomePage: React.FC = () => {
     setMessage('')
 
     try {
-      // Simulate API call (replace with actual newsletter subscription logic)
       await new Promise(resolve => setTimeout(resolve, 1000))
-      
       setMessage('Thank you for subscribing!')
       setEmail('')
     } catch {
@@ -62,105 +60,125 @@ const HomePage: React.FC = () => {
     }
   }
 
-  const buttonClasses = "inline-flex items-center gap-2 px-6 py-4 bg-accent text-black rounded-md font-semibold transition-all duration-fast cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-px hover:shadow-md active:translate-y-0";
-  const secondaryButtonClasses = "bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-black";
+  const buttonClasses =
+    'inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all duration-200 bg-accent text-black hover:bg-accent-hover hover:-translate-y-[1px] hover:shadow-md active:translate-y-0'
+  const secondaryButtonClasses =
+    'bg-transparent text-accent border border-accent hover:bg-accent hover:text-black'
 
   return (
-    <>
+    <main className="flex flex-col gap-24 px-6 md:px-12 lg:px-24 py-16 text-foreground bg-background">
+      {/* Hero Section */}
       <motion.section
+        className="max-w-3xl mx-auto text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2>Welcome</h2>
-        <p>
-          Hi, I'm Jeremy, a passionate high school developer specializing in scripting, game design, and computer science. 
-          Welcome to my digital portfolio, where I share my projects and connect with like-minded creators in tech!
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome</h1>
+        <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+          Hi, I&apos;m <span className="font-semibold text-accent">Jeremy</span>, a passionate high school
+          developer specializing in scripting, game design, and computer science.
+          Welcome to my digital portfolio, where I share my projects and connect
+          with like-minded creators in tech!
         </p>
-        <div className="mt-6">
+
+        <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link href="/projects" className={buttonClasses}>
-            <i className="fas fa-code"></i>
+            <i className="fas fa-code" />
             View My Projects
           </Link>
-          <Link href="/contact" className={`${buttonClasses} ${secondaryButtonClasses} ml-4`}>
-            <i className="fas fa-envelope"></i>
+          <Link href="/contact" className={`${buttonClasses} ${secondaryButtonClasses}`}>
+            <i className="fas fa-envelope" />
             Get In Touch
           </Link>
         </div>
       </motion.section>
 
+      {/* Featured Work Section */}
       <motion.section
+        className="max-w-6xl mx-auto w-full"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <h2>Featured Work</h2>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 mt-6">
+        <h2 className="text-3xl font-bold text-center mb-10">Featured Work</h2>
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((project, index) => (
             <ProjectCard key={project.id} {...project} index={index} />
           ))}
         </div>
       </motion.section>
 
+      {/* Skills Section */}
       <motion.section
+        className="max-w-4xl mx-auto w-full"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <h2>Skills</h2>
+        <h2 className="text-3xl font-bold text-center mb-10">Skills</h2>
         <Skills />
       </motion.section>
 
+      {/* Resume Section */}
       <motion.section
-        className="my-8"
+        className="max-w-5xl mx-auto w-full text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
       >
-        <h2 className="text-left">My Resume</h2>
+        <h2 className="text-3xl font-bold mb-6">My Resume</h2>
         <Image
           src="/images/resume.jpg"
           alt="Jeremy M. Hayes Resume"
           width={1000}
           height={600}
-          className="max-w-[1000px] w-full h-auto rounded-lg shadow-lg mt-4 block mx-auto"
+          className="rounded-xl shadow-lg border border-border mx-auto"
           loading="lazy"
         />
       </motion.section>
 
+      {/* Newsletter Section */}
       <motion.section
-        className="bg-gradient-to-r from-bg-secondary to-bg-tertiary border border-border p-10 rounded-lg"
+        className="max-w-3xl mx-auto w-full bg-gradient-to-r from-secondary/40 to-tertiary/40 border border-border p-10 rounded-2xl text-center shadow-sm"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
       >
-        <h2 className="text-center mb-6 after:left-1/2 after:-translate-x-1/2">Stay Updated</h2>
-        <p>Subscribe to my newsletter for updates on new projects and tech insights.</p>
-        <form className="max-w-[500px] mx-auto" onSubmit={handleNewsletterSubmit}>
-          <div className="flex gap-4">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-              className="flex-1 rounded-full px-6 py-4 border border-border focus:border-accent"
-            />
-            <button type="submit" className={`${buttonClasses} ${isSubmitting ? 'animate-loading-spinner' : ''}`}>
-              Subscribe
-            </button>
-          </div>
-          {message && (
-            <div className={`mt-4 text-center font-medium ${message.includes('Thank you') ? 'text-success' : 'text-error'}`}>
-              {message}
-            </div>
-          )}
+        <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+        <p className="text-muted-foreground mb-8">
+          Subscribe to my newsletter for updates on new projects and tech insights.
+        </p>
+
+        <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            required
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            className="flex-1 px-6 py-3 rounded-full border border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none transition"
+          />
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`${buttonClasses} ${isSubmitting ? 'opacity-75 cursor-wait' : ''}`}
+          >
+            {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+          </button>
         </form>
+
+        {message && (
+          <p
+            className={`mt-4 font-medium ${
+              message.includes('Thank you') ? 'text-green-500' : 'text-red-500'
+            }`}
+          >
+            {message}
+          </p>
+        )}
       </motion.section>
-    </>
+    </main>
   )
 }
 

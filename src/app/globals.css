@@ -1,7 +1,5 @@
-/* globals.css (fixed to match your tailwind.config.mjs theme) */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+/* For Tailwind CSS v4, you only need a single import. */
+@import "tailwindcss";
 
 @layer base {
   html {
@@ -20,6 +18,12 @@
     width: 100%;
     max-width: 100vw;
   }
+
+  /* The following custom styles can be defined more cleanly 
+    in your tailwind.config.mjs file using utilities.
+    However, to get you back up and running quickly, 
+    I've left them here for now.
+  */
 
   h2::after {
     content: '';

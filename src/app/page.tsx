@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import ProjectCard from 'components/ProjectCard'
-import Skills from 'components/Skills'
+import ProjectCard from '@/components/ProjectCard'
+import Skills from '@/components/Skills'
 
 const HomePage: React.FC = () => {
   const [email, setEmail] = useState('')

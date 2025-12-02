@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppInstaller
+	Uri="https://jeremymhayes.com/app/FileLocker.appinstaller/FileLocker_x64.appinstaller"
+	Version="1.0.2.0" xmlns="http://schemas.microsoft.com/appx/appinstaller/2017/2">
+	<MainPackage
+		Name="04c72652-51b0-4214-8ed0-f43e6751e7ae"
+		Version="1.0.2.0"
+		Publisher="CN=FileLocker"
+		Uri="https://jeremymhayes.com/app/FileLocker.appinstaller/FileLocker_1.0.2.0_x64_Debug_Test/FileLocker_1.0.2.0_x64_Debug.msix"
+		ProcessorArchitecture="x64" />
+	<Dependencies>
+		<Package
+			Name="Microsoft.WindowsAppRuntime.1.8"
+			Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+			ProcessorArchitecture="x64"
+			Uri="https://jeremymhayes.com/app/FileLocker.appinstaller/FileLocker_1.0.2.0_x64_Debug_Test/Dependencies/x64/Microsoft.WindowsAppRuntime.1.8.msix"
+			Version="8000.675.1142.0" />
+	</Dependencies>
+	<UpdateSettings>
+		<OnLaunch
+			HoursBetweenUpdateChecks="0" />
+	</UpdateSettings>
+</AppInstaller>

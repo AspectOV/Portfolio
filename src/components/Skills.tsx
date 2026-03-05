@@ -22,17 +22,18 @@ const skills = [
 
 const Skills: React.FC = () => {
   return (
-    <div className="flex flex-wrap gap-4 mt-6">
+    <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
       {skills.map((skill, index) => (
-        <motion.span
+        <motion.div
           key={skill.name}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium border border-accent/30 transition-all"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
+          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-white/90 transition-all hover:border-cyan-300/40 hover:bg-cyan-500/10"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.5 + index * 0.04 }}
         >
-          <i className={skill.icon}></i> {skill.name}
-        </motion.span>
+          <i className={`${skill.icon} text-cyan-300`} aria-hidden="true"></i>
+          <span>{skill.name}</span>
+        </motion.div>
       ))}
     </div>
   )

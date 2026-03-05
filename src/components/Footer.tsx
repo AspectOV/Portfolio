@@ -33,44 +33,42 @@ const Footer: React.FC = () => {
   ]
 
   return (
-    <>
-      <motion.footer 
-        className="bg-black/20 backdrop-blur-md border-t border-white/10 mt-40 py-8 px-8"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="container">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0">
-            <div className="text-gray-300 text-sm">
-              © {currentYear} Jeremy M. Hayes. All rights reserved.
-            </div>
-            
-            <div className="flex items-center space-x-6">
-              {socialLinks.map((link: SocialLink) => (
-                <motion.a
-                  key={link.name}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <link.icon size={20} />
-                </motion.a>
-              ))}
-            </div>
-          </div>
-          
-          <div className="mt-6 pt-6 border-t border-white/5 text-center">
-            <p className="text-gray-400 text-xs">
-              Built with Next.js, TypeScript, and Tailwind CSS | <Link href="/privacy-policy" className="hover:text-white">Privacy Policy</Link>
-            </p>
+    <motion.footer
+      className="mt-24 border-t border-white/10 bg-black/25 px-8 py-10 backdrop-blur-md"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+    >
+      <div className="mx-auto flex w-full max-w-[1120px] flex-col gap-8">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+          <p className="text-sm text-white/70">© {currentYear} Jeremy M. Hayes. All rights reserved.</p>
+
+          <div className="flex items-center gap-3">
+            {socialLinks.map((link: SocialLink) => (
+              <motion.a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border border-white/10 bg-white/[0.03] p-2.5 text-white/80 hover:border-cyan-300/40 hover:text-cyan-200"
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.96 }}
+                aria-label={link.name}
+              >
+                <link.icon size={18} />
+              </motion.a>
+            ))}
           </div>
         </div>
-      </motion.footer>
-    </>
+
+        <div className="border-t border-white/10 pt-6 text-center text-xs text-white/50">
+          Built with Next.js, TypeScript, and Tailwind CSS ·{' '}
+          <Link href="/privacy-policy" className="text-white/70 hover:text-cyan-200">
+            Privacy Policy
+          </Link>
+        </div>
+      </div>
+    </motion.footer>
   )
 }
 

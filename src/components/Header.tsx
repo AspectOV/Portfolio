@@ -67,9 +67,6 @@ const Header: React.FC = () => {
             ? 'bg-black/80 backdrop-blur-lg border-b border-white/20 shadow-lg'
             : 'bg-transparent border-b border-transparent'
         }`}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
         role="banner"
       >
         <div className="container">
@@ -85,7 +82,7 @@ const Header: React.FC = () => {
                 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
-                <Link href="/" className="font-bold text-4xl bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+                <Link href="/" className="font-bold text-4xl text-blue-400 tracking-tight">
                   Jeremy Hayes
                 </Link>
               </motion.div>

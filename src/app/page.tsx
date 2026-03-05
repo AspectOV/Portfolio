@@ -135,11 +135,11 @@ const HomePage: React.FC = () => {
         </div>
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/30 p-2 shadow-xl">
           <Image
-            src="/images/JeremyHayesResume.png"
+            src="/JeremyHayesResume.pdf"
             alt="Jeremy M. Hayes Resume"
             width={1000}
             height={600}
-            className="h-auto w-full rounded-xl"
+            className="w-full h-[900px]"
             loading="lazy"
           />
         </div>

@@ -50,9 +50,7 @@ const HomePage: React.FC = () => {
     setMessage('')
 
     try {
-      // Simulate API call (replace with actual newsletter subscription logic)
       await new Promise(resolve => setTimeout(resolve, 1000))
-      
       setMessage('Thank you for subscribing!')
       setEmail('')
     } catch {
@@ -62,100 +60,103 @@ const HomePage: React.FC = () => {
     }
   }
 
-  // Updated button classes for a more modern look and feel
-  const buttonClasses = "group inline-flex items-center gap-3 px-6 py-3 bg-accent text-black rounded-lg font-semibold transition-all duration-300 cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/30 active:translate-y-0 active:shadow-sm";
-  const secondaryButtonClasses = "bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-black";
+  const buttonClasses = 'group inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-semibold transition-all duration-300'
 
   return (
-    <div className="space-y-24 md:space-y-32">
-      {/* Hero Section */}
+    <div className="space-y-16 md:space-y-24">
       <motion.section
-        className="text-center"
+        className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 shadow-lg shadow-black/15 backdrop-blur-sm md:p-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-4 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">
-          Creative Developer & Game Designer
+        <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-cyan-300/80">Portfolio • Jeremy Hayes</p>
+        <h1 className="text-balance text-2xl font-bold leading-snug md:text-4xl">
+          Building polished digital experiences for web and game platforms.
         </h1>
-        <p className="max-w-3xl mx-auto text-lg md:text-xl text-content-secondary">
-          Hi, I'm Jeremy, a passionate high school developer specializing in scripting, game design, and computer science. 
-          Welcome to my digital portfolio, where I share my projects and connect with like-minded creators in tech!
+        <p className="mt-4 max-w-2xl text-base text-white/75 md:text-lg">
+          I design and develop production-ready projects spanning modern websites, interactive systems, and game experiences.
+          Explore selected work, technical strengths, and the process behind each build.
         </p>
-        <div className="mt-8 flex justify-center gap-4">
-          <Link href="/projects" className={buttonClasses}>
-            <i className="fas fa-code transition-transform duration-300 group-hover:rotate-6"></i>
-            View My Projects
+        <div className="mt-6 flex flex-wrap gap-3">
+          <Link href="/projects" className={`${buttonClasses} bg-cyan-400 text-black hover:-translate-y-0.5 hover:bg-cyan-300`}>
+            <i className="fas fa-briefcase"></i>
+            View Projects
           </Link>
-          <Link href="/contact" className={`${buttonClasses} ${secondaryButtonClasses}`}>
-            <i className="fas fa-envelope transition-transform duration-300 group-hover:rotate-6"></i>
-            Get In Touch
+          <Link href="/contact" className={`${buttonClasses} border border-white/20 bg-white/5 text-white hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/10`}>
+            <i className="fas fa-envelope"></i>
+            Contact Me
           </Link>
         </div>
       </motion.section>
 
-      {/* Featured Work Section */}
       <motion.section
+        className="rounded-3xl border border-cyan-300/20 bg-cyan-500/[0.04] p-6 md:p-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <h2>Featured Work</h2>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 mt-6">
+        <h2>Featured Projects</h2>
+        <p className="mt-3 max-w-2xl text-white/70">A curated snapshot of work focused on craftsmanship, usability, and performance.</p>
+        <div className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-8">
           {featuredProjects.map((project, index) => (
             <ProjectCard key={project.id} {...project} index={index} />
           ))}
         </div>
       </motion.section>
 
-      {/* Skills Section */}
       <motion.section
+        className="rounded-3xl border border-cyan-300/20 bg-cyan-500/[0.04] p-6 md:p-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <h2>My Skills</h2>
+        <h2>Core Skills</h2>
+        <p className="mt-3 max-w-2xl text-white/70">Tools and disciplines I use to ship robust, user-centered products.</p>
         <Skills />
       </motion.section>
-      
-      {/* Resume Section */}
+
       <motion.section
+        className="rounded-3xl border border-cyan-300/20 bg-cyan-500/[0.04] p-6 md:p-10"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
       >
-        <div className="flex justify-between items-center mb-4">
-          <h2>My Resume</h2>
-          <a href="/jeremy_hayes_resume.pdf" download className={`${buttonClasses} ${secondaryButtonClasses}`}>
-             <i className="fas fa-download"></i>
-             Download
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+          <h2>Resume</h2>
+          <a
+            href="/jeremy_hayes_resume.pdf"
+            download
+            className={`${buttonClasses} border border-cyan-300/40 bg-cyan-400/10 text-cyan-200 hover:bg-cyan-300/20`}
+          >
+            <i className="fas fa-download"></i>
+            Download PDF
           </a>
         </div>
-        <div className="p-2 border border-border rounded-lg bg-bg-secondary shadow-lg">
-            <Image
-              src="/images/resume.jpg"
-              alt="Jeremy M. Hayes Resume"
-              width={1000}
-              height={600}
-              className="w-full h-auto rounded-md"
-              loading="lazy"
-            />
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/30 p-2 shadow-xl">
+          <Image
+            src="/images/resume.jpg"
+            alt="Jeremy M. Hayes Resume"
+            width={1000}
+            height={600}
+            className="h-auto w-full rounded-xl"
+            loading="lazy"
+          />
         </div>
       </motion.section>
 
-      {/* Newsletter Section */}
       <motion.section
-        className="bg-gradient-to-r from-bg-secondary to-bg-tertiary border border-border p-10 rounded-lg text-center"
+        className="rounded-3xl border border-cyan-300/20 bg-gradient-to-r from-cyan-500/10 via-sky-500/5 to-transparent p-8 md:p-12"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
       >
-        <h2 className="text-center mb-6 after:left-1/2 after:-translate-x-1/2">Stay Updated</h2>
-        <p className="max-w-xl mx-auto text-content-secondary">
-          Subscribe to my newsletter for occasional updates on new projects and tech insights. No spam, ever.
+        <h2 className="mb-4 text-center after:left-1/2 after:-translate-x-1/2">Stay Updated</h2>
+        <p className="mx-auto max-w-xl text-center text-white/75">
+          Subscribe for occasional updates on new projects and practical lessons learned while building them.
         </p>
-        <form className="max-w-md mx-auto mt-6" onSubmit={handleNewsletterSubmit}>
-          <div className="flex gap-4">
+        <form className="mx-auto mt-6 max-w-xl" onSubmit={handleNewsletterSubmit}>
+          <div className="flex flex-col gap-3 sm:flex-row">
             <input
               type="email"
               id="email"
@@ -165,14 +166,17 @@ const HomePage: React.FC = () => {
               autoComplete="email"
               value={email}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-              className="flex-1 rounded-lg px-6 py-3 border border-border bg-bg-tertiary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+              className="min-h-12 flex-1 rounded-xl border border-white/15 bg-black/30 px-5 py-3 text-white placeholder:text-white/45 focus:border-cyan-300/60 focus:outline-none"
             />
-            <button type="submit" className={`${buttonClasses} ${isSubmitting ? 'animate-spinner' : ''}`}>
+            <button
+              type="submit"
+              className={`${buttonClasses} min-h-12 bg-cyan-400 text-black hover:bg-cyan-300 ${isSubmitting ? 'animate-spinner' : ''}`}
+            >
               Subscribe
             </button>
           </div>
           {message && (
-            <div className={`mt-4 text-center font-medium ${message.includes('Thank you') ? 'text-success' : 'text-error'}`}>
+            <div className={`mt-4 text-center font-medium ${message.includes('Thank you') ? 'text-green-400' : 'text-red-400'}`}>
               {message}
             </div>
           )}
@@ -183,4 +187,3 @@ const HomePage: React.FC = () => {
 }
 
 export default HomePage
-

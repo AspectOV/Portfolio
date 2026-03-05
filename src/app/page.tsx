@@ -135,7 +135,7 @@ const HomePage: React.FC = () => {
         </div>
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/30 p-2 shadow-xl">
           <Image
-            src="/images/JeremyHayesResume.pdf"
+            src="/images/JeremyHayesResume.png"
             alt="Jeremy M. Hayes Resume"
             width={1000}
             height={600}

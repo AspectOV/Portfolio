@@ -125,7 +125,7 @@ const HomePage: React.FC = () => {
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <h2>Resume</h2>
           <a
-            href="/jeremy_hayes_resume.pdf"
+            href="/JeremyHayesResume.pdf"
             download
             className={`${buttonClasses} border border-cyan-300/40 bg-cyan-400/10 text-cyan-200 hover:bg-cyan-300/20`}
           >
@@ -135,7 +135,7 @@ const HomePage: React.FC = () => {
         </div>
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/30 p-2 shadow-xl">
           <Image
-            src="/images/resume.jpg"
+            src="/images/JeremyHayesResume.pdf"
             alt="Jeremy M. Hayes Resume"
             width={1000}
             height={600}

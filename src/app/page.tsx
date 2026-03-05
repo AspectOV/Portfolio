@@ -133,14 +133,12 @@ const HomePage: React.FC = () => {
             Download PDF
           </a>
         </div>
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/30 p-2 shadow-xl">
-          <Image
-            src="/JeremyHayesResume.pdf"
-            alt="Jeremy M. Hayes Resume"
-            width={1000}
-            height={600}
-            className="w-full h-[900px]"
-            loading="lazy"
+      
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-xl">
+          <iframe
+            src="/JeremyHayesResume.pdf#toolbar=0&navpanes=0&scrollbar=0"
+            title="Jeremy M. Hayes Resume"
+            className="h-[900px] w-full"
           />
         </div>
       </motion.section>

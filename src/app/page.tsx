@@ -134,11 +134,11 @@ const HomePage: React.FC = () => {
           </a>
         </div>
       
-        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-xl">
+        <div className="mx-auto max-w-4xl rounded-2xl border border-white/10 bg-black/30 p-4 shadow-xl">
           <iframe
-            src="/JeremyHayesResume.pdf#toolbar=0&navpanes=0&scrollbar=0"
-            title="Jeremy M. Hayes Resume"
-            className="h-[900px] w-full"
+            src="/JeremyHayesResume.pdf"
+            title="Jeremy Hayes Resume"
+            className="w-full h-[1100px] rounded-lg bg-white"
           />
         </div>
       </motion.section>

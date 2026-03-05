@@ -134,11 +134,13 @@ const HomePage: React.FC = () => {
           </a>
         </div>
       
-        <div className="mx-auto max-w-4xl rounded-2xl border border-white/10 bg-black/30 p-4 shadow-xl">
+        <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-xl">
           <iframe
-            src="/JeremyHayesResume.pdf"
-            title="Jeremy Hayes Resume"
-            className="w-full h-[1100px] rounded-lg bg-white"
+            title="Jeremy M. Hayes Resume"
+            className="h-[1100px] w-full bg-white"
+            src={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(
+              "https://jeremymhayes.com/JeremyHayesResume.pdf"
+            )}`}
           />
         </div>
       </motion.section>

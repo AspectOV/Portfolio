@@ -1,10 +1,8 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   html {
-    @apply bg-background-primary;
+    background-color: #0a0a0a;
     scroll-behavior: smooth;
     scroll-padding-top: 8rem;
     font-size: 15px;
@@ -12,9 +10,8 @@
   }
 
   body {
-    /* Set a green background for testing */
-    background-color: green;
-    @apply text-content-primary;
+    background-color: #0a0a0a;
+    color: #ffffff;
     line-height: 1.6;
     cursor: url('/images/dot_cursor.png') 8 8, auto;
     overflow-x: hidden;
@@ -24,7 +21,13 @@
 
   h2::after {
     content: '';
-    @apply absolute bottom-0 left-0 h-[3px] w-[60px] rounded-full bg-accent;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 60px;
+    border-radius: 9999px;
+    background-color: #00b4d8;
   }
 
   header::before,
@@ -50,12 +53,12 @@
     height: 10px;
   }
   ::-webkit-scrollbar-track {
-    @apply bg-background-tertiary rounded-sm;
+    background-color: #1a1a1a;
+    border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb {
-    @apply rounded-sm;
+    border-radius: 4px;
     background: #444;
-    /* Replaced theme() function with the actual hex code to resolve build error */
     border: 2px solid #1a1a1a;
     transition: background 300ms;
   }
@@ -63,17 +66,14 @@
     background: #555;
   }
   ::-webkit-scrollbar-thumb:active {
-    @apply bg-accent;
+    background-color: #00b4d8;
   }
   ::-webkit-scrollbar-corner {
-    @apply bg-background-tertiary;
+    background-color: #1a1a1a;
   }
 
   * {
     scrollbar-width: thin;
-    /* Replaced theme() function with the actual hex code to resolve build error */
     scrollbar-color: #444 #1a1a1a;
   }
 }
-
-

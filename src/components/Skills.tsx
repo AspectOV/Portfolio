@@ -4,22 +4,34 @@ import React from 'react'
 import { motion } from 'framer-motion'
 
 const skills = [
+  { name: 'TypeScript', icon: 'fab fa-js' },
   { name: 'JavaScript', icon: 'fab fa-js' },
   { name: 'HTML', icon: 'fab fa-html5' },
   { name: 'CSS', icon: 'fab fa-css3-alt' },
   { name: 'C#', icon: 'fas fa-code' },
-  { name: 'Lua/Luau', icon: 'fas fa-code' },
   { name: 'Python', icon: 'fab fa-python' },
-  { name: 'Blender', icon: 'fas fa-cube' },
-  { name: 'Unity', icon: 'fas fa-gamepad' },
-  { name: 'Windows', icon: 'fab fa-windows' },
-  { name: 'Game Development', icon: 'fas fa-gamepad' },
-  { name: '3D Modeling', icon: 'fas fa-cube' },
-  { name: 'UI Design', icon: 'fas fa-palette' },
-  { name: 'Software Development', icon: 'fas fa-desktop' },
-  { name: 'Bot Development', icon: 'fa-brands fa-discord' }
-]
+  { name: 'Luau (Roblox)', icon: 'fas fa-code' },
 
+  { name: 'React', icon: 'fab fa-react' },
+  { name: 'Next.js', icon: 'fas fa-layer-group' },
+  { name: 'Node.js', icon: 'fab fa-node-js' },
+  { name: 'Express.js', icon: 'fas fa-server' },
+  { name: 'Tailwind CSS', icon: 'fas fa-wind' },
+
+  { name: 'Linux', icon: 'fab fa-linux' },
+  { name: 'Docker', icon: 'fab fa-docker' },
+  { name: 'Git', icon: 'fab fa-git-alt' },
+  { name: 'Cloudflare', icon: 'fas fa-cloud' },
+
+  { name: 'Roblox Studio', icon: 'fas fa-gamepad' },
+  { name: 'Unity', icon: 'fas fa-gamepad' },
+  { name: 'Blender', icon: 'fas fa-cube' },
+
+  { name: 'REST APIs', icon: 'fas fa-network-wired' },
+  { name: 'Discord Bot Development', icon: 'fab fa-discord' },
+  { name: 'Game Systems Engineering', icon: 'fas fa-gears' },
+  { name: 'Server Administration', icon: 'fas fa-server' }
+]
 const Skills: React.FC = () => {
   return (
     <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">

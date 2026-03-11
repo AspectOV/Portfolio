@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
+import Skills from '@/components/Skills'
 
 const AboutPage: React.FC = () => {
   const sectionClass =
@@ -37,13 +38,13 @@ const AboutPage: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.1 }}
       >
         <h2>Profile</h2>
-        <p className="mt-4 text-muted-foreground leading-8">
+        <p className="mt-4 leading-8 text-muted-foreground">
           I build software with a strong focus on security, reliability, and
           practical use. My work spans full-stack development, backend APIs,
           encrypted desktop applications, Linux hosting, and developer tools for
           online communities.
         </p>
-        <p className="mt-4 text-muted-foreground leading-8">
+        <p className="mt-4 leading-8 text-muted-foreground">
           I enjoy solving technical problems that connect software and
           infrastructure, and I’m especially interested in software engineering,
           cybersecurity, and systems architecture.
@@ -65,7 +66,7 @@ const AboutPage: React.FC = () => {
         </div>
 
         <h3 className="mt-6">Relevant Coursework</h3>
-        <ul className="list-none p-0 mt-2">
+        <ul className="mt-2 list-none p-0">
           <li className={itemClass}>AP Computer Science Principles</li>
           <li className={itemClass}>AP Computer Science A</li>
           <li className={itemClass}>
@@ -89,11 +90,11 @@ const AboutPage: React.FC = () => {
           </p>
         </div>
 
-        <ul className="list-none p-0 mt-4">
+        <ul className="mt-4 list-none p-0">
           <li className={itemClass}>
-            Developed Luau scripts, systems, and gameplay mechanics for Roblox
-            developers, helping standardize features and reduce implementation
-            time across projects.
+            Developed dozens of Luau scripts and gameplay systems for Roblox
+            developers, helping standardize core mechanics and reduce
+            implementation time across projects.
           </li>
           <li className={itemClass}>
             Created and shared educational resources and reusable models within
@@ -115,14 +116,14 @@ const AboutPage: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.4 }}
       >
         <h2>Selected Work</h2>
-        <p className="mt-4 text-muted-foreground leading-8">
+        <p className="mt-4 leading-8 text-muted-foreground">
           My projects include secure desktop applications, self-hosted APIs,
           Discord tooling, and performance-focused infrastructure. I like
           building systems that are practical, secure, and designed for real
           users.
         </p>
 
-        <ul className="list-none p-0 mt-4">
+        <ul className="mt-4 list-none p-0">
           <li className={itemClass}>
             Built a file encryption utility in C# using AES-256-GCM and
             Argon2id.
@@ -136,14 +137,14 @@ const AboutPage: React.FC = () => {
             custom utilities.
           </li>
           <li className={itemClass}>
-            Designed a high-performance portfolio site with Next.js, React, and
-            Tailwind CSS.
+            Designed a high-performance portfolio website with Next.js, React,
+            and Tailwind CSS.
           </li>
         </ul>
 
         <a
           href="/projects"
-          className="inline-flex mt-6 font-semibold text-accent hover:underline"
+          className="mt-6 inline-flex font-semibold text-accent hover:underline"
         >
           View full project archive →
         </a>
@@ -156,38 +157,7 @@ const AboutPage: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.5 }}
       >
         <h2>Skills & Technologies</h2>
-
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-border/50 p-4">
-            <h3 className="text-base font-semibold">Languages</h3>
-            <p className="mt-2 text-sm leading-7 text-muted-foreground">
-              C#, TypeScript, Luau, Python, JavaScript, HTML/CSS
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-border/50 p-4">
-            <h3 className="text-base font-semibold">Frameworks</h3>
-            <p className="mt-2 text-sm leading-7 text-muted-foreground">
-              React, Next.js, Tailwind CSS, Unity, WinUI 3
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-border/50 p-4">
-            <h3 className="text-base font-semibold">Infrastructure</h3>
-            <p className="mt-2 text-sm leading-7 text-muted-foreground">
-              Linux server administration, Cloudflare Tunnel, JWT
-              authentication, rate limiting, self-hosting, reverse proxy setup
-            </p>
-          </div>
-
-          <div className="rounded-xl border border-border/50 p-4">
-            <h3 className="text-base font-semibold">Tools & Hardware</h3>
-            <p className="mt-2 text-sm leading-7 text-muted-foreground">
-              Git, Blender, CI/CD workflows, desktop and laptop repair,
-              diagnostics, and system optimization
-            </p>
-          </div>
-        </div>
+        <Skills />
       </motion.section>
 
       <motion.section
@@ -197,7 +167,7 @@ const AboutPage: React.FC = () => {
         transition={{ duration: 0.6, delay: 0.6 }}
       >
         <h2>Certifications & Honors</h2>
-        <ul className="list-none p-0 mt-4">
+        <ul className="mt-4 list-none p-0">
           <li className={itemClass}>CompTIA Tech+ — 2025</li>
           <li className={itemClass}>CompTIA A+ — In Progress</li>
           <li className={itemClass}>

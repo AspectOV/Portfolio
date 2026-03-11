@@ -5,7 +5,8 @@ import { motion } from 'framer-motion'
 import Skills from '@/components/Skills'
 
 const AboutPage: React.FC = () => {
-  const liClasses = "py-4 border-b border-border relative pl-10 before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold";
+  const liClasses =
+    "py-4 border-b border-border relative pl-10 before:content-['▸'] before:absolute before:left-0 before:text-accent before:font-bold"
 
   return (
     <>
@@ -14,14 +15,19 @@ const AboutPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h2>Background</h2>
+        <h2>About Me</h2>
         <p>
-          I'm a student at York Community High School, graduating in 2027. I'm interested in building interactive games, 
-          designing game assets, and learning more about computer science and software engineering.
+          I’m a high school student at York Community High School with a strong
+          interest in computer science, software development, and game
+          development. I enjoy building projects that combine creativity with
+          problem-solving, especially in Roblox development, desktop
+          applications, and web development.
         </p>
         <p>
-          I enjoy competing in SkillsUSA, wrestling, and practicing Jiu Jitsu. I'm also certified in CompTIA Tech+, 
-          RDF Programming, and Lenovo Laptop Repair.
+          My strongest languages are Luau and Python, and I’m currently
+          expanding my skills in HTML, CSS, JavaScript, and C#. I’m especially
+          interested in creating polished, interactive experiences and writing
+          code that is both efficient and scalable.
         </p>
       </motion.section>
 
@@ -36,9 +42,9 @@ const AboutPage: React.FC = () => {
         <p>Relevant Coursework:</p>
         <ul className="list-none p-0">
           <li className={liClasses}>AP Computer Science Principles</li>
+          <li className={liClasses}>Computer Programming</li>
           <li className={liClasses}>Technology Services Internship</li>
           <li className={liClasses}>Honors Physics</li>
-          <li className={liClasses}>Computer Programming</li>
         </ul>
       </motion.section>
 
@@ -47,7 +53,16 @@ const AboutPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        <h2>Skills</h2>
+        <h2>Technical Focus</h2>
+        <p>
+          I’ve worked on projects involving Roblox systems, world generation,
+          VFX workflows, portfolio websites, and C# application development.
+          I’m interested in building software that is functional, secure, and
+          user-friendly, while continuing to strengthen my foundation in
+          computer science.
+        </p>
+
+        <h3 className="mt-6">Skills</h3>
         <Skills />
 
         <h3 className="mt-6">Certifications</h3>
@@ -63,14 +78,19 @@ const AboutPage: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
       >
-        <h2>Hobbies & Interests</h2>
-        <p>When I'm not coding or designing, you can find me:</p>
+        <h2>Goals & Interests</h2>
+        <p>
+          I’m working toward a future in computer science, with interests in
+          software engineering, game development, and technical problem-solving.
+          I enjoy learning by building real projects and improving them over
+          time.
+        </p>
         <ul className="list-none p-0">
-          <li className={liClasses}>Competing in SkillsUSA competitions</li>
+          <li className={liClasses}>Developing games and systems in Roblox</li>
+          <li className={liClasses}>Building modern web and desktop applications</li>
+          <li className={liClasses}>Learning new programming languages and tools</li>
+          <li className={liClasses}>Competing in SkillsUSA</li>
           <li className={liClasses}>Practicing wrestling and Jiu Jitsu</li>
-          <li className={liClasses}>Learning new game engines</li>
-          <li className={liClasses}>Help developer communities solve problems</li>
-          <li className={liClasses}>Contributing to open-source game projects</li>
         </ul>
       </motion.section>
     </>

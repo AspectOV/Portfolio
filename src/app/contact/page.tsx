@@ -177,19 +177,19 @@ const ContactPage: React.FC = () => {
     }))
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
+  
     if (!validate()) return
-
+  
     if (!turnstileToken) {
       setStatusMessage('Please complete the verification check.')
       return
     }
-
+  
     setIsSubmitting(true)
     setStatusMessage('')
-
+  
     try {
       const response = await fetch(
         'https://contactapi.mcjeremyhaynes.workers.dev/',
@@ -207,13 +207,19 @@ const ContactPage: React.FC = () => {
           }),
         }
       )
-
+  
       const data = await response.json().catch(() => null)
-
+  
       if (!response.ok) {
+        if (response.status === 429) {
+          throw new Error(
+            data?.error || 'Please wait a minute before sending another message.'
+          )
+        }
+  
         throw new Error(data?.error || 'Something went wrong. Please try again.')
       }
-
+  
       setStatusMessage("Thank you for your message. I'll get back to you soon.")
       setFormData({
         name: '',

@@ -1,7 +1,8 @@
 'use client'
 
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
+import Script from 'next/script'
 
 interface FormData {
   name: string
@@ -23,6 +24,17 @@ interface SocialLink {
   description: string
   href: string
   cta: string
+}
+
+declare global {
+  interface Window {
+    onTurnstileSuccess?: (token: string) => void
+    onTurnstileExpired?: () => void
+    onTurnstileError?: () => void
+    turnstile?: {
+      reset: () => void
+    }
+  }
 }
 
 const sectionTransition = (delay = 0) => ({
@@ -85,11 +97,32 @@ const ContactPage: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [statusMessage, setStatusMessage] = useState('')
+  const [turnstileToken, setTurnstileToken] = useState('')
 
   const isSuccess = useMemo(
     () => statusMessage.toLowerCase().includes('thank'),
     [statusMessage]
   )
+
+  useEffect(() => {
+    window.onTurnstileSuccess = (token: string) => {
+      setTurnstileToken(token)
+    }
+
+    window.onTurnstileExpired = () => {
+      setTurnstileToken('')
+    }
+
+    window.onTurnstileError = () => {
+      setTurnstileToken('')
+    }
+
+    return () => {
+      delete window.onTurnstileSuccess
+      delete window.onTurnstileExpired
+      delete window.onTurnstileError
+    }
+  }, [])
 
   const validate = () => {
     const nextErrors: FormErrors = {
@@ -146,12 +179,17 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-  
+
     if (!validate()) return
-  
+
+    if (!turnstileToken) {
+      setStatusMessage('Please complete the verification check.')
+      return
+    }
+
     setIsSubmitting(true)
     setStatusMessage('')
-  
+
     try {
       const response = await fetch(
         'https://contactapi.mcjeremyhaynes.workers.dev/',
@@ -165,16 +203,17 @@ const ContactPage: React.FC = () => {
             email: formData.email.trim(),
             subject: formData.subject.trim(),
             message: formData.message.trim(),
+            turnstileToken,
           }),
         }
       )
-  
+
       const data = await response.json().catch(() => null)
-  
+
       if (!response.ok) {
         throw new Error(data?.error || 'Something went wrong. Please try again.')
       }
-  
+
       setStatusMessage("Thank you for your message. I'll get back to you soon.")
       setFormData({
         name: '',
@@ -182,12 +221,16 @@ const ContactPage: React.FC = () => {
         subject: '',
         message: '',
       })
+      setTurnstileToken('')
+      window.turnstile?.reset()
     } catch (error) {
       setStatusMessage(
         error instanceof Error
           ? error.message
           : 'Something went wrong. Please try again.'
       )
+      setTurnstileToken('')
+      window.turnstile?.reset()
     } finally {
       setIsSubmitting(false)
     }
@@ -195,6 +238,12 @@ const ContactPage: React.FC = () => {
 
   return (
     <div className="space-y-12 md:space-y-16">
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        async
+        defer
+      />
+
       <motion.section
         className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 backdrop-blur-sm md:p-8"
         {...sectionTransition(0)}
@@ -292,6 +341,16 @@ const ContactPage: React.FC = () => {
               {errors.message && (
                 <p className="mt-2 text-sm text-red-400">{errors.message}</p>
               )}
+            </div>
+
+            <div className="pt-1">
+              <div
+                className="cf-turnstile"
+                data-sitekey="YOUR_TURNSTILE_SITE_KEY"
+                data-callback="onTurnstileSuccess"
+                data-expired-callback="onTurnstileExpired"
+                data-error-callback="onTurnstileError"
+              />
             </div>
 
             <div className="flex flex-wrap items-center gap-4">

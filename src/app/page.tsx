@@ -3,9 +3,10 @@
 import React, { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { FaBriefcase, FaEnvelope, FaDownload } from 'react-icons/fa'
+import { FaBriefcase, FaEnvelope } from 'react-icons/fa'
 import ProjectCard from '@/components/ProjectCard'
 import Skills from '@/components/Skills'
+import Image from 'next/image'
 
 interface FeaturedProject {
   id: string
@@ -15,6 +16,7 @@ interface FeaturedProject {
   category: string
   tags: string[]
   link: string
+  priority?: boolean
 }
 
 const sectionTransition = (delay = 0) => ({
@@ -185,12 +187,15 @@ const HomePage: React.FC = () => {
             href="/JeremyHayesResume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="block transition-opacity duration-200 hover:opacity-95"
           >
-            <img
-              src="/images/JeremyHayesResume.jpg"
+            <Image
+              src="/images/JeremyHayesResume.avif"
               alt="Preview of Jeremy Hayes resume"
+              width={1200}
+              height={1600}
               className="w-full bg-white"
+              sizes="(max-width: 768px) 100vw, 900px"
+              priority
             />
           </a>
         </div>

@@ -1,10 +1,15 @@
 'use client'
 
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, type Variants } from 'framer-motion'
 
-const skills = [
-  { name: 'TypeScript', icon: 'fab fa-js' },
+interface Skill {
+  name: string
+  icon: string
+}
+
+const skills: Skill[] = [
+  { name: 'TypeScript', icon: 'fas fa-code' },
   { name: 'JavaScript', icon: 'fab fa-js' },
   { name: 'HTML', icon: 'fab fa-html5' },
   { name: 'CSS', icon: 'fab fa-css3-alt' },
@@ -30,24 +35,59 @@ const skills = [
   { name: 'REST APIs', icon: 'fas fa-network-wired' },
   { name: 'Discord Bot Development', icon: 'fab fa-discord' },
   { name: 'Game Systems Engineering', icon: 'fas fa-gears' },
-  { name: 'Server Administration', icon: 'fas fa-server' }
+  { name: 'Server Administration', icon: 'fas fa-server' },
 ]
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.04,
+    },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 12,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.28,
+      ease: 'easeOut' as const,
+    },
+  },
+}
+
 const Skills: React.FC = () => {
   return (
-    <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-      {skills.map((skill, index) => (
-        <motion.div
+    <motion.ul
+      className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      aria-label="Skills and technologies"
+    >
+      {skills.map((skill) => (
+        <motion.li
           key={skill.name}
-          className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm font-medium text-white/90 transition-all hover:border-cyan-300/40 hover:bg-cyan-500/10"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.5 + index * 0.04 }}
+          variants={itemVariants}
+          className="list-none"
         >
-          <i className={`${skill.icon} text-cyan-300`} aria-hidden="true"></i>
-          <span>{skill.name}</span>
-        </motion.div>
+          <div className="group flex h-full items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm font-medium text-white/90 transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-cyan-400/[0.08]">
+            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-cyan-300/15 bg-cyan-400/10 text-cyan-300 transition-colors duration-200 group-hover:bg-cyan-400/15">
+              <i className={skill.icon} aria-hidden="true" />
+            </span>
+
+            <span className="leading-snug">{skill.name}</span>
+          </div>
+        </motion.li>
       ))}
-    </div>
+    </motion.ul>
   )
 }
 

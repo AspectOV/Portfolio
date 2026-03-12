@@ -6,42 +6,55 @@ import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
 interface NavItem {
-  href: string;
-  label: string;
+  href: string
+  label: string
 }
 
 interface DesktopNavProps {
-  navItems: NavItem[];
+  navItems: NavItem[]
 }
 
-export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }: DesktopNavProps) => {
+export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }) => {
   const pathname = usePathname()
 
   return (
-    <nav className="hidden md:flex items-center justify-center gap-4" aria-label="Main Navigation">
-      {navItems.map((item: NavItem) => (
-        <Link key={item.href} href={item.href} scroll={false}>
-          <motion.div
-            className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg ${
-              pathname === item.href
-                ? 'text-white'
-                : 'text-gray-400 hover:text-white'
-            }`}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            aria-current={pathname === item.href ? 'page' : undefined}
+    <nav
+      className="hidden items-center gap-2 md:flex"
+      aria-label="Main navigation"
+    >
+      {navItems.map((item) => {
+        const isActive = pathname === item.href
+
+        return (
+          <Link
+            key={item.href}
+            href={item.href}
+            aria-current={isActive ? 'page' : undefined}
+            className="group"
           >
-            {item.label}
-            {pathname === item.href && (
-              <motion.div
-                className="absolute inset-x-2 -bottom-1 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-                layoutId="activeDesktopTab"
-                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-              />
-            )}
-          </motion.div>
-        </Link>
-      ))}
+            <motion.span
+              whileHover={{ y: -1.5 }}
+              whileTap={{ scale: 0.98 }}
+              className={[
+                'relative inline-flex items-center rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200',
+                isActive
+                  ? 'text-white'
+                  : 'text-white/65 hover:text-white',
+              ].join(' ')}
+            >
+              <span>{item.label}</span>
+
+              {isActive && (
+                <motion.span
+                  layoutId="activeDesktopTab"
+                  className="absolute inset-x-3 bottom-1 h-0.5 rounded-full bg-gradient-to-r from-cyan-400 to-sky-400"
+                  transition={{ type: 'spring', stiffness: 500, damping: 32 }}
+                />
+              )}
+            </motion.span>
+          </Link>
+        )
+      })}
     </nav>
   )
 }

@@ -153,7 +153,27 @@ const ContactPage: React.FC = () => {
     setStatusMessage('')
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const response = await fetch(
+        'https://contactapi-mcjeremyhaynes.workers.dev',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            subject: formData.subject.trim(),
+            message: formData.message.trim(),
+          }),
+        }
+      )
+
+      const data = await response.json().catch(() => null)
+
+      if (!response.ok) {
+        throw new Error(data?.error || 'Something went wrong. Please try again.')
+      }
 
       setStatusMessage("Thank you for your message. I'll get back to you soon.")
       setFormData({
@@ -162,8 +182,12 @@ const ContactPage: React.FC = () => {
         subject: '',
         message: '',
       })
-    } catch {
-      setStatusMessage('Something went wrong. Please try again.')
+    } catch (error) {
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : 'Something went wrong. Please try again.'
+      )
     } finally {
       setIsSubmitting(false)
     }

@@ -3,6 +3,8 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Script from 'next/script'
+import type { IconType } from 'react-icons'
+import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa'
 
 interface FormData {
   name: string
@@ -20,7 +22,7 @@ interface FormErrors {
 
 interface SocialLink {
   title: string
-  iconClass: string
+  icon: IconType
   description: string
   href: string
   cta: string
@@ -52,28 +54,28 @@ const labelClassName = 'mb-2 block text-sm font-medium text-white/85'
 const socialLinks: SocialLink[] = [
   {
     title: 'GitHub',
-    iconClass: 'fab fa-github',
+    icon: FaGithub,
     description: 'Browse my projects, experiments, and public repositories.',
     href: 'https://github.com/AspectOV',
     cta: 'Visit GitHub',
   },
   {
     title: 'LinkedIn',
-    iconClass: 'fab fa-linkedin',
+    icon: FaLinkedin,
     description: 'Connect with me professionally and view my background.',
     href: 'https://linkedin.com/in/jeremymhayes',
     cta: 'Connect on LinkedIn',
   },
   {
     title: 'Twitter',
-    iconClass: 'fab fa-twitter',
+    icon: FaTwitter,
     description: 'Follow updates, ideas, and work in progress.',
     href: 'https://twitter.com/realaspectdev',
     cta: 'Follow on Twitter',
   },
   {
     title: 'YouTube',
-    iconClass: 'fab fa-youtube',
+    icon: FaYoutube,
     description: 'Watch project showcases, tutorials, and dev content.',
     href: 'https://www.youtube.com/channel/UCS3szLGePeV24qXKvFEgeWw',
     cta: 'Visit YouTube',
@@ -177,19 +179,19 @@ const ContactPage: React.FC = () => {
     }))
   }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-  
+
     if (!validate()) return
-  
+
     if (!turnstileToken) {
       setStatusMessage('Please complete the verification check.')
       return
     }
-  
+
     setIsSubmitting(true)
     setStatusMessage('')
-  
+
     try {
       const response = await fetch(
         'https://contactapi.mcjeremyhaynes.workers.dev/',
@@ -207,19 +209,19 @@ const ContactPage: React.FC = () => {
           }),
         }
       )
-  
+
       const data = await response.json().catch(() => null)
-  
+
       if (!response.ok) {
         if (response.status === 429) {
           throw new Error(
             data?.error || 'Please wait a minute before sending another message.'
           )
         }
-  
+
         throw new Error(data?.error || 'Something went wrong. Please try again.')
       }
-  
+
       setStatusMessage("Thank you for your message. I'll get back to you soon.")
       setFormData({
         name: '',
@@ -395,29 +397,33 @@ const ContactPage: React.FC = () => {
           </div>
 
           <div className="grid gap-4">
-            {socialLinks.map((link) => (
-              <div
-                key={link.title}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all duration-200 hover:border-cyan-300/20 hover:bg-white/[0.05]"
-              >
-                <h3 className="flex items-center gap-3 text-lg font-semibold text-white">
-                  <i className={link.iconClass} aria-hidden="true" />
-                  <span>{link.title}</span>
-                </h3>
+            {socialLinks.map((link) => {
+              const Icon = link.icon
 
-                <p className="mt-3 text-white/65">{link.description}</p>
-
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-400/10 px-4 py-2.5 font-medium text-cyan-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300/20"
+              return (
+                <div
+                  key={link.title}
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all duration-200 hover:border-cyan-300/20 hover:bg-white/[0.05]"
                 >
-                  {link.cta}
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-            ))}
+                  <h3 className="flex items-center gap-3 text-lg font-semibold text-white">
+                    <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
+                    <span>{link.title}</span>
+                  </h3>
+
+                  <p className="mt-3 text-white/65">{link.description}</p>
+
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-400/10 px-4 py-2.5 font-medium text-cyan-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300/20"
+                  >
+                    {link.cta}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              )
+            })}
           </div>
         </div>
       </motion.section>

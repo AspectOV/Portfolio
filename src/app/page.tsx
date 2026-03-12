@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { FaBriefcase, FaEnvelope, FaDownload } from 'react-icons/fa'
 import ProjectCard from '@/components/ProjectCard'
 import Skills from '@/components/Skills'
 
@@ -64,7 +65,9 @@ const HomePage: React.FC = () => {
     []
   )
 
-  const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleNewsletterSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault()
 
     if (!email.trim()) return
@@ -113,12 +116,12 @@ const HomePage: React.FC = () => {
 
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/projects" className={primaryButtonClassName}>
-            <i className="fas fa-briefcase" aria-hidden="true" />
+            <FaBriefcase aria-hidden="true" className="h-[16px] w-[16px]" />
             <span>View Projects</span>
           </Link>
 
           <Link href="/contact" className={secondaryButtonClassName}>
-            <i className="fas fa-envelope" aria-hidden="true" />
+            <FaEnvelope aria-hidden="true" className="h-[16px] w-[16px]" />
             <span>Contact Me</span>
           </Link>
         </div>
@@ -162,7 +165,7 @@ const HomePage: React.FC = () => {
             download
             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-cyan-300/35 bg-cyan-400/10 px-6 py-3.5 font-semibold text-cyan-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300/20"
           >
-            <i className="fas fa-download" aria-hidden="true" />
+            <FaDownload aria-hidden="true" className="h-[16px] w-[16px]" />
             <span>Download PDF</span>
           </a>
         </div>

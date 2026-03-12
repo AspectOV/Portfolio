@@ -1,34 +1,62 @@
 @import "tailwindcss";
 
+
 @layer base {
   :root {
     color-scheme: dark;
+    --bg: #06080f;
+    --bg-elevated: #0d111a;
+    --bg-soft: #111827;
+    --text: #ffffff;
+    --text-muted: #aab4c5;
+    --border: rgba(148, 163, 184, 0.14);
+    --accent: #22d3ee;
+    --accent-2: #38bdf8;
+    --scrollbar: #293242;
+    --scrollbar-hover: #3a4b63;
+    --selection: rgba(34, 211, 238, 0.22);
+  }
+
+  * {
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar) var(--bg-elevated);
+  }
+
+  *::selection {
+    background: var(--selection);
+    color: var(--text);
   }
 
   html {
+    font-size: 16px;
     scroll-behavior: smooth;
     scroll-padding-top: 8rem;
-    font-size: 16px;
-    overflow-x: hidden;
-    background: #06080f;
+    overflow-x: clip;
+    background: var(--bg);
   }
 
   body {
     min-height: 100vh;
-    color: #ffffff;
-    line-height: 1.65;
-    overflow-x: hidden;
     width: 100%;
+    overflow-x: clip;
+    color: var(--text);
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     font-family: var(--font-inter), sans-serif;
     background:
-      radial-gradient(circle at 20% 10%, rgba(34, 211, 238, 0.12), transparent 40%),
-      radial-gradient(circle at 80% 0%, rgba(56, 189, 248, 0.08), transparent 35%),
-      #06080f;
+      radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.12), transparent 32%),
+      radial-gradient(circle at 85% 0%, rgba(56, 189, 248, 0.10), transparent 28%),
+      radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.08), transparent 38%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 18%),
+      var(--bg);
   }
 
   main {
     width: min(1120px, calc(100% - 2.5rem));
-    margin: 0 auto;
+    margin-inline: auto;
     padding-top: 9rem;
     padding-bottom: 5rem;
   }
@@ -37,29 +65,75 @@
   h2,
   h3,
   h4 {
+    margin: 0;
     letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-muted);
+    text-wrap: pretty;
   }
 
   h2 {
     position: relative;
     padding-bottom: 0.9rem;
-    font-size: clamp(1.7rem, 2.3vw, 2.2rem);
+    font-size: clamp(1.75rem, 2.4vw, 2.25rem);
     font-weight: 700;
+    color: var(--text);
   }
 
   h2::after {
-    content: '';
+    content: "";
     position: absolute;
-    bottom: 0;
     left: 0;
-    height: 3px;
+    bottom: 0;
     width: 56px;
+    height: 3px;
     border-radius: 9999px;
-    background: linear-gradient(90deg, #22d3ee, #38bdf8);
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    box-shadow: var(--shadow-glow);
   }
 
   a {
-    transition: color 220ms ease, border-color 220ms ease, background-color 220ms ease, transform 220ms ease;
+    color: inherit;
+    text-decoration: none;
+    transition:
+      color 220ms ease,
+      border-color 220ms ease,
+      background-color 220ms ease,
+      transform 220ms ease,
+      opacity 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(34, 211, 238, 0.9);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--border);
   }
 
   ::-webkit-scrollbar {
@@ -68,29 +142,49 @@
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #0d111a;
+    background: var(--bg-elevated);
   }
 
   ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background: #293242;
-    border: 2px solid #0d111a;
+    background: var(--scrollbar);
+    border: 2px solid var(--bg-elevated);
+    border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #34445b;
-  }
-
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: #293242 #0d111a;
+    background: var(--scrollbar-hover);
   }
 
   @media (max-width: 640px) {
+    html {
+      scroll-padding-top: 7rem;
+    }
+
     main {
       width: min(1120px, calc(100% - 1.25rem));
       padding-top: 8rem;
       padding-bottom: 4rem;
+    }
+
+    h2 {
+      padding-bottom: 0.8rem;
+    }
+
+    h2::after {
+      width: 48px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
     }
   }
 }

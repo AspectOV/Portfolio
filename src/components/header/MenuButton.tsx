@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 interface MenuButtonProps {
@@ -9,51 +9,53 @@ interface MenuButtonProps {
   toggle: () => void
 }
 
-export const MenuButton: React.FC<MenuButtonProps> = ({ isOpen, toggle }: MenuButtonProps) => (
-  <motion.button
-    onClick={toggle}
-    className="relative group md:hidden"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    aria-label="Toggle navigation menu"
-    aria-expanded={isOpen}
-    aria-controls="mobile-menu"
-  >
-    <div
-      className={`relative transition-all duration-300 rounded-xl p-3 ${
+export const MenuButton: React.FC<MenuButtonProps> = ({ isOpen, toggle }) => {
+  return (
+    <motion.button
+      type="button"
+      onClick={toggle}
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.96 }}
+      aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+      aria-expanded={isOpen}
+      aria-controls="mobile-menu"
+      className={[
+        'relative inline-flex h-11 w-11 items-center justify-center rounded-xl border backdrop-blur-sm transition-all duration-300 md:hidden',
         isOpen
-          ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-blue-400/40'
-          : 'bg-white/5 hover:bg-white/10 border-white/20 hover:border-white/40'
-      } border backdrop-blur-sm`}
+          ? 'border-cyan-400/30 bg-cyan-400/10 shadow-[0_0_20px_rgba(34,211,238,0.15)]'
+          : 'border-white/15 bg-white/5 hover:border-white/30 hover:bg-white/10',
+      ].join(' ')}
     >
       <motion.div
         animate={{ rotate: isOpen ? 180 : 0 }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        transition={{ duration: 0.25, ease: 'easeInOut' }}
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
-            <motion.div
+            <motion.span
               key="close"
               initial={{ rotate: -90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.16 }}
+              className="flex items-center justify-center"
             >
               <X size={18} className="text-white" />
-            </motion.div>
+            </motion.span>
           ) : (
-            <motion.div
+            <motion.span
               key="menu"
               initial={{ rotate: 90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
               exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.16 }}
+              className="flex items-center justify-center"
             >
               <Menu size={18} className="text-white" />
-            </motion.div>
+            </motion.span>
           )}
         </AnimatePresence>
       </motion.div>
-    </div>
-  </motion.button>
-) 
+    </motion.button>
+  )
+}

@@ -3,123 +3,159 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
+interface PolicySection {
+  title: string
+  content?: string[]
+  items?: { label?: string; text: string }[]
+}
+
+const sectionTransition = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.15 },
+  transition: { duration: 0.5, delay },
+})
+
+const policySections: PolicySection[] = [
+  {
+    title: 'Information I Collect',
+    content: [
+      'When you use this website, I may collect limited information depending on how you interact with it.',
+    ],
+    items: [
+      {
+        label: 'Contact Information',
+        text: 'If you use the contact form, I may collect your name, email address, subject line, and message content.',
+      },
+      {
+        label: 'Newsletter Information',
+        text: 'If you subscribe to updates, I may collect your email address.',
+      },
+      {
+        label: 'Usage Data',
+        text: 'I may collect basic analytics or usage information such as pages visited, approximate time on site, and general interaction patterns.',
+      },
+    ],
+  },
+  {
+    title: 'How I Use Information',
+    content: ['Information collected through this site may be used to:'],
+    items: [
+      { text: 'Respond to messages, questions, or inquiries.' },
+      { text: 'Send updates only if you have chosen to subscribe.' },
+      { text: 'Improve site content, usability, and performance.' },
+      { text: 'Monitor basic traffic and site behavior.' },
+    ],
+  },
+  {
+    title: 'Information Sharing',
+    content: [
+      'I do not sell your personal information. I may only share information when reasonably necessary in limited situations, such as:',
+    ],
+    items: [
+      { text: 'With your consent.' },
+      { text: 'To comply with legal obligations.' },
+      { text: 'To protect the security, rights, or operation of this website.' },
+    ],
+  },
+  {
+    title: 'Data Security',
+    content: [
+      'Reasonable measures may be used to protect information submitted through this website. However, no internet transmission or storage system can be guaranteed to be completely secure.',
+    ],
+  },
+  {
+    title: 'Your Choices',
+    content: ['Depending on the data involved, you may be able to:'],
+    items: [
+      { text: 'Request access to information you submitted.' },
+      { text: 'Request corrections to inaccurate information.' },
+      { text: 'Request deletion of submitted information, when applicable.' },
+      { text: 'Unsubscribe from updates at any time.' },
+    ],
+  },
+  {
+    title: 'Third-Party Services',
+    content: [
+      'This website may use third-party tools, services, embeds, hosting providers, or links to external platforms. Those services may handle data according to their own privacy policies.',
+    ],
+  },
+  {
+    title: 'Policy Updates',
+    content: [
+      'This privacy policy may be updated from time to time to reflect changes to the site, its features, or its data practices. The latest version will always be shown on this page.',
+    ],
+  },
+  {
+    title: 'Contact',
+    content: [
+      'If you have questions about this privacy policy or how information is handled, please contact me through the contact page on this website.',
+    ],
+  },
+]
+
 const PrivacyPolicyPage: React.FC = () => {
-  const sectionClasses = "bg-bg-secondary border border-border rounded-lg p-10 leading-relaxed";
-  const h2Classes = "text-text-primary mb-6 text-2xl border-b-2 border-accent pb-4";
-  const h3Classes = "text-text-primary my-10 text-xl";
-  const pClasses = "mb-6 text-text-secondary";
-  const ulClasses = "my-6 pl-10";
-  const liClasses = "mb-4 text-text-secondary";
-  const strongClasses = "text-text-primary font-semibold";
-
   return (
-    <div className="space-y-6">
+    <div className="space-y-10 md:space-y-12">
       <motion.section
-        className={sectionClasses}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 backdrop-blur-sm md:p-8"
+        {...sectionTransition(0)}
       >
-        <h2 className={h2Classes}>Privacy Policy</h2>
-        <p className={pClasses}><strong className={strongClasses}>Last updated:</strong> January 2025</p>
-        
-        <p className={pClasses}>
-          This Privacy Policy describes how Jeremy M. Hayes ("I", "me", or "my") collects, uses, and shares your personal information when you visit my portfolio website.
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
+          Legal
+        </p>
+
+        <h1 className="text-balance text-3xl font-bold leading-tight md:text-5xl">
+          Privacy Policy
+        </h1>
+
+        <p className="mt-4 max-w-3xl text-base text-white/72 md:text-lg">
+          This page explains what information may be collected through this
+          website, how it may be used, and the choices available to visitors.
+        </p>
+
+        <p className="mt-4 text-sm text-white/50">
+          Last updated: March 2026
         </p>
       </motion.section>
 
-      <motion.section
-        className={sectionClasses}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <h3 className={h3Classes}>Information I Collect</h3>
-        <p className={pClasses}>When you visit my website, I may collect the following types of information:</p>
-        <ul className={ulClasses}>
-          <li className={liClasses}><strong className={strongClasses}>Contact Information:</strong> If you use the contact form, I collect your name, email address, and message content.</li>
-          <li className={liClasses}><strong className={strongClasses}>Newsletter Subscription:</strong> If you subscribe to my newsletter, I collect your email address.</li>
-          <li className={liClasses}><strong className={strongClasses}>Usage Data:</strong> I may collect information about how you interact with my website, including pages visited and time spent on the site.</li>
-        </ul>
-      </motion.section>
+      {policySections.map((section, index) => (
+        <motion.section
+          key={section.title}
+          className="rounded-3xl border border-cyan-300/15 bg-cyan-500/[0.04] p-6 md:p-8"
+          {...sectionTransition(0.06 * (index + 1))}
+        >
+          <h2>{section.title}</h2>
 
-      <motion.section
-        className={sectionClasses}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
-        <h3 className={h3Classes}>How I Use Your Information</h3>
-        <p className={pClasses}>I use the information I collect to:</p>
-        <ul className={ulClasses}>
-          <li className={liClasses}>Respond to your inquiries and messages</li>
-          <li className={liClasses}>Send you updates about my projects and work (if you've subscribed)</li>
-          <li className={liClasses}>Improve my website and user experience</li>
-          <li className={liClasses}>Analyze website usage and performance</li>
-        </ul>
-      </motion.section>
+          {section.content?.map((paragraph) => (
+            <p key={paragraph} className="mt-4 max-w-3xl leading-8 text-white/70">
+              {paragraph}
+            </p>
+          ))}
 
-      <motion.section
-        className={sectionClasses}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-      >
-        <h3 className={h3Classes}>Information Sharing</h3>
-        <p className={pClasses}>
-          I do not sell, trade, or otherwise transfer your personal information to third parties. 
-          I may share your information only in the following circumstances:
-        </p>
-        <ul className={ulClasses}>
-          <li className={liClasses}>With your explicit consent</li>
-          <li className={liClasses}>To comply with legal obligations</li>
-          <li className={liClasses}>To protect my rights and safety</li>
-        </ul>
-      </motion.section>
-
-      <motion.section
-        className={sectionClasses}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.8 }}
-      >
-        <h3 className={h3Classes}>Data Security</h3>
-        <p className={pClasses}>
-          I implement appropriate security measures to protect your personal information against unauthorized access, 
-          alteration, disclosure, or destruction. However, no method of transmission over the internet is 100% secure.
-        </p>
-      </motion.section>
-
-      <motion.section
-        className={sectionClasses}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.0 }}
-      >
-        <h3 className={h3Classes}>Your Rights</h3>
-        <p className={pClasses}>You have the right to:</p>
-        <ul className={ulClasses}>
-          <li className={liClasses}>Access the personal information I hold about you</li>
-          <li className={liClasses}>Request correction of inaccurate information</li>
-          <li className={liClasses}>Request deletion of your personal information</li>
-          <li className={liClasses}>Unsubscribe from my newsletter at any time</li>
-        </ul>
-      </motion.section>
-
-      <motion.section
-        className={sectionClasses}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.2 }}
-      >
-        <h3 className={h3Classes}>Contact Me</h3>
-        <p className={pClasses}>
-          If you have any questions about this Privacy Policy or my data practices, 
-          please contact me through the contact form on this website.
-        </p>
-      </motion.section>
+          {section.items && (
+            <ul className="mt-5 list-none p-0">
+              {section.items.map((item) => (
+                <li
+                  key={`${section.title}-${item.text}`}
+                  className="relative border-b border-white/10 py-4 pl-8 text-white/70 last:border-b-0 before:absolute before:left-0 before:top-4 before:text-cyan-300 before:content-['▸']"
+                >
+                  {item.label ? (
+                    <>
+                      <strong className="font-semibold text-white">{item.label}:</strong>{' '}
+                      {item.text}
+                    </>
+                  ) : (
+                    item.text
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+        </motion.section>
+      ))}
     </div>
   )
 }
 
-export default PrivacyPolicyPage 
+export default PrivacyPolicyPage

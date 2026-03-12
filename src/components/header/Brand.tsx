@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
@@ -18,49 +19,52 @@ export const Brand: React.FC<BrandProps> = ({
   subtitle,
   fullText,
   currentIndex,
-}: BrandProps) => {
+}) => {
   const pathname = usePathname()
+  const isHome = pathname === '/'
+  const isTyping = isHome && currentIndex < fullText.length
 
   return (
-    <div className="flex flex-col items-center text-center">
+    <Link
+      href="/"
+      aria-label="Go to homepage"
+      className="inline-flex flex-col items-center text-center"
+    >
       <motion.div
-        className={`transition-all duration-300 font-bold ${
-          isScrolled ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl'
-        }`}
-        whileHover={{
-          scale: 1.02,
-          textShadow: '0 0 20px rgba(59, 130, 246, 0.5)',
-        }}
-        transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+        whileHover={{ scale: 1.02 }}
+        transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+        className={[
+          'font-bold leading-none tracking-tight transition-all duration-300',
+          isScrolled ? 'text-2xl md:text-3xl' : 'text-3xl md:text-4xl',
+        ].join(' ')}
       >
-        <span className="font-mono bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">
+        <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-400 bg-clip-text text-transparent">
           {displayText}
-          {pathname === '/' && currentIndex < fullText.length && (
-            <motion.span
-              className="inline-block w-0.5 h-6 md:h-8 bg-gradient-to-b from-blue-400 to-purple-500 ml-1 rounded-full"
-              animate={{
-                opacity: [1, 0, 1],
-                scaleY: [1, 0.8, 1],
-              }}
-              transition={{
-                duration: 1.2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
-          )}
         </span>
+
+        {isTyping && (
+          <motion.span
+            className="ml-1 inline-block h-6 w-[3px] rounded-full bg-cyan-400 align-[-0.1em] md:h-8"
+            animate={{ opacity: [1, 0, 1] }}
+            transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        )}
       </motion.div>
-      <motion.div
-        className={`text-gray-300 mt-1 transition-all duration-300 ${
-          isScrolled ? 'text-xs opacity-70' : 'text-xs md:text-sm opacity-80'
-        }`}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: pathname === '/' ? 1 : 0.8, y: 0 }}
-        transition={{ delay: pathname === '/' ? 2.2 : 0, duration: 0.6 }}
+
+      <motion.span
+        initial={false}
+        animate={{
+          opacity: isHome ? 0.9 : 0.75,
+          y: 0,
+        }}
+        transition={{ duration: 0.3 }}
+        className={[
+          'mt-1 text-white/60 transition-all duration-300',
+          isScrolled ? 'text-[11px]' : 'text-xs md:text-sm',
+        ].join(' ')}
       >
         {subtitle}
-      </motion.div>
-    </div>
+      </motion.span>
+    </Link>
   )
-} 
+}

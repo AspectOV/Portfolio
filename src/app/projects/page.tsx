@@ -1,110 +1,165 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import ProjectCard from '@/components/ProjectCard'
 
+type ProjectCategory = 'all' | 'game-dev' | 'web-dev' | 'software-dev'
+
+interface Project {
+  id: string
+  title: string
+  description: string
+  image: string
+  category: Exclude<ProjectCategory, 'all'>
+  tags: string[]
+  link: string
+}
+
+interface FilterOption {
+  id: ProjectCategory
+  label: string
+}
+
+const sectionTransition = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: 0.5, delay },
+})
+
+const projects: Project[] = [
+  {
+    id: 'roblox-game-1',
+    title: 'Vacancy Filled',
+    description: 'An immersive horror experience inspired by The Closing Shift.',
+    image: '/images/roblox-game.png',
+    category: 'game-dev',
+    tags: ['Luau', 'Roblox', 'Horror'],
+    link: '#',
+  },
+  {
+    id: 'roblox-game-2',
+    title: 'Cookie Clicker',
+    description: "A faithful recreation of Orteil's Cookie Clicker in Roblox.",
+    image: '/images/roblox-game.png',
+    category: 'game-dev',
+    tags: ['Luau', 'Roblox', 'UI Design'],
+    link: '#',
+  },
+  {
+    id: 'web-app-1',
+    title: 'Portfolio Website',
+    description: 'A responsive portfolio built with modern web technologies and a strong visual system.',
+    image: '/images/web-dev-project.png',
+    category: 'web-dev',
+    tags: ['Next.js', 'Tailwind', 'Responsive'],
+    link: '#',
+  },
+  {
+    id: 'software-1',
+    title: 'File Encryptor',
+    description: 'A Windows desktop application for secure file encryption and compression.',
+    image: '/images/unity-game.jpg',
+    category: 'software-dev',
+    tags: ['C#', 'WPF', 'Desktop App'],
+    link: '#',
+  },
+]
+
+const filters: FilterOption[] = [
+  { id: 'all', label: 'All Projects' },
+  { id: 'game-dev', label: 'Game Development' },
+  { id: 'web-dev', label: 'Web Development' },
+  { id: 'software-dev', label: 'Software Development' },
+]
+
 const ProjectsPage: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState('all')
+  const [activeFilter, setActiveFilter] = useState<ProjectCategory>('all')
 
-  const projects = [
-    {
-      id: 'roblox-game-1',
-      title: 'Vacancy Filled',
-      description: 'An immersive horror experience inspired by The Closing Shift.',
-      image: '/images/roblox-game.png',
-      category: 'game-dev',
-      tags: ['Lua', 'Roblox', 'Horror'],
-      link: '#'
-    },
-    {
-      id: 'roblox-game-2',
-      title: 'Cookie Clicker',
-      description: "A faithful recreation of Orteil's Cookie Clicker.",
-      image: '/images/roblox-game.png',
-      category: 'game-dev',
-      tags: ['Lua', 'Roblox', 'UI Design'],
-      link: '#'
-    },
-    {
-      id: 'web-app-1',
-      title: 'Portfolio Website',
-      description: 'Responsive portfolio website built with modern web technologies.',
-      image: '/images/web-dev-project.png',
-      category: 'web-dev',
-      tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
-      link: '#'
-    },
-    {
-      id: 'software-1',
-      title: 'File Encryptor',
-      description: 'Windows desktop application for file encryption and compression.',
-      image: '/images/unity-game.jpg',
-      category: 'software-dev',
-      tags: ['C#', 'Windows', 'Desktop App'],
-      link: '#'
-    }
-  ]
-
-  const filters = [
-    { id: 'all', label: 'All Projects' },
-    { id: 'game-dev', label: 'Game Development' },
-    { id: 'web-dev', label: 'Web Development' },
-    { id: 'software-dev', label: 'Software Development' }
-  ]
-
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter)
-
-  const buttonClasses = "inline-flex items-center gap-2 px-6 py-4 bg-accent text-black rounded-md font-semibold transition-all duration-fast cursor-pointer text-base hover:bg-accent-hover hover:-translate-y-px hover:shadow-md active:translate-y-0";
-  const secondaryButtonClasses = "bg-transparent text-accent border-2 border-accent hover:bg-accent hover:text-black";
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'all') return projects
+    return projects.filter((project) => project.category === activeFilter)
+  }, [activeFilter])
 
   return (
-    <>
+    <div className="space-y-12 md:space-y-16">
       <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 backdrop-blur-sm md:p-8"
+        {...sectionTransition(0)}
       >
-        <h2>My Projects</h2>
-        <p>
-          Here's a collection of my recent projects showcasing my skills in game development, 
-          web development, and software engineering.
+        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
+          Projects
+        </p>
+
+        <h1 className="max-w-3xl text-balance text-3xl font-bold leading-tight md:text-5xl">
+          Selected work across games, software, and web development.
+        </h1>
+
+        <p className="mt-4 max-w-2xl text-base text-white/72 md:text-lg">
+          A collection of projects that reflect my interests in interactive design,
+          gameplay systems, modern web development, and practical software engineering.
         </p>
       </motion.section>
 
       <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        className="rounded-3xl border border-cyan-300/15 bg-cyan-500/[0.04] p-6 md:p-8"
+        {...sectionTransition(0.08)}
       >
-        <h2>Filter Projects</h2>
-        <div className="flex gap-2 mb-4">
-          {filters.map((filter) => (
-            <button
-              key={filter.id}
-              onClick={() => setActiveFilter(filter.id)}
-              className={`${buttonClasses} ${activeFilter !== filter.id ? secondaryButtonClasses : ''}`}
-            >
-              {filter.label}
-            </button>
-          ))}
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2>Filter Projects</h2>
+            <p className="mt-3 max-w-2xl text-white/70">
+              Browse projects by category to focus on the type of work you want to see.
+            </p>
+          </div>
+
+          <div className="text-sm text-white/55">
+            {filteredProjects.length} project{filteredProjects.length === 1 ? '' : 's'}
+          </div>
+        </div>
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          {filters.map((filter) => {
+            const isActive = activeFilter === filter.id
+
+            return (
+              <button
+                key={filter.id}
+                type="button"
+                onClick={() => setActiveFilter(filter.id)}
+                aria-pressed={isActive}
+                className={[
+                  'inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200',
+                  isActive
+                    ? 'bg-cyan-400 text-black shadow-[0_10px_30px_rgba(34,211,238,0.18)]'
+                    : 'border border-white/15 bg-white/5 text-white/75 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10 hover:text-white',
+                ].join(' ')}
+              >
+                {filter.label}
+              </button>
+            )
+          })}
         </div>
       </motion.section>
 
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-      >
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 mt-6">
-          {filteredProjects.map((project, index) => (
-            <ProjectCard key={project.id} {...project} index={index} />
-          ))}
-        </div>
+      <motion.section {...sectionTransition(0.14)}>
+        {filteredProjects.length > 0 ? (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+            {filteredProjects.map((project, index) => (
+              <ProjectCard key={project.id} {...project} index={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-center">
+            <h3 className="text-xl font-semibold text-white">No projects found</h3>
+            <p className="mt-3 text-white/65">
+              There are no projects in this category yet.
+            </p>
+          </div>
+        )}
       </motion.section>
-    </>
+    </div>
   )
 }
 

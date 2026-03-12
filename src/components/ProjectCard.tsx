@@ -6,50 +6,103 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 interface ProjectCardProps {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-  tags: string[];
-  link: string;
-  index: number;
+  id: string
+  title: string
+  description: string
+  image: string
+  category: string
+  tags: string[]
+  link: string
+  index: number
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, image, category, tags, link, index }) => {
+const formatCategory = (category: string) => {
+  switch (category) {
+    case 'game-dev':
+      return 'Game Development'
+    case 'web-dev':
+      return 'Web Development'
+    case 'software-dev':
+      return 'Software Development'
+    default:
+      return category
+  }
+}
+
+const ProjectCard: React.FC<ProjectCardProps> = ({
+  title,
+  description,
+  image,
+  category,
+  tags,
+  link,
+  index,
+}) => {
   return (
     <motion.article
-      className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] shadow-xl shadow-black/25 transition-all hover:-translate-y-1 hover:border-cyan-300/35"
       data-category={category}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-white/[0.05]"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
     >
-      <div className="relative aspect-video overflow-hidden">
+      <div className="relative aspect-[16/10] overflow-hidden">
         <Image
           src={image}
-          alt={`Image of ${title} Project`}
-          width={400}
-          height={225}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          priority={index < 2}
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-      </div>
-      <div className="p-6">
-        <h3 className="mb-3 text-2xl font-semibold text-white">{title}</h3>
-        <p className="mb-5 text-white/70">{description}</p>
-        <div className="mb-6 flex flex-wrap gap-2">
-          {tags.map(tag => (
-            <span key={tag} className="rounded-full border border-cyan-300/25 bg-cyan-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-cyan-100">
-              {tag}
-            </span>
-          ))}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+        <div className="absolute left-4 top-4">
+          <span className="inline-flex rounded-full border border-cyan-300/20 bg-black/40 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-200 backdrop-blur-sm">
+            {formatCategory(category)}
+          </span>
         </div>
-        <Link href={link} className="inline-flex items-center gap-2 rounded-lg bg-cyan-400 px-5 py-3 font-semibold text-black transition-colors hover:bg-cyan-300">
-          View Details
-          <i className="fas fa-arrow-right text-sm"></i>
-        </Link>
+      </div>
+
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex-1">
+          <h3 className="text-xl font-semibold tracking-tight text-white md:text-2xl">
+            {title}
+          </h3>
+
+          <p className="mt-3 text-sm leading-7 text-white/68 md:text-base">
+            {description}
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-cyan-100"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6">
+          <Link
+            href={link}
+            aria-label={`View details for ${title}`}
+            className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300"
+          >
+            <span>View Details</span>
+            <span
+              aria-hidden="true"
+              className="transition-transform duration-200 group-hover:translate-x-0.5"
+            >
+              →
+            </span>
+          </Link>
+        </div>
       </div>
     </motion.article>
   )

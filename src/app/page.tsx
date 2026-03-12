@@ -152,32 +152,47 @@ const HomePage: React.FC = () => {
       </motion.section>
 
       <motion.section className={panelClassName} {...sectionTransition(0.16)}>
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2>Resume</h2>
             <p className="mt-3 max-w-2xl text-white/70">
-              View my current resume online or download a PDF copy.
+              View my current resume online, open it full screen, or download a PDF copy.
             </p>
           </div>
 
-          <a
-            href="/JeremyHayesResume.pdf"
-            download
-            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-cyan-300/35 bg-cyan-400/10 px-6 py-3.5 font-semibold text-cyan-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300/20"
-          >
-            <FaDownload aria-hidden="true" className="h-[16px] w-[16px]" />
-            <span>Download PDF</span>
-          </a>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href="/JeremyHayesResume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
+            >
+              <span>Open Full Screen</span>
+            </a>
+
+            <a
+              href="/JeremyHayesResume.pdf"
+              download
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-cyan-300/35 bg-cyan-400/10 px-6 py-3.5 font-semibold text-cyan-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300/20"
+            >
+              <span>Download PDF</span>
+            </a>
+          </div>
         </div>
 
         <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-xl">
-          <iframe
-            title="Jeremy M. Hayes Resume"
-            className="h-[1100px] w-full bg-white"
-            src={`https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(
-              'https://jeremymhayes.com/JeremyHayesResume.pdf'
-            )}`}
-          />
+          <a
+            href="/JeremyHayesResume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block transition-opacity duration-200 hover:opacity-95"
+          >
+            <img
+              src="/images/JeremyHayesResume.jpg"
+              alt="Preview of Jeremy Hayes resume"
+              className="w-full bg-white"
+            />
+          </a>
         </div>
       </motion.section>
 

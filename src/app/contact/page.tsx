@@ -346,7 +346,7 @@ const ContactPage: React.FC = () => {
             <div className="pt-1">
               <div
                 className="cf-turnstile"
-                data-sitekey="YOUR_TURNSTILE_SITE_KEY"
+                data-sitekey="0x4AAAAAACpxvBbYYkCL8G5V"
                 data-callback="onTurnstileSuccess"
                 data-expired-callback="onTurnstileExpired"
                 data-error-callback="onTurnstileError"

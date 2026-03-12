@@ -24,7 +24,7 @@ const portfolioItems: PortfolioItem[] = [
     id: 'game-dev-1',
     title: 'Roblox Adventure Game',
     description: 'An immersive Roblox experience with custom gameplay systems and interactive design.',
-    image: '/images/roblox-game.png',
+    image: '/images/roblox-game.jpg',
     category: 'game-dev',
   },
   {

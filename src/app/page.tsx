@@ -35,7 +35,7 @@ const HomePage: React.FC = () => {
         title: 'Roblox Game Development',
         description:
           'Designing polished Roblox experiences with strong gameplay systems, visuals, and player-focused design.',
-        image: '/images/roblox-game.png',
+        image: '/images/roblox-game.jpg',
         category: 'game-dev',
         tags: ['Luau', 'Roblox', 'Game Design'],
         link: '/projects#roblox-games',

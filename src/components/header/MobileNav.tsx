@@ -1,8 +1,8 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
 interface NavItem {
@@ -14,68 +14,112 @@ interface MobileNavProps {
   navItems: NavItem[]
   isOpen: boolean
   closeMenu: () => void
-  headerHeight: number | undefined
+  headerHeight?: number
 }
 
-export const MobileNav: React.FC<MobileNavProps> = ({ 
-  navItems, 
-  isOpen, 
-  closeMenu, 
-  headerHeight 
-}: MobileNavProps) => {
+import type { Variants } from 'framer-motion'
+
+const overlayVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+}
+
+const panelVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: -16,
+    scale: 0.98,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.22,
+      ease: 'easeOut' as const,
+      staggerChildren: 0.05,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -12,
+    scale: 0.98,
+    transition: {
+      duration: 0.18,
+      ease: 'easeIn' as const,
+    },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, x: -16 },
+  visible: { opacity: 1, x: 0 },
+}
+
+export const MobileNav: React.FC<MobileNavProps> = ({
+  navItems,
+  isOpen,
+  closeMenu,
+  headerHeight = 80,
+}) => {
   const pathname = usePathname()
+
+  useEffect(() => {
+    closeMenu()
+    // intentionally runs on pathname change
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          <motion.div
-            className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+          <motion.button
+            type="button"
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+            variants={overlayVariants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            transition={{ duration: 0.2 }}
             onClick={closeMenu}
-            aria-hidden="true"
+            aria-label="Close navigation menu"
           />
-          <motion.div
+
+          <motion.nav
             id="mobile-menu"
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            style={{ '--header-height': `${headerHeight || 80}px` } as React.CSSProperties}
-            className="md:hidden fixed inset-x-0 z-50 bg-black/90 backdrop-blur-xl border-b border-white/10 shadow-2xl rounded-b-lg top-[var(--header-height)]"
-            role="dialog"
-            aria-modal="true"
+            aria-label="Mobile navigation"
+            className="fixed inset-x-0 z-50 rounded-b-2xl border-b border-white/10 bg-black/90 shadow-2xl backdrop-blur-xl md:hidden"
+            style={{ top: headerHeight }}
+            variants={panelVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
-            <div className="flex flex-col py-4">
-              {navItems.map((item: NavItem, index: number) => (
-                <motion.div
-                  key={item.href}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -30 }}
-                  transition={{ delay: index * 0.1, duration: 0.3 }}
-                >
-                  <Link href={item.href} scroll={false} onClick={closeMenu}>
-                    <motion.div
-                      className={`mx-4 mb-2 px-4 py-3 rounded-lg text-lg font-medium transition-all duration-300 ${
-                        pathname === item.href
-                          ? 'text-white bg-white/10'
-                          : 'text-gray-400 hover:text-white hover:bg-white/5'
-                      }`}
-                      whileHover={{ x: 5 }}
-                      whileTap={{ scale: 0.98 }}
-                      aria-current={pathname === item.href ? 'page' : undefined}
+            <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 py-4">
+              {navItems.map((item) => {
+                const isActive = pathname === item.href
+
+                return (
+                  <motion.div key={item.href} variants={itemVariants}>
+                    <Link
+                      href={item.href}
+                      onClick={closeMenu}
+                      aria-current={isActive ? 'page' : undefined}
+                      className={[
+                        'flex items-center rounded-xl px-4 py-3 text-base font-medium transition-all duration-200',
+                        isActive
+                          ? 'bg-white/10 text-white ring-1 ring-white/10'
+                          : 'text-white/70 hover:bg-white/5 hover:text-white',
+                      ].join(' ')}
                     >
-                      {item.label}
-                    </motion.div>
-                  </Link>
-                </motion.div>
-              ))}
+                      <span>{item.label}</span>
+                    </Link>
+                  </motion.div>
+                )
+              })}
             </div>
-          </motion.div>
+          </motion.nav>
         </>
       )}
     </AnimatePresence>

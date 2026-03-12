@@ -33,7 +33,7 @@ const projects: Project[] = [
     id: 'roblox-game-1',
     title: 'Vacancy Filled',
     description: 'An immersive horror experience inspired by The Closing Shift.',
-    image: '/images/roblox-game.png',
+    image: '/images/roblox-game.jpg',
     category: 'game-dev',
     tags: ['Luau', 'Roblox', 'Horror'],
     link: '#',

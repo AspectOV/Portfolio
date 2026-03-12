@@ -146,15 +146,15 @@ const ContactPage: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-
+  
     if (!validate()) return
-
+  
     setIsSubmitting(true)
     setStatusMessage('')
-
+  
     try {
       const response = await fetch(
-        'https://contactapi-mcjeremyhaynes.workers.dev',
+        'https://contactapi.mcjeremyhaynes.workers.dev/',
         {
           method: 'POST',
           headers: {
@@ -168,13 +168,13 @@ const ContactPage: React.FC = () => {
           }),
         }
       )
-
+  
       const data = await response.json().catch(() => null)
-
+  
       if (!response.ok) {
         throw new Error(data?.error || 'Something went wrong. Please try again.')
       }
-
+  
       setStatusMessage("Thank you for your message. I'll get back to you soon.")
       setFormData({
         name: '',

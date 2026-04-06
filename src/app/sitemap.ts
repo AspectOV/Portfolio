@@ -2,6 +2,8 @@ import type { MetadataRoute } from 'next'
 
 const routes = ['', '/about', '/projects', '/portfolio', '/contact', '/privacy-policy']
 
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://jeremymhayes.com'
 

@@ -5,6 +5,8 @@ import { motion } from 'framer-motion'
 import Script from 'next/script'
 import type { IconType } from 'react-icons'
 import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa'
+import AudienceModeToggle from '@/components/AudienceModeToggle'
+import { useAudiencePreference } from '@/components/AudiencePreferenceProvider'
 
 interface FormData {
   name: string
@@ -27,8 +29,6 @@ interface FormErrors {
   timeline: string
   goals: string
 }
-
-type ContactView = 'recruiter' | 'viewer'
 
 interface SocialLink {
   title: string
@@ -93,7 +93,7 @@ const socialLinks: SocialLink[] = [
 ]
 
 const ContactPage: React.FC = () => {
-  const [contactView, setContactView] = useState<ContactView>('recruiter')
+  const { audience } = useAudiencePreference()
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -157,7 +157,7 @@ const ContactPage: React.FC = () => {
       timeline: '',
       goals: '',
     })
-  }, [contactView])
+  }, [audience])
 
   const validate = () => {
     const nextErrors: FormErrors = {
@@ -186,7 +186,7 @@ const ContactPage: React.FC = () => {
       valid = false
     }
 
-    if (contactView === 'recruiter') {
+    if (audience === 'recruiter') {
       if (!formData.projectType.trim()) {
         nextErrors.projectType = 'Project type is required.'
         valid = false
@@ -252,7 +252,7 @@ const ContactPage: React.FC = () => {
     setStatusMessage('')
 
     const payload =
-      contactView === 'recruiter'
+      audience === 'recruiter'
         ? {
             subject: `Portfolio inquiry: ${formData.projectType.trim()} (${formData.timeline.trim()})`,
             message: [
@@ -360,31 +360,8 @@ const ContactPage: React.FC = () => {
             Choose the contact path that fits you best, then fill out the form.
           </p>
 
-          <div className="mt-6 inline-flex rounded-xl border border-white/15 bg-black/20 p-1">
-            <button
-              type="button"
-              onClick={() => setContactView('recruiter')}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
-                contactView === 'recruiter'
-                  ? 'bg-cyan-400 text-black'
-                  : 'text-white/75 hover:text-white'
-              }`}
-              aria-pressed={contactView === 'recruiter'}
-            >
-              Recruiter / Client
-            </button>
-            <button
-              type="button"
-              onClick={() => setContactView('viewer')}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition ${
-                contactView === 'viewer'
-                  ? 'bg-cyan-400 text-black'
-                  : 'text-white/75 hover:text-white'
-              }`}
-              aria-pressed={contactView === 'viewer'}
-            >
-              Viewer
-            </button>
+          <div className="mt-6">
+            <AudienceModeToggle />
           </div>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-5">
@@ -424,7 +401,7 @@ const ContactPage: React.FC = () => {
               )}
             </div>
 
-            {contactView === 'recruiter' ? (
+            {audience === 'recruiter' ? (
               <>
                 <div>
                   <label htmlFor="projectType" className={labelClassName}>

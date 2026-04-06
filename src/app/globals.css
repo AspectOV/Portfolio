@@ -15,6 +15,23 @@
     --scrollbar: #293242;
     --scrollbar-hover: #3a4b63;
     --selection: rgba(34, 211, 238, 0.22);
+    --shadow-glow: 0 0 22px rgba(34, 211, 238, 0.24);
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+    --bg: #f3f7fb;
+    --bg-elevated: #ffffff;
+    --bg-soft: #e7eef6;
+    --text: #071120;
+    --text-muted: #334155;
+    --border: rgba(15, 23, 42, 0.14);
+    --accent: #0891b2;
+    --accent-2: #0284c7;
+    --scrollbar: #9fb3c8;
+    --scrollbar-hover: #7f97b0;
+    --selection: rgba(8, 145, 178, 0.2);
+    --shadow-glow: 0 0 20px rgba(8, 145, 178, 0.2);
   }
 
   * {
@@ -52,6 +69,11 @@
       radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.08), transparent 38%),
       linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 18%),
       var(--bg);
+  }
+
+  [data-surface='card'] {
+    border-color: color-mix(in oklab, var(--border) 90%, transparent);
+    background: color-mix(in oklab, var(--bg-elevated) 88%, transparent);
   }
 
   main {
@@ -107,6 +129,23 @@
       transform 220ms ease,
       opacity 220ms ease,
       box-shadow 220ms ease;
+  }
+
+  .interactive-lift {
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      background-color 220ms ease,
+      box-shadow 220ms ease,
+      color 220ms ease;
+  }
+
+  .interactive-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .interactive-lift:active {
+    transform: translateY(0);
   }
 
   button,
@@ -173,6 +212,45 @@
     h2::after {
       width: 48px;
     }
+  }
+
+  :root[data-theme='light'] body {
+    background:
+      radial-gradient(circle at 12% 8%, rgba(8, 145, 178, 0.1), transparent 34%),
+      radial-gradient(circle at 82% 2%, rgba(2, 132, 199, 0.09), transparent 30%),
+      radial-gradient(circle at 52% 100%, rgba(59, 130, 246, 0.07), transparent 38%),
+      linear-gradient(180deg, rgba(7, 17, 32, 0.015), transparent 18%),
+      var(--bg);
+  }
+
+  :root[data-theme='light'] .text-white,
+  :root[data-theme='light'] .text-white\/85,
+  :root[data-theme='light'] .text-white\/80,
+  :root[data-theme='light'] .text-white\/75,
+  :root[data-theme='light'] .text-white\/72,
+  :root[data-theme='light'] .text-white\/70,
+  :root[data-theme='light'] .text-white\/68,
+  :root[data-theme='light'] .text-white\/65,
+  :root[data-theme='light'] .text-white\/60,
+  :root[data-theme='light'] .text-white\/55,
+  :root[data-theme='light'] .text-white\/50,
+  :root[data-theme='light'] .text-white\/45,
+  :root[data-theme='light'] .text-white\/40 {
+    color: color-mix(in oklab, var(--text) 88%, transparent);
+  }
+
+  :root[data-theme='light'] .bg-black\/90,
+  :root[data-theme='light'] .bg-black\/70,
+  :root[data-theme='light'] .bg-black\/60,
+  :root[data-theme='light'] .bg-black\/40,
+  :root[data-theme='light'] .bg-black\/30,
+  :root[data-theme='light'] .bg-black\/25 {
+    background-color: rgba(255, 255, 255, 0.78);
+  }
+
+  :root[data-theme='light'] .border-white\/10,
+  :root[data-theme='light'] .border-white\/15 {
+    border-color: rgba(15, 23, 42, 0.14);
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -6,6 +6,7 @@ import { motion } from 'framer-motion'
 import { DesktopNav } from './header/DesktopNav'
 import { MobileNav } from './header/MobileNav'
 import { MenuButton } from './header/MenuButton'
+import { ThemeToggle } from './header/ThemeToggle'
 
 interface NavItem {
   href: string
@@ -119,7 +120,7 @@ const Header: React.FC = () => {
         className={headerClassName}
         initial={false}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between">
+        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3">
           <div className="flex w-11 items-center md:hidden">
             <MenuButton isOpen={isOpen} toggle={toggleMenu} />
           </div>
@@ -139,11 +140,14 @@ const Header: React.FC = () => {
             </motion.div>
           </div>
 
-          <div className="hidden md:flex md:items-center">
+          <div className="hidden md:flex md:items-center md:gap-3">
             <DesktopNav navItems={navItems} />
+            <ThemeToggle />
           </div>
 
-          <div className="w-11 md:hidden" aria-hidden="true" />
+          <div className="flex w-11 items-center justify-end md:hidden">
+            <ThemeToggle />
+          </div>
         </div>
       </motion.header>
 

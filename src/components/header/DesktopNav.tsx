@@ -30,7 +30,7 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }) => {
             key={item.href}
             href={item.href}
             aria-current={isActive ? 'page' : undefined}
-            className="group"
+            className="group rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
           >
             <motion.span
               whileHover={{ y: -1.5 }}
@@ -38,8 +38,8 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }) => {
               className={[
                 'relative inline-flex items-center rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200',
                 isActive
-                  ? 'text-white'
-                  : 'text-white/65 hover:text-white',
+                  ? 'bg-white/10 text-white'
+                  : 'text-white/65 hover:bg-white/5 hover:text-white',
               ].join(' ')}
             >
               <span>{item.label}</span>

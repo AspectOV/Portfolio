@@ -107,7 +107,7 @@ export const MobileNav: React.FC<MobileNavProps> = ({
                       onClick={closeMenu}
                       aria-current={isActive ? 'page' : undefined}
                       className={[
-                        'flex items-center rounded-xl px-4 py-3 text-base font-medium transition-all duration-200',
+                        'interactive-lift flex items-center rounded-xl px-4 py-3 text-base font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80',
                         isActive
                           ? 'bg-white/10 text-white ring-1 ring-white/10'
                           : 'text-white/70 hover:bg-white/5 hover:text-white',

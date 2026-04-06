@@ -41,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <motion.article
       data-category={category}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-white/[0.05]"
+      className="group interactive-lift flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition-all duration-300 hover:border-cyan-300/25 hover:bg-white/[0.05] focus-within:border-cyan-300/30 focus-within:shadow-[0_16px_40px_rgba(34,211,238,0.14)]"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -92,7 +92,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <Link
             href={link}
             aria-label={`View details for ${title}`}
-            className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300"
+            className="interactive-lift inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-black shadow-sm transition-all duration-200 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/90"
           >
             <span>View Details</span>
             <span

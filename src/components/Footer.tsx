@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
                     key={link.name}
                     href={link.url}
                     aria-label={link.name}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-white/75 transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-cyan-400/[0.08] hover:text-cyan-200"
+                    className="interactive-lift inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-white/75 transition-all duration-200 hover:border-cyan-300/30 hover:bg-cyan-400/[0.08] hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
                     {...(link.external
@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
             <span className="mx-2 text-white/25">•</span>
             <Link
               href="/privacy-policy"
-              className="text-white/65 transition-colors duration-200 hover:text-cyan-200"
+              className="rounded-md text-white/65 transition-colors duration-200 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
             >
               Privacy Policy
             </Link>

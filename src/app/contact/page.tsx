@@ -47,7 +47,7 @@ const sectionTransition = (delay = 0) => ({
 })
 
 const inputClassName =
-  'w-full rounded-xl border border-white/15 bg-black/30 px-4 py-3 text-white placeholder:text-white/40 transition-all duration-200 focus:border-cyan-300/60 focus:outline-none'
+  'w-full rounded-xl border border-white/15 bg-black/30 px-4 py-3 text-white placeholder:text-white/40 transition-all duration-200 focus:border-cyan-300/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80'
 
 const labelClassName = 'mb-2 block text-sm font-medium text-white/85'
 
@@ -245,7 +245,7 @@ const ContactPage: React.FC = () => {
   }
 
   return (
-    <div className="space-y-12 md:space-y-16">
+    <div className="space-y-14 md:space-y-20">
       <Script
         src="https://challenges.cloudflare.com/turnstile/v0/api.js"
         async
@@ -264,7 +264,7 @@ const ContactPage: React.FC = () => {
           Let’s build something useful.
         </h1>
 
-        <p className="mt-4 max-w-2xl text-base text-white/72 md:text-lg">
+        <p className="mt-5 max-w-2xl text-base text-white/80 md:text-lg">
           I’m open to opportunities, collaborations, freelance work, and
           interesting technical conversations. Reach out and I’ll get back to you.
         </p>
@@ -276,7 +276,7 @@ const ContactPage: React.FC = () => {
       >
         <div className="rounded-3xl border border-cyan-300/15 bg-cyan-500/[0.04] p-6 md:p-8">
           <h2>Send a Message</h2>
-          <p className="mt-3 max-w-2xl text-white/70">
+          <p className="mt-3 max-w-2xl text-white/80">
             Fill out the form below and I’ll respond as soon as I can.
           </p>
 
@@ -368,7 +368,7 @@ const ContactPage: React.FC = () => {
                 className={`inline-flex min-h-12 items-center justify-center rounded-xl px-6 py-3.5 font-semibold transition-all duration-200 ${
                   isSubmitting
                     ? 'cursor-not-allowed bg-cyan-300 text-black/80 opacity-80'
-                    : 'bg-cyan-400 text-black hover:-translate-y-0.5 hover:bg-cyan-300'
+                    : 'interactive-lift bg-cyan-400 text-black hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80'
                 }`}
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -391,7 +391,7 @@ const ContactPage: React.FC = () => {
         <div className="space-y-6">
           <div className="rounded-3xl border border-cyan-300/15 bg-cyan-500/[0.04] p-6 md:p-8">
             <h2>Connect With Me</h2>
-            <p className="mt-3 text-white/70">
+            <p className="mt-3 text-white/80">
               You can also find me on these platforms.
             </p>
           </div>
@@ -403,7 +403,7 @@ const ContactPage: React.FC = () => {
               return (
                 <div
                   key={link.title}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all duration-200 hover:border-cyan-300/20 hover:bg-white/[0.05]"
+                  className="interactive-lift rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-all duration-200 hover:border-cyan-300/20 hover:bg-white/[0.05]"
                 >
                   <h3 className="flex items-center gap-3 text-lg font-semibold text-white">
                     <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
@@ -416,7 +416,7 @@ const ContactPage: React.FC = () => {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-400/10 px-4 py-2.5 font-medium text-cyan-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300/20"
+                    className="interactive-lift mt-4 inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-400/10 px-4 py-2.5 font-medium text-cyan-200 transition-all duration-200 hover:bg-cyan-300/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
                   >
                     {link.cta}
                     <span aria-hidden="true">↗</span>

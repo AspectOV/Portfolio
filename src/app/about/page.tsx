@@ -20,7 +20,7 @@ const itemClassName =
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="space-y-12 md:space-y-16">
+    <div className="space-y-14 md:space-y-20">
       <motion.section
         className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 backdrop-blur-sm md:p-8"
         {...sectionTransition(0)}
@@ -33,7 +33,7 @@ const AboutPage: React.FC = () => {
           Developer focused on secure systems, modern web apps, and practical software.
         </h1>
 
-        <p className="mt-4 max-w-3xl text-base text-white/72 md:text-lg">
+        <p className="mt-5 max-w-3xl text-base text-white/80 md:text-lg">
           I’m a student developer interested in computer science, cybersecurity,
           software engineering, and systems design. I enjoy building projects that
           are reliable, polished, and useful in the real world.
@@ -143,7 +143,7 @@ const AboutPage: React.FC = () => {
 
         <Link
           href="/projects"
-          className="mt-6 inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-400/10 px-5 py-3 font-semibold text-cyan-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300/20"
+          className="interactive-lift mt-6 inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-400/10 px-5 py-3 font-semibold text-cyan-200 transition-all duration-200 hover:bg-cyan-300/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
         >
           View full project archive
           <span aria-hidden="true">→</span>

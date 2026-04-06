@@ -4,7 +4,7 @@ import React, { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import ProjectCard from '@/components/ProjectCard'
 
-type ProjectCategory = 'all' | 'game-dev' | 'web-dev' | 'software-dev'
+type ProjectCategory = 'all' | 'game-dev' | 'web-dev' | 'software-dev' | 'full-stack'
 
 interface Project {
   id: string
@@ -57,6 +57,15 @@ const projects: Project[] = [
     link: '#',
   },
   {
+    id: 'full-stack-1',
+    title: 'Realtime Creator Dashboard',
+    description: 'A full-stack dashboard with live analytics, role-based permissions, and API-backed content workflows.',
+    image: '/images/web-dev-project.png',
+    category: 'full-stack',
+    tags: ['Next.js', 'Node.js', 'PostgreSQL'],
+    link: '#',
+  },
+  {
     id: 'software-1',
     title: 'File Encryptor',
     description: 'A Windows desktop application for secure file encryption and compression.',
@@ -72,6 +81,7 @@ const filters: FilterOption[] = [
   { id: 'game-dev', label: 'Game Development' },
   { id: 'web-dev', label: 'Web Development' },
   { id: 'software-dev', label: 'Software Development' },
+  { id: 'full-stack', label: 'Full Stack' },
 ]
 
 const ProjectsPage: React.FC = () => {
@@ -83,7 +93,7 @@ const ProjectsPage: React.FC = () => {
   }, [activeFilter])
 
   return (
-    <div className="space-y-12 md:space-y-16">
+    <div className="space-y-14 md:space-y-20">
       <motion.section
         className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 backdrop-blur-sm md:p-8"
         {...sectionTransition(0)}
@@ -96,7 +106,7 @@ const ProjectsPage: React.FC = () => {
           Selected work across games, software, and web development.
         </h1>
 
-        <p className="mt-4 max-w-2xl text-base text-white/72 md:text-lg">
+        <p className="mt-5 max-w-2xl text-base text-white/80 md:text-lg">
           A collection of projects that reflect my interests in interactive design,
           gameplay systems, modern web development, and practical software engineering.
         </p>
@@ -109,7 +119,7 @@ const ProjectsPage: React.FC = () => {
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2>Filter Projects</h2>
-            <p className="mt-3 max-w-2xl text-white/70">
+            <p className="mt-3 max-w-2xl text-white/80">
               Browse projects by category to focus on the type of work you want to see.
             </p>
           </div>
@@ -119,7 +129,7 @@ const ProjectsPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 flex flex-wrap gap-3" role="tablist" aria-label="Project filters">
           {filters.map((filter) => {
             const isActive = activeFilter === filter.id
 
@@ -128,9 +138,13 @@ const ProjectsPage: React.FC = () => {
                 key={filter.id}
                 type="button"
                 onClick={() => setActiveFilter(filter.id)}
-                aria-pressed={isActive}
+                role="tab"
+                id={`filter-${filter.id}`}
+                aria-controls="project-results"
+                aria-selected={isActive}
+                tabIndex={isActive ? 0 : -1}
                 className={[
-                  'inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200',
+                  'interactive-lift inline-flex items-center rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80',
                   isActive
                     ? 'bg-cyan-400 text-black shadow-[0_10px_30px_rgba(34,211,238,0.18)]'
                     : 'border border-white/15 bg-white/5 text-white/75 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10 hover:text-white',
@@ -145,13 +159,13 @@ const ProjectsPage: React.FC = () => {
 
       <motion.section {...sectionTransition(0.14)}>
         {filteredProjects.length > 0 ? (
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <div id="project-results" className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
             {filteredProjects.map((project, index) => (
               <ProjectCard key={project.id} {...project} index={index} />
             ))}
           </div>
         ) : (
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-center">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-center" role="status">
             <h3 className="text-xl font-semibold text-white">No projects found</h3>
             <p className="mt-3 text-white/65">
               There are no projects in this category yet.

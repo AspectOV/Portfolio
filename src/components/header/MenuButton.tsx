@@ -20,7 +20,7 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ isOpen, toggle }) => {
       aria-expanded={isOpen}
       aria-controls="mobile-menu"
       className={[
-        'relative inline-flex h-11 w-11 items-center justify-center rounded-xl border backdrop-blur-sm transition-all duration-300 md:hidden',
+        'relative inline-flex h-11 w-11 items-center justify-center rounded-xl border backdrop-blur-sm transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80 md:hidden',
         isOpen
           ? 'border-cyan-400/30 bg-cyan-400/10 shadow-[0_0_20px_rgba(34,211,238,0.15)]'
           : 'border-white/15 bg-white/5 hover:border-white/30 hover:bg-white/10',

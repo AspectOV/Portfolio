@@ -89,10 +89,10 @@ const HomePage: React.FC = () => {
   }
 
   const primaryButtonClassName =
-    'inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-3.5 font-semibold text-black transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300'
+    'interactive-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-3.5 font-semibold text-black transition-all duration-200 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/90'
 
   const secondaryButtonClassName =
-    'inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10'
+    'interactive-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80'
 
   const panelClassName =
     'rounded-3xl border border-cyan-300/15 bg-cyan-500/[0.04] p-6 md:p-10'
@@ -111,7 +111,7 @@ const HomePage: React.FC = () => {
           Building polished digital experiences for the web and game platforms.
         </h1>
 
-        <p className="mt-4 max-w-2xl text-base text-white/72 md:text-lg">
+        <p className="mt-5 max-w-2xl text-base text-white/80 md:text-lg">
           I build modern websites, interactive systems, and game projects with a focus
           on performance, usability, and clean execution.
         </p>
@@ -131,7 +131,7 @@ const HomePage: React.FC = () => {
 
       <motion.section className={panelClassName} {...sectionTransition(0.08)}>
         <h2>Featured Projects</h2>
-        <p className="mt-3 max-w-2xl text-white/70">
+        <p className="mt-3 max-w-2xl text-white/80">
           A curated selection of work centered on craftsmanship, usability, and performance.
         </p>
 
@@ -144,7 +144,7 @@ const HomePage: React.FC = () => {
 
       <motion.section className={panelClassName} {...sectionTransition(0.12)}>
         <h2>Core Skills</h2>
-        <p className="mt-3 max-w-2xl text-white/70">
+        <p className="mt-3 max-w-2xl text-white/80">
           The tools and disciplines I use to build reliable, user-focused projects.
         </p>
 
@@ -157,7 +157,7 @@ const HomePage: React.FC = () => {
        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2>Resume</h2>
-            <p className="mt-3 max-w-2xl text-white/70">
+            <p className="mt-3 max-w-2xl text-white/80">
               View my current resume online, open it full screen, or download a PDF copy.
             </p>
           </div>
@@ -167,7 +167,7 @@ const HomePage: React.FC = () => {
               href="/JeremyHayesResume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
+              className="interactive-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
             >
               <span>Open Full Screen</span>
             </a>
@@ -175,7 +175,7 @@ const HomePage: React.FC = () => {
             <a
               href="/JeremyHayesResume.pdf"
               download
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-cyan-300/35 bg-cyan-400/10 px-6 py-3.5 font-semibold text-cyan-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-cyan-300/20"
+              className="interactive-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-cyan-300/35 bg-cyan-400/10 px-6 py-3.5 font-semibold text-cyan-200 transition-all duration-200 hover:bg-cyan-300/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
             >
               <span>Download PDF</span>
             </a>
@@ -209,7 +209,7 @@ const HomePage: React.FC = () => {
           Stay Updated
         </h2>
 
-        <p className="mx-auto max-w-xl text-center text-white/75">
+        <p className="mx-auto max-w-xl text-center text-white/85">
           Subscribe for occasional updates on new projects and lessons learned while building them.
         </p>
 
@@ -224,7 +224,7 @@ const HomePage: React.FC = () => {
               placeholder="Enter your email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="min-h-12 flex-1 rounded-xl border border-white/15 bg-black/30 px-5 py-3 text-white placeholder:text-white/45 focus:border-cyan-300/60 focus:outline-none"
+              className="min-h-12 flex-1 rounded-xl border border-white/15 bg-black/30 px-5 py-3 text-white placeholder:text-white/45 focus:border-cyan-300/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
             />
 
             <button
@@ -233,7 +233,7 @@ const HomePage: React.FC = () => {
               className={`inline-flex min-h-12 items-center justify-center rounded-xl px-6 py-3.5 font-semibold transition-all duration-200 ${
                 isSubmitting
                   ? 'cursor-not-allowed bg-cyan-300 text-black/80 opacity-80'
-                  : 'bg-cyan-400 text-black hover:bg-cyan-300'
+                  : 'interactive-lift bg-cyan-400 text-black hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80'
               }`}
             >
               {isSubmitting ? 'Submitting...' : 'Subscribe'}

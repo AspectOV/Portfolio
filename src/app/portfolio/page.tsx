@@ -58,7 +58,7 @@ const formatCategory = (category: PortfolioItem['category']) => {
 
 const PortfolioPage: React.FC = () => {
   return (
-    <div className="space-y-12 md:space-y-16">
+    <div className="space-y-14 md:space-y-20">
       <motion.section
         className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 backdrop-blur-sm md:p-8"
         {...sectionTransition(0)}
@@ -71,7 +71,7 @@ const PortfolioPage: React.FC = () => {
           A visual showcase of selected work.
         </h1>
 
-        <p className="mt-4 max-w-2xl text-base text-white/72 md:text-lg">
+        <p className="mt-5 max-w-2xl text-base text-white/80 md:text-lg">
           A curated gallery of projects across web development, game development,
           and software engineering.
         </p>
@@ -90,7 +90,7 @@ const PortfolioPage: React.FC = () => {
           {portfolioItems.map((item, index) => (
             <motion.article
               key={item.id}
-              className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/25 hover:bg-white/[0.05]"
+              className="group interactive-lift overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] shadow-xl shadow-black/20 transition-all duration-300 hover:border-cyan-300/25 hover:bg-white/[0.05]"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}

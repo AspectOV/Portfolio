@@ -4,6 +4,51 @@ This document is a prioritized, idea-rich backlog for leveling up your portfolio
 
 ---
 
+## Progress Snapshot (Updated: 2026-04-06)
+
+### Completed in this pass
+- [x] **1.1 Clear one-line value proposition (hero)** — Updated home hero copy to focus on outcomes and changed CTA to include **Book a Call**.
+- [x] **1.2 Audience split CTA** — Added "I’m hiring" and "I need a developer" path cards on the homepage.
+- [x] **3.2 Publish a now/upcoming panel** — Added a compact "Currently building / Exploring / Available for" panel.
+- [x] **4.2 Better contact conversion** — Contact form now includes project type, budget range, timeline, and goals; direct email fallback is now visible.
+
+### Already completed before this pass
+- [x] **2.3 Introduce project taxonomy filters** — Projects page already has interactive category filters.
+- [x] **7.3 Resume integration** — Site already includes embedded resume preview + downloadable PDF.
+- [x] **6.2 Rich metadata and social cards (partial)** — Structured data and metadata are already present in layout.
+
+### Not completed yet
+- [ ] **1.3 Personal brand consistency**
+- [ ] **2.1 Structured case-study format**
+- [ ] **2.2 Measurable impact snippets**
+- [ ] **2.4 Deep dive pages**
+- [ ] **3.1 Social proof modules**
+- [ ] **3.3 Featured in / Open Source section**
+- [ ] **3.4 Timeline highlights**
+- [ ] **4.1 Sticky action bar**
+- [ ] **4.3 Purposeful microinteractions**
+- [ ] **4.4 Improve scanability**
+- [ ] **5.1 Performance budget + monitoring**
+- [ ] **5.2 Accessibility hardening pass**
+- [ ] **5.3 Quality signals**
+- [ ] **5.4 Enhanced error and empty states**
+- [ ] **6.1 Search-intent pages**
+- [ ] **6.2 Rich metadata and social cards (remaining items)**
+- [ ] **6.3 Blog/notes section**
+- [ ] **6.4 Internal linking strategy**
+- [ ] **7.1 About page rewrite for outcomes**
+- [ ] **7.2 Skills section: evidence-based**
+- [ ] **7.4 Working With Me section**
+- [ ] **8.1 Funnel analytics**
+- [ ] **8.2 CTA event tracking**
+- [ ] **8.3 A/B experiments**
+- [ ] **8.4 Monthly review ritual**
+- [ ] **9.1 Interactive project demos**
+- [ ] **9.2 Recruiter mode**
+- [ ] **9.3 AI-assisted site search**
+
+---
+
 ## 1) Positioning & Messaging Upgrades
 
 ### 1.1 Clear one-line value proposition (hero)

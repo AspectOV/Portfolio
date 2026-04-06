@@ -5,10 +5,14 @@ import { motion } from 'framer-motion'
 import Script from 'next/script'
 import type { IconType } from 'react-icons'
 import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa'
+import AudienceModeToggle from '@/components/AudienceModeToggle'
+import { useAudiencePreference } from '@/components/AudiencePreferenceProvider'
 
 interface FormData {
   name: string
   email: string
+  subject: string
+  message: string
   projectType: string
   budgetRange: string
   timeline: string
@@ -18,6 +22,8 @@ interface FormData {
 interface FormErrors {
   name: string
   email: string
+  subject: string
+  message: string
   projectType: string
   budgetRange: string
   timeline: string
@@ -87,9 +93,12 @@ const socialLinks: SocialLink[] = [
 ]
 
 const ContactPage: React.FC = () => {
+  const { audience } = useAudiencePreference()
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
+    subject: '',
+    message: '',
     projectType: '',
     budgetRange: '',
     timeline: '',
@@ -99,6 +108,8 @@ const ContactPage: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({
     name: '',
     email: '',
+    subject: '',
+    message: '',
     projectType: '',
     budgetRange: '',
     timeline: '',
@@ -134,10 +145,26 @@ const ContactPage: React.FC = () => {
     }
   }, [])
 
+  useEffect(() => {
+    setStatusMessage('')
+    setErrors({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+      projectType: '',
+      budgetRange: '',
+      timeline: '',
+      goals: '',
+    })
+  }, [audience])
+
   const validate = () => {
     const nextErrors: FormErrors = {
       name: '',
       email: '',
+      subject: '',
+      message: '',
       projectType: '',
       budgetRange: '',
       timeline: '',
@@ -159,24 +186,36 @@ const ContactPage: React.FC = () => {
       valid = false
     }
 
-    if (!formData.projectType.trim()) {
-      nextErrors.projectType = 'Project type is required.'
-      valid = false
-    }
+    if (audience === 'recruiter') {
+      if (!formData.projectType.trim()) {
+        nextErrors.projectType = 'Project type is required.'
+        valid = false
+      }
 
-    if (!formData.budgetRange.trim()) {
-      nextErrors.budgetRange = 'Budget range is required.'
-      valid = false
-    }
+      if (!formData.budgetRange.trim()) {
+        nextErrors.budgetRange = 'Budget range is required.'
+        valid = false
+      }
 
-    if (!formData.timeline.trim()) {
-      nextErrors.timeline = 'Timeline is required.'
-      valid = false
-    }
+      if (!formData.timeline.trim()) {
+        nextErrors.timeline = 'Timeline is required.'
+        valid = false
+      }
 
-    if (!formData.goals.trim()) {
-      nextErrors.goals = 'Goals are required.'
-      valid = false
+      if (!formData.goals.trim()) {
+        nextErrors.goals = 'Goals are required.'
+        valid = false
+      }
+    } else {
+      if (!formData.subject.trim()) {
+        nextErrors.subject = 'Subject is required.'
+        valid = false
+      }
+
+      if (!formData.message.trim()) {
+        nextErrors.message = 'Message is required.'
+        valid = false
+      }
     }
 
     setErrors(nextErrors)
@@ -212,6 +251,24 @@ const ContactPage: React.FC = () => {
     setIsSubmitting(true)
     setStatusMessage('')
 
+    const payload =
+      audience === 'recruiter'
+        ? {
+            subject: `Portfolio inquiry: ${formData.projectType.trim()} (${formData.timeline.trim()})`,
+            message: [
+              `Project type: ${formData.projectType.trim()}`,
+              `Budget range: ${formData.budgetRange.trim()}`,
+              `Timeline: ${formData.timeline.trim()}`,
+              '',
+              'Goals:',
+              formData.goals.trim(),
+            ].join('\n'),
+          }
+        : {
+            subject: formData.subject.trim(),
+            message: formData.message.trim(),
+          }
+
     try {
       const response = await fetch(
         'https://contactapi.mcjeremyhaynes.workers.dev/',
@@ -223,15 +280,7 @@ const ContactPage: React.FC = () => {
           body: JSON.stringify({
             name: formData.name.trim(),
             email: formData.email.trim(),
-            subject: `Portfolio inquiry: ${formData.projectType.trim()} (${formData.timeline.trim()})`,
-            message: [
-              `Project type: ${formData.projectType.trim()}`,
-              `Budget range: ${formData.budgetRange.trim()}`,
-              `Timeline: ${formData.timeline.trim()}`,
-              '',
-              'Goals:',
-              formData.goals.trim(),
-            ].join('\n'),
+            ...payload,
             turnstileToken,
           }),
         }
@@ -253,6 +302,8 @@ const ContactPage: React.FC = () => {
       setFormData({
         name: '',
         email: '',
+        subject: '',
+        message: '',
         projectType: '',
         budgetRange: '',
         timeline: '',
@@ -306,8 +357,12 @@ const ContactPage: React.FC = () => {
         <div className="rounded-3xl border border-cyan-300/15 bg-cyan-500/[0.04] p-6 md:p-8">
           <h2>Send a Message</h2>
           <p className="mt-3 max-w-2xl text-white/80">
-            Share a few project details and I&apos;ll reply with a focused next step.
+            Choose the contact path that fits you best, then fill out the form.
           </p>
+
+          <div className="mt-6">
+            <AudienceModeToggle />
+          </div>
 
           <form onSubmit={handleSubmit} className="mt-6 space-y-5">
             <div>
@@ -346,77 +401,119 @@ const ContactPage: React.FC = () => {
               )}
             </div>
 
-            <div>
-              <label htmlFor="projectType" className={labelClassName}>
-                Project Type
-              </label>
-              <input
-                type="text"
-                id="projectType"
-                name="projectType"
-                value={formData.projectType}
-                onChange={handleInputChange}
-                className={inputClassName}
-                placeholder="e.g., marketing site, dashboard, redesign"
-              />
-              {errors.projectType && (
-                <p className="mt-2 text-sm text-red-400">{errors.projectType}</p>
-              )}
-            </div>
+            {audience === 'recruiter' ? (
+              <>
+                <div>
+                  <label htmlFor="projectType" className={labelClassName}>
+                    Project Type
+                  </label>
+                  <input
+                    type="text"
+                    id="projectType"
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleInputChange}
+                    className={inputClassName}
+                    placeholder="e.g., marketing site, dashboard, redesign"
+                  />
+                  {errors.projectType && (
+                    <p className="mt-2 text-sm text-red-400">{errors.projectType}</p>
+                  )}
+                </div>
 
-            <div>
-              <label htmlFor="budgetRange" className={labelClassName}>
-                Budget Range
-              </label>
-              <input
-                type="text"
-                id="budgetRange"
-                name="budgetRange"
-                value={formData.budgetRange}
-                onChange={handleInputChange}
-                className={inputClassName}
-                placeholder="e.g., $2k-$5k"
-              />
-              {errors.budgetRange && (
-                <p className="mt-2 text-sm text-red-400">{errors.budgetRange}</p>
-              )}
-            </div>
+                <div>
+                  <label htmlFor="budgetRange" className={labelClassName}>
+                    Budget Range
+                  </label>
+                  <input
+                    type="text"
+                    id="budgetRange"
+                    name="budgetRange"
+                    value={formData.budgetRange}
+                    onChange={handleInputChange}
+                    className={inputClassName}
+                    placeholder="e.g., $2k-$5k"
+                  />
+                  {errors.budgetRange && (
+                    <p className="mt-2 text-sm text-red-400">{errors.budgetRange}</p>
+                  )}
+                </div>
 
-            <div>
-              <label htmlFor="timeline" className={labelClassName}>
-                Timeline
-              </label>
-              <input
-                type="text"
-                id="timeline"
-                name="timeline"
-                value={formData.timeline}
-                onChange={handleInputChange}
-                className={inputClassName}
-                placeholder="e.g., launch in 6 weeks"
-              />
-              {errors.timeline && (
-                <p className="mt-2 text-sm text-red-400">{errors.timeline}</p>
-              )}
-            </div>
+                <div>
+                  <label htmlFor="timeline" className={labelClassName}>
+                    Timeline
+                  </label>
+                  <input
+                    type="text"
+                    id="timeline"
+                    name="timeline"
+                    value={formData.timeline}
+                    onChange={handleInputChange}
+                    className={inputClassName}
+                    placeholder="e.g., launch in 6 weeks"
+                  />
+                  {errors.timeline && (
+                    <p className="mt-2 text-sm text-red-400">{errors.timeline}</p>
+                  )}
+                </div>
 
-            <div>
-              <label htmlFor="goals" className={labelClassName}>
-                Goals
-              </label>
-              <textarea
-                id="goals"
-                name="goals"
-                rows={7}
-                value={formData.goals}
-                onChange={handleInputChange}
-                className={`${inputClassName} resize-y`}
-                placeholder="What should this project achieve?"
-              />
-              {errors.goals && (
-                <p className="mt-2 text-sm text-red-400">{errors.goals}</p>
-              )}
-            </div>
+                <div>
+                  <label htmlFor="goals" className={labelClassName}>
+                    Goals
+                  </label>
+                  <textarea
+                    id="goals"
+                    name="goals"
+                    rows={7}
+                    value={formData.goals}
+                    onChange={handleInputChange}
+                    className={`${inputClassName} resize-y`}
+                    placeholder="What should this project achieve?"
+                  />
+                  {errors.goals && (
+                    <p className="mt-2 text-sm text-red-400">{errors.goals}</p>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <label htmlFor="subject" className={labelClassName}>
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    className={inputClassName}
+                    placeholder="What are you reaching out about?"
+                  />
+                  {errors.subject && (
+                    <p className="mt-2 text-sm text-red-400">{errors.subject}</p>
+                  )}
+                </div>
+
+                <div>
+                  <label htmlFor="message" className={labelClassName}>
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={7}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    className={`${inputClassName} resize-y`}
+                    placeholder="Share your message or question."
+                  />
+                  {errors.message && (
+                    <p className="mt-2 text-sm text-red-400">{errors.message}</p>
+                  )}
+                </div>
+              </>
+            )}
 
             <div className="pt-1">
               <div

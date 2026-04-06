@@ -8,6 +8,8 @@ import ProjectCard from '@/components/ProjectCard'
 import Skills from '@/components/Skills'
 import Image from 'next/image'
 import { featuredProjectIds, projects } from '@/content/siteContent'
+import AudienceModeToggle from '@/components/AudienceModeToggle'
+import { useAudiencePreference } from '@/components/AudiencePreferenceProvider'
 
 const sectionTransition = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -17,6 +19,7 @@ const sectionTransition = (delay = 0) => ({
 })
 
 const HomePage: React.FC = () => {
+  const { audience } = useAudiencePreference()
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [message, setMessage] = useState('')
@@ -78,12 +81,12 @@ const HomePage: React.FC = () => {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link href="/projects" className={primaryButtonClassName}>
             <FaBriefcase aria-hidden="true" className="h-[16px] w-[16px]" />
-            <span>View Projects</span>
+            <span>{audience === 'recruiter' ? 'View Hiring-Focused Projects' : 'View Projects'}</span>
           </Link>
 
           <Link href="/contact" className={secondaryButtonClassName}>
             <FaEnvelope aria-hidden="true" className="h-[16px] w-[16px]" />
-            <span>Book a Call</span>
+            <span>{audience === 'recruiter' ? 'Start a Project Call' : 'Send a Message'}</span>
           </Link>
         </div>
       </motion.section>
@@ -93,6 +96,10 @@ const HomePage: React.FC = () => {
         <p className="mt-3 max-w-2xl text-white/80">
           Whether you&apos;re hiring or need a developer partner, start with the path that matches your goal.
         </p>
+
+        <div className="mt-5">
+          <AudienceModeToggle />
+        </div>
 
         <div className="mt-7 grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
@@ -119,7 +126,7 @@ const HomePage: React.FC = () => {
             </p>
             <div className="mt-5">
               <Link href="/contact" className={primaryButtonClassName}>
-                Start a Project Conversation
+                {audience === 'recruiter' ? 'Start a Project Conversation' : 'Open Contact Form'}
               </Link>
             </div>
           </div>

@@ -2,10 +2,9 @@ import React from 'react'
 import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
 import AnimatedBackdrop from '@/components/AnimatedBackdrop'
 import WebVitalsReporter from '@/components/WebVitalsReporter'
+import SiteChrome from '@/components/SiteChrome'
 import { projects } from '@/content/siteContent'
 
 const inter = Inter({
@@ -114,9 +113,7 @@ export default function RootLayout({
       <body className="text-white antialiased">
         <WebVitalsReporter />
         <AnimatedBackdrop />
-        <Header />
-        <main id="main-content">{children}</main>
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   )

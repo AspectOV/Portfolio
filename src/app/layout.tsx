@@ -5,25 +5,36 @@ import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import AnimatedBackdrop from '@/components/AnimatedBackdrop'
+import WebVitalsReporter from '@/components/WebVitalsReporter'
+import { projects } from '@/content/siteContent'
 
 const inter = Inter({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   display: 'swap',
   variable: '--font-inter',
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
+  weight: ['400', '600'],
   display: 'swap',
   variable: '--font-jetbrains-mono',
 })
 
 export const metadata: Metadata = {
-  title: 'Jeremy Hayes Portfolio',
+  metadataBase: new URL('https://jeremymhayes.com'),
+  title: {
+    default: 'Jeremy Hayes Portfolio',
+    template: '%s | Jeremy Hayes',
+  },
   description:
     'Jeremy M. Hayes — developer portfolio showcasing projects, skills, and contact information.',
   keywords: ['Jeremy Hayes', 'Jeremy M. Hayes', 'Developer', 'Programmer', 'Portfolio', 'Game Developer', 'Web Developer'],
   authors: [{ name: 'Jeremy M. Hayes' }],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Jeremy Hayes Portfolio',
     description:
@@ -83,7 +94,25 @@ export default function RootLayout({
         />
       </head>
 
+                <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'ItemList',
+              itemListElement: projects.map((project, index) => ({
+                '@type': 'CreativeWork',
+                position: index + 1,
+                name: project.title,
+                description: project.description,
+                url: `https://jeremymhayes.com${project.link === '#' ? '/projects' : project.link}`,
+              })),
+            }),
+          }}
+        />
+
       <body className="text-white antialiased">
+        <WebVitalsReporter />
         <AnimatedBackdrop />
         <Header />
         <main id="main-content">{children}</main>

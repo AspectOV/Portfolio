@@ -14,6 +14,7 @@ interface ProjectCardProps {
   tags: string[]
   link: string
   index: number
+  priority?: boolean
 }
 
 const formatCategory = (category: string) => {
@@ -37,6 +38,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   tags,
   link,
   index,
+  priority = false,
 }) => {
   return (
     <motion.article
@@ -53,7 +55,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           alt={title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-          priority={index < 2}
+          loading={priority ? undefined : 'lazy'}
+          priority={priority}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
         />
 

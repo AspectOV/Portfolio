@@ -14,50 +14,39 @@ import {
   FaLinux,
   FaDocker,
   FaGitAlt,
-  FaCloud,
-  FaGamepad,
   FaCube,
   FaDiscord,
   FaServer,
 } from 'react-icons/fa'
 import { SiTypescript, SiExpress, SiTailwindcss, SiRoblox, SiUnity, SiCloudflare } from 'react-icons/si'
-import { HiOutlineSquares2X2, HiOutlineGlobeAlt } from 'react-icons/hi2'
+import { HiOutlineSquares2X2 } from 'react-icons/hi2'
 import { TbApi, TbSettingsCog } from 'react-icons/tb'
+import { skills } from '@/content/siteContent'
 
-interface Skill {
-  name: string
-  icon: IconType
+const iconMap: Record<string, IconType> = {
+  api: TbApi,
+  blender: FaCube,
+  cloudflare: SiCloudflare,
+  code: FaCode,
+  css: FaCss3Alt,
+  discord: FaDiscord,
+  docker: FaDocker,
+  express: SiExpress,
+  git: FaGitAlt,
+  html: FaHtml5,
+  javascript: FaJs,
+  linux: FaLinux,
+  nextjs: HiOutlineSquares2X2,
+  node: FaNodeJs,
+  python: FaPython,
+  react: FaReact,
+  roblox: SiRoblox,
+  server: FaServer,
+  systems: TbSettingsCog,
+  tailwind: SiTailwindcss,
+  typescript: SiTypescript,
+  unity: SiUnity,
 }
-
-const skills: Skill[] = [
-  { name: 'TypeScript', icon: SiTypescript },
-  { name: 'JavaScript', icon: FaJs },
-  { name: 'HTML', icon: FaHtml5 },
-  { name: 'CSS', icon: FaCss3Alt },
-  { name: 'C#', icon: FaCode },
-  { name: 'Python', icon: FaPython },
-  { name: 'Luau (Roblox)', icon: FaCode },
-
-  { name: 'React', icon: FaReact },
-  { name: 'Next.js', icon: HiOutlineSquares2X2 },
-  { name: 'Node.js', icon: FaNodeJs },
-  { name: 'Express.js', icon: SiExpress },
-  { name: 'Tailwind CSS', icon: SiTailwindcss },
-
-  { name: 'Linux', icon: FaLinux },
-  { name: 'Docker', icon: FaDocker },
-  { name: 'Git', icon: FaGitAlt },
-  { name: 'Cloudflare', icon: SiCloudflare },
-
-  { name: 'Roblox Studio', icon: SiRoblox },
-  { name: 'Unity', icon: SiUnity },
-  { name: 'Blender', icon: FaCube },
-
-  { name: 'REST APIs', icon: TbApi },
-  { name: 'Discord Bot Development', icon: FaDiscord },
-  { name: 'Game Systems Engineering', icon: TbSettingsCog },
-  { name: 'Server Administration', icon: FaServer },
-]
 
 const containerVariants: Variants = {
   hidden: {},
@@ -94,7 +83,7 @@ const Skills: React.FC = () => {
       aria-label="Skills and technologies"
     >
       {skills.map((skill) => {
-        const Icon = skill.icon
+        const Icon = iconMap[skill.icon] ?? FaCode
 
         return (
           <motion.li

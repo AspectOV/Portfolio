@@ -67,12 +67,12 @@ const HomePage: React.FC = () => {
         </p>
 
         <h1 className="max-w-3xl text-balance text-3xl font-bold leading-tight md:text-5xl">
-          Building polished digital experiences for the web and game platforms.
+          I design and build fast, accessible web apps that turn visitors into customers.
         </h1>
 
         <p className="mt-5 max-w-2xl text-base text-white/80 md:text-lg">
-          I build modern websites, interactive systems, and game projects with a focus
-          on performance, usability, and clean execution.
+          From landing pages to production dashboards, I focus on measurable outcomes:
+          performance, conversion, and maintainable delivery.
         </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
@@ -83,8 +83,46 @@ const HomePage: React.FC = () => {
 
           <Link href="/contact" className={secondaryButtonClassName}>
             <FaEnvelope aria-hidden="true" className="h-[16px] w-[16px]" />
-            <span>Contact Me</span>
+            <span>Book a Call</span>
           </Link>
+        </div>
+      </motion.section>
+
+      <motion.section className={panelClassName} {...sectionTransition(0.05)}>
+        <h2>Choose Your Path</h2>
+        <p className="mt-3 max-w-2xl text-white/80">
+          Whether you&apos;re hiring or need a developer partner, start with the path that matches your goal.
+        </p>
+
+        <div className="mt-7 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300/80">I&apos;m hiring</p>
+            <h3 className="mt-3 text-xl font-semibold text-white">See role-fit proof quickly</h3>
+            <p className="mt-3 text-white/75">
+              Review highlighted projects, relevant skills, and my current resume in one pass.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link href="/projects" className={secondaryButtonClassName}>
+                View Selected Work
+              </Link>
+              <a href="/JeremyHayesResume.pdf" className={secondaryButtonClassName}>
+                Open Resume
+              </a>
+            </div>
+          </div>
+
+          <div className="rounded-2xl border border-cyan-300/20 bg-cyan-500/[0.08] p-5">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-cyan-300/90">I need a developer</p>
+            <h3 className="mt-3 text-xl font-semibold text-white">Plan and ship with confidence</h3>
+            <p className="mt-3 text-white/75">
+              Share scope, timeline, and goals to get a structured response and next steps.
+            </p>
+            <div className="mt-5">
+              <Link href="/contact" className={primaryButtonClassName}>
+                Start a Project Conversation
+              </Link>
+            </div>
+          </div>
         </div>
       </motion.section>
 
@@ -164,6 +202,21 @@ const HomePage: React.FC = () => {
         className="rounded-3xl border border-cyan-300/15 bg-gradient-to-r from-cyan-500/10 via-sky-500/5 to-transparent p-8 md:p-12"
         {...sectionTransition(0.2)}
       >
+        <div className="mb-10 grid gap-4 md:grid-cols-3">
+          <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+            <h3 className="text-lg font-semibold text-white">Currently building</h3>
+            <p className="mt-2 text-white/75">Faster case-study pages with clearer impact snapshots.</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+            <h3 className="text-lg font-semibold text-white">Exploring</h3>
+            <p className="mt-2 text-white/75">Performance tooling and reusable UI patterns for content-heavy pages.</p>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-black/20 p-5">
+            <h3 className="text-lg font-semibold text-white">Available for</h3>
+            <p className="mt-2 text-white/75">Frontend, full-stack web projects, and targeted performance improvements.</p>
+          </div>
+        </div>
+
         <h2 className="mb-4 text-center after:left-1/2 after:-translate-x-1/2">
           Stay Updated
         </h2>

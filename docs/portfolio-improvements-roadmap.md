@@ -32,6 +32,9 @@ This document is a prioritized, idea-rich backlog for leveling up your portfolio
 - [x] **3.1 Social proof modules**
 - [x] **3.3 Featured in / Open Source section**
 - [x] **3.4 Timeline highlights**
+- [x] **3.1 Social proof modules**
+- [x] **3.3 Featured in / Open Source section**
+- [x] **3.4 Timeline highlights**
 - [x] **4.1 Sticky action bar**
 - [ ] **4.3 Purposeful microinteractions**
 - [ ] **4.4 Improve scanability**

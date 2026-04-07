@@ -157,22 +157,6 @@ const AboutPage: React.FC = () => {
         </div>
       </motion.section>
 
-      <motion.section className={sectionClassName} {...sectionTransition(0.26)}>
-        <h2>Working With Me</h2>
-
-        <ul className="mt-5 list-none p-0">
-          <li className={itemClassName}>
-            <strong>Communication cadence:</strong> concise updates with clear blockers, risks, and next steps.
-          </li>
-          <li className={itemClassName}>
-            <strong>Delivery style:</strong> break projects into practical milestones so progress stays visible.
-          </li>
-          <li className={itemClassName}>
-            <strong>Engineering approach:</strong> prioritize reliability, readability, and measurable performance outcomes.
-          </li>
-        </ul>
-      </motion.section>
-
       <motion.section className={sectionClassName} {...sectionTransition(0.28)}>
         <h2>Certifications & Honors</h2>
 

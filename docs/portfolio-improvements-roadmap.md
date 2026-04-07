@@ -11,6 +11,7 @@ This document is a prioritized, idea-rich backlog for leveling up your portfolio
 - [x] **1.2 Audience split CTA** — Added "I’m hiring" and "I need a developer" path cards on the homepage.
 - [x] **3.2 Publish a now/upcoming panel** — Added a compact "Currently building / Exploring / Available for" panel.
 - [x] **4.2 Better contact conversion** — Contact form now includes project type, budget range, timeline, and goals; direct email fallback is now visible.
+- [x] **4.1 Sticky action bar** — Added a persistent bottom action bar with quick links to **Projects**, **Resume**, and **Contact**.
 
 ### Already completed before this pass
 - [x] **2.3 Introduce project taxonomy filters** — Projects page already has interactive category filters.
@@ -25,7 +26,7 @@ This document is a prioritized, idea-rich backlog for leveling up your portfolio
 - [ ] **3.1 Social proof modules**
 - [ ] **3.3 Featured in / Open Source section**
 - [ ] **3.4 Timeline highlights**
-- [ ] **4.1 Sticky action bar**
+- [x] **4.1 Sticky action bar**
 - [ ] **4.3 Purposeful microinteractions**
 - [ ] **4.4 Improve scanability**
 - [ ] **5.1 Performance budget + monitoring**

@@ -11,6 +11,13 @@ This document is a prioritized, idea-rich backlog for leveling up your portfolio
 - [x] **1.2 Audience split CTA** — Added "I’m hiring" and "I need a developer" path cards on the homepage.
 - [x] **3.2 Publish a now/upcoming panel** — Added a compact "Currently building / Exploring / Available for" panel.
 - [x] **4.2 Better contact conversion** — Contact form now includes project type, budget range, timeline, and goals; direct email fallback is now visible.
+- [x] **4.1 Sticky action bar** — Added a persistent bottom action bar with quick links to **Projects**, **Resume**, and **Contact**.
+- [x] **2.1 Structured case-study format** — Project cards now include concise **Problem**, **Role**, and **Impact** blocks.
+- [x] **2.2 Measurable impact snippets** — Added impact-focused snippets to each project entry for faster credibility scanning.
+- [x] **3.1 Social proof modules** — Added collaborator/client testimonial cards on the homepage.
+- [x] **3.3 Featured in / Open Source section** — Added a homepage section highlighting public proof-of-work and OSS-oriented output.
+- [x] **3.4 Timeline highlights** — Added timeline milestones summarizing progression from freelance to product-focused work.
+- [x] **7.4 Working With Me section** — Added communication, delivery, and engineering expectations to the About page.
 
 ### Already completed before this pass
 - [x] **2.3 Introduce project taxonomy filters** — Projects page already has interactive category filters.
@@ -19,13 +26,13 @@ This document is a prioritized, idea-rich backlog for leveling up your portfolio
 
 ### Not completed yet
 - [ ] **1.3 Personal brand consistency**
-- [ ] **2.1 Structured case-study format**
-- [ ] **2.2 Measurable impact snippets**
+- [x] **2.1 Structured case-study format**
+- [x] **2.2 Measurable impact snippets**
 - [ ] **2.4 Deep dive pages**
-- [ ] **3.1 Social proof modules**
-- [ ] **3.3 Featured in / Open Source section**
-- [ ] **3.4 Timeline highlights**
-- [ ] **4.1 Sticky action bar**
+- [x] **3.1 Social proof modules**
+- [x] **3.3 Featured in / Open Source section**
+- [x] **3.4 Timeline highlights**
+- [x] **4.1 Sticky action bar**
 - [ ] **4.3 Purposeful microinteractions**
 - [ ] **4.4 Improve scanability**
 - [ ] **5.1 Performance budget + monitoring**
@@ -38,7 +45,7 @@ This document is a prioritized, idea-rich backlog for leveling up your portfolio
 - [ ] **6.4 Internal linking strategy**
 - [ ] **7.1 About page rewrite for outcomes**
 - [ ] **7.2 Skills section: evidence-based**
-- [ ] **7.4 Working With Me section**
+- [x] **7.4 Working With Me section**
 - [ ] **8.1 Funnel analytics**
 - [ ] **8.2 CTA event tracking**
 - [ ] **8.3 A/B experiments**

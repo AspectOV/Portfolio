@@ -9,6 +9,9 @@ interface ProjectCardProps {
   id: string
   title: string
   description: string
+  problem: string
+  role: string
+  impact: string
   image: string
   category: string
   tags: string[]
@@ -33,6 +36,9 @@ const formatCategory = (category: string) => {
 const ProjectCard: React.FC<ProjectCardProps> = ({
   title,
   description,
+  problem,
+  role,
+  impact,
   image,
   category,
   tags,
@@ -78,6 +84,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           <p className="mt-3 text-sm leading-7 text-white/68 md:text-base">
             {description}
           </p>
+
+          <dl className="mt-4 space-y-2 text-sm text-white/75">
+            <div>
+              <dt className="font-semibold text-cyan-200">Problem</dt>
+              <dd>{problem}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-cyan-200">Role</dt>
+              <dd>{role}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-cyan-200">Impact</dt>
+              <dd>{impact}</dd>
+            </div>
+          </dl>
 
           <div className="mt-5 flex flex-wrap gap-2">
             {tags.map((tag) => (

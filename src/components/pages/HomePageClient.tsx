@@ -18,6 +18,28 @@ const sectionTransition = (delay = 0) => ({
   transition: { duration: 0.55, delay },
 })
 
+const testimonials = [
+  {
+    quote:
+      'Jeremy helped us turn an early concept into a stable experience with better structure and faster iteration cycles.',
+    name: 'Indie Studio Collaborator',
+    role: 'Gameplay Lead',
+  },
+  {
+    quote:
+      'Communication was clear, technical decisions were well explained, and deliverables arrived on time.',
+    name: 'Freelance Client',
+    role: 'Product Founder',
+  },
+]
+
+const timelineHighlights = [
+  '2023 — Started freelance systems and gameplay development work.',
+  '2024 — Expanded into modern web projects with React and Next.js.',
+  '2025 — Shipped secure desktop software and reusable full-stack tooling.',
+  '2026 — Optimizing portfolio conversion with stronger case-study storytelling.',
+]
+
 const HomePage: React.FC = () => {
   const { audience } = useAudiencePreference()
   const [email, setEmail] = useState('')
@@ -157,6 +179,27 @@ const HomePage: React.FC = () => {
         </div>
       </motion.section>
 
+      <motion.section className={panelClassName} {...sectionTransition(0.14)}>
+        <h2>Social Proof</h2>
+        <p className="mt-3 max-w-2xl text-white/80">
+          Feedback from collaborators who have worked with me on systems, shipping, and delivery.
+        </p>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {testimonials.map((testimonial) => (
+            <blockquote
+              key={testimonial.name}
+              className="rounded-2xl border border-white/10 bg-black/20 p-5"
+            >
+              <p className="text-white/80">&ldquo;{testimonial.quote}&rdquo;</p>
+              <footer className="mt-4 text-sm text-cyan-200">
+                {testimonial.name} · {testimonial.role}
+              </footer>
+            </blockquote>
+          ))}
+        </div>
+      </motion.section>
+
       <motion.section className={panelClassName} {...sectionTransition(0.16)}>
        <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -202,6 +245,39 @@ const HomePage: React.FC = () => {
               loading="lazy"
             />
           </a>
+        </div>
+      </motion.section>
+
+      <motion.section className={panelClassName} {...sectionTransition(0.18)}>
+        <h2>Featured In & Open Source</h2>
+        <p className="mt-3 max-w-2xl text-white/80">
+          Highlights that demonstrate public proof of work and community-facing output.
+        </p>
+
+        <ul className="mt-5 space-y-3 text-white/80">
+          <li className="rounded-xl border border-white/10 bg-black/20 px-4 py-3">
+            Published portfolio and product experiments with iterative UX improvements.
+          </li>
+          <li className="rounded-xl border border-white/10 bg-black/20 px-4 py-3">
+            Shared reusable development patterns through public repositories and project code organization.
+          </li>
+          <li className="rounded-xl border border-white/10 bg-black/20 px-4 py-3">
+            Documented practical build decisions to make implementation tradeoffs transparent.
+          </li>
+        </ul>
+      </motion.section>
+
+      <motion.section className={panelClassName} {...sectionTransition(0.19)}>
+        <h2>Timeline Highlights</h2>
+        <div className="mt-5 space-y-3">
+          {timelineHighlights.map((highlight) => (
+            <p
+              key={highlight}
+              className="rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white/80"
+            >
+              {highlight}
+            </p>
+          ))}
         </div>
       </motion.section>
 

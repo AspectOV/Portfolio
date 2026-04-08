@@ -4,11 +4,12 @@ import ContactPageClient from '@/components/pages/ContactPageClient'
 export const metadata: Metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Jeremy Hayes through the contact form or social channels.',
+    'Reach out to Jeremy Hayes about internships, freelance work, collaborations, or technical conversations.',
   alternates: { canonical: '/contact' },
   openGraph: {
     title: 'Contact | Jeremy Hayes',
-    description: 'Reach out for collaboration, freelance work, or project inquiries.',
+    description:
+      'Reach out for collaboration, freelance work, internships, or project inquiries.',
     url: '/contact',
   },
 }

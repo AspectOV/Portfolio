@@ -1,52 +1,70 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { IBM_Plex_Mono, Public_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import AnimatedBackdrop from '@/components/AnimatedBackdrop'
 import WebVitalsReporter from '@/components/WebVitalsReporter'
 import SiteChrome from '@/components/SiteChrome'
-import { projects } from '@/content/siteContent'
+import { getProjectHref, projects } from '@/content/siteContent'
 
-const inter = Inter({
+const publicSans = Public_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-body',
 })
 
-const jetbrainsMono = JetBrains_Mono({
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['500', '700'],
+  display: 'swap',
+  variable: '--font-display',
+})
+
+const ibmPlexMono = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['400', '600'],
   display: 'swap',
-  variable: '--font-jetbrains-mono',
+  variable: '--font-mono',
 })
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://jeremymhayes.com'),
   title: {
-    default: 'Jeremy Hayes Portfolio',
+    default: 'Jeremy Hayes | Secure Software, Web Apps, and Gameplay Systems',
     template: '%s | Jeremy Hayes',
   },
   description:
-    'Jeremy M. Hayes — developer portfolio showcasing projects, skills, and contact information.',
-  keywords: ['Jeremy Hayes', 'Jeremy M. Hayes', 'Developer', 'Programmer', 'Portfolio', 'Game Developer', 'Web Developer'],
+    'Jeremy M. Hayes is a student developer building secure software, modern web apps, and gameplay systems with a systems mindset.',
+  keywords: [
+    'Jeremy Hayes',
+    'Jeremy M. Hayes',
+    'Developer',
+    'Programmer',
+    'Portfolio',
+    'Game Developer',
+    'Web Developer',
+    'Secure Software',
+    'Next.js Developer',
+    'Roblox Systems',
+  ],
   authors: [{ name: 'Jeremy M. Hayes' }],
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Jeremy Hayes Portfolio',
+    title: 'Jeremy Hayes | Secure Software, Web Apps, and Gameplay Systems',
     description:
-      'Developer portfolio showcasing projects, skills, and contact information.',
+      'Case studies, technical projects, and contact information for Jeremy M. Hayes.',
     type: 'website',
     url: 'https://jeremymhayes.com',
     siteName: 'Jeremy Hayes Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Jeremy Hayes Portfolio',
+    title: 'Jeremy Hayes | Secure Software, Web Apps, and Gameplay Systems',
     description:
-      'Developer portfolio showcasing projects, skills, and contact information.',
+      'Case studies and project work across secure software, web apps, and gameplay systems.',
   },
   icons: {
     icon: '/images/websitelogo.png',
@@ -61,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${publicSans.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
       data-theme="dark"
     >
       <head>
@@ -77,13 +95,21 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Jeremy M. Hayes',
-              jobTitle: 'Developer',
-              description: 'Developer | Game Designer | Programmer',
+              jobTitle: 'Student Developer',
+              description:
+                'Student developer focused on secure software, modern web apps, and gameplay systems.',
               url: 'https://jeremymhayes.com',
               worksFor: {
                 '@type': 'Organization',
                 name: 'Freelance',
               },
+              knowsAbout: [
+                'Next.js',
+                'TypeScript',
+                'Roblox systems',
+                'Secure software',
+                'Desktop applications',
+              ],
               sameAs: [
                 'https://github.com/aspectov',
                 'https://linkedin.com/in/jeremymhayes/',
@@ -91,9 +117,7 @@ export default function RootLayout({
             }),
           }}
         />
-      </head>
-
-                <script
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -104,13 +128,14 @@ export default function RootLayout({
                 position: index + 1,
                 name: project.title,
                 description: project.description,
-                url: `https://jeremymhayes.com${project.link === '#' ? '/projects' : project.link}`,
+                url: `https://jeremymhayes.com${getProjectHref(project.slug)}`,
               })),
             }),
           }}
         />
+      </head>
 
-      <body className="text-white antialiased">
+      <body className="antialiased">
         <WebVitalsReporter />
         <AnimatedBackdrop />
         <SiteChrome>{children}</SiteChrome>

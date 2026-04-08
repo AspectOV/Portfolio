@@ -4,18 +4,20 @@ import ProjectsPageClient from '@/components/pages/ProjectsPageClient'
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Browse Jeremy Hayes projects across game development, web applications, and software engineering.',
+    'Browse Jeremy Hayes case studies across gameplay systems, secure desktop software, and modern web products.',
   alternates: {
     canonical: '/projects',
   },
   openGraph: {
     title: 'Projects | Jeremy Hayes',
-    description: 'Selected projects across game-dev, web-dev, and software engineering.',
+    description:
+      'Project archive and case studies across software, web, and gameplay systems.',
     url: '/projects',
   },
   twitter: {
     title: 'Projects | Jeremy Hayes',
-    description: 'Explore Jeremy Hayes project archive and featured work.',
+    description:
+      'Explore Jeremy Hayes project archive, featured work, and individual case studies.',
   },
 }
 

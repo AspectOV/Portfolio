@@ -4,19 +4,20 @@ import HomePageClient from '@/components/pages/HomePageClient'
 export const metadata: Metadata = {
   title: 'Home',
   description:
-    'Jeremy Hayes builds modern web apps, software, and game projects with a focus on performance and usability.',
+    'Jeremy Hayes builds secure software, modern web apps, and gameplay systems with a systems mindset.',
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Jeremy Hayes | Developer Portfolio',
     description:
-      'Explore featured projects, technical skills, and ways to connect with Jeremy Hayes.',
+      'Explore case studies, technical skills, and collaboration opportunities with Jeremy Hayes.',
     url: '/',
   },
   twitter: {
     title: 'Jeremy Hayes | Developer Portfolio',
-    description: 'Featured projects, skills, and contact details for Jeremy Hayes.',
+    description:
+      'Case studies, skills, and contact details for Jeremy Hayes.',
   },
 }
 

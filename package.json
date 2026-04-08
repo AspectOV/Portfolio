@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "format:check": "npx --yes prettier@3.6.2 --check .",
     "test": "node --test tests/**/*.test.mjs",

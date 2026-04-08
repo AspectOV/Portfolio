@@ -17,7 +17,6 @@ const navItems: NavItem[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/projects', label: 'Projects' },
-  { href: '/portfolio', label: 'Portfolio' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -98,7 +97,7 @@ const Header: React.FC = () => {
 
   const headerClassName = [
     'fixed inset-x-0 top-0 z-50',
-    'px-4 py-4 sm:px-6 lg:px-8',
+    'px-4 py-3 sm:px-6 lg:px-8',
     'transition-all duration-300',
     isScrolled
       ? 'border-b border-white/10 bg-black/70 shadow-[0_10px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl'
@@ -133,7 +132,7 @@ const Header: React.FC = () => {
               <Link
                 href="/"
                 aria-label="Go to homepage"
-                className="inline-block whitespace-nowrap text-2xl font-extrabold tracking-[-0.04em] text-cyan-400 transition-colors duration-200 hover:text-cyan-300 sm:text-3xl"
+                className="inline-block whitespace-nowrap font-[var(--font-display)] text-[1.7rem] font-bold tracking-[-0.04em] text-cyan-400 transition-colors duration-200 hover:text-cyan-300 sm:text-[2rem]"
               >
                 Jeremy Hayes
               </Link>

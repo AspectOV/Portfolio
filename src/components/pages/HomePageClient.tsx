@@ -1,13 +1,17 @@
 'use client'
 
-import React, { useMemo, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { FaBriefcase, FaEnvelope } from 'react-icons/fa'
-import ProjectCard from '@/components/ProjectCard'
-import Skills from '@/components/Skills'
 import Image from 'next/image'
-import { featuredProjectIds, projects } from '@/content/siteContent'
+import { motion } from 'framer-motion'
+
+import ProjectFeature from '@/components/ProjectFeature'
+import Skills from '@/components/Skills'
+import {
+  featuredProjects,
+  homeFocusItems,
+  selectedImpact,
+} from '@/content/siteContent'
 
 const sectionTransition = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -16,200 +20,216 @@ const sectionTransition = (delay = 0) => ({
   transition: { duration: 0.55, delay },
 })
 
+const bleedClass =
+  'relative left-1/2 w-screen -translate-x-1/2 px-4 sm:px-6 lg:px-8'
+
+const frameClass = 'mx-auto max-w-[1380px]'
+
 const HomePage: React.FC = () => {
-  const [email, setEmail] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [message, setMessage] = useState('')
-
-  const featuredProjects = useMemo(
-    () => projects.filter((project) => featuredProjectIds.includes(project.id)),
-    []
-  )
-
-  const handleNewsletterSubmit = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault()
-
-    if (!email.trim()) return
-
-    setIsSubmitting(true)
-    setMessage('')
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      setMessage('Thanks for subscribing.')
-      setEmail('')
-    } catch {
-      setMessage('Something went wrong. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const primaryButtonClassName =
-    'interactive-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-cyan-400 px-6 py-3.5 font-semibold text-black transition-all duration-200 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/90'
-
-  const secondaryButtonClassName =
-    'interactive-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80'
-
-  const panelClassName =
-    'rounded-3xl border border-cyan-300/15 bg-cyan-500/[0.04] p-6 md:p-10'
-
   return (
-    <div className="space-y-16 md:space-y-24">
+    <div className="space-y-0">
+      <motion.section className={`${bleedClass} pt-0`} {...sectionTransition(0)}>
+        <div
+          className={`${frameClass} grid gap-6 border-b border-white/10 pb-8 md:gap-8 md:pb-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-10`}
+        >
+          <div className="max-w-3xl py-2 md:py-4">
+            <p className="font-[var(--font-mono)] text-xs uppercase tracking-[0.24em] text-[color:var(--accent)]">
+              Jeremy Hayes / portfolio
+            </p>
+
+            <h1 className="mt-4 max-w-2xl text-balance text-[2.2rem] font-bold leading-[1.02] text-[color:var(--text)] md:text-[2.9rem] xl:text-[3.35rem]">
+              I build websites, gameplay systems, and software projects.
+            </h1>
+
+            <p className="mt-4 max-w-xl text-[0.98rem] leading-8 text-[color:var(--text-muted)] md:text-[1.02rem]">
+              I&apos;m still in high school, and this is where I keep the projects
+              I&apos;ve made across web dev, Roblox systems, and security-focused software.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/projects"
+                className="interactive-lift inline-flex min-h-12 items-center justify-center rounded-xl bg-cyan-400 px-6 py-3.5 font-semibold text-black transition-all duration-200 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/90"
+              >
+                View Projects
+              </Link>
+
+              <Link
+                href="/about"
+                className="interactive-lift inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
+              >
+                About Me
+              </Link>
+
+              <Link
+                href="/contact"
+                className="interactive-lift inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
+              >
+                Contact
+              </Link>
+            </div>
+
+            <div className="mt-7 grid gap-4 border-t border-white/10 pt-4 md:grid-cols-3">
+              {homeFocusItems.map((item) => (
+                <div key={item.label}>
+                  <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-cyan-200/75">
+                    {item.label}
+                  </p>
+                  <p className="mt-3 text-base font-semibold text-white">{item.value}</p>
+                  <p className="mt-2 text-sm leading-7 text-white/60">{item.detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative py-2 md:py-4">
+            <div className="relative ml-auto max-w-[760px]">
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-black/30">
+                <div className="relative aspect-[32/21] overflow-hidden">
+                  <Image
+                    src="/images/tuffJeremy.png"
+                    alt="Jeremy Hayes portrait"
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 760px"
+                    className="object-cover scale-[1.08]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between gap-4 p-5 md:p-6">
+                  <div>
+                    <p className="text-sm font-medium text-white/70">Elmhurst, Illinois</p>
+                    <p className="mt-1 text-lg font-semibold text-white">
+                      York Community High School
+                    </p>
+                  </div>
+                  <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-cyan-100/80">
+                    class of 2027
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section className={`${bleedClass} py-10 md:py-14`} {...sectionTransition(0.08)}>
+        <div className={frameClass}>
+          <div className="grid gap-8 lg:grid-cols-[0.68fr_1.32fr] lg:items-end">
+            <div>
+              <p className="font-[var(--font-mono)] text-xs uppercase tracking-[0.24em] text-cyan-200/80">
+                selected work
+              </p>
+              <h2 className="mt-4 max-w-xl text-[1.75rem] font-bold md:text-[2.25rem]">
+                A few projects.
+              </h2>
+            </div>
+
+            <p className="max-w-2xl text-[0.96rem] leading-8 text-white/68 md:text-[1rem]">
+              These are the ones I&apos;d point someone to first.
+            </p>
+          </div>
+
+          <div className="mt-8 space-y-2">
+            {featuredProjects.map((project, index) => (
+              <ProjectFeature
+                key={project.id}
+                project={project}
+                index={index}
+                priority={index === 0}
+                variant="spotlight"
+              />
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
       <motion.section
-        className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 shadow-xl shadow-black/20 backdrop-blur-sm md:p-8"
-        {...sectionTransition(0)}
+        className={`${bleedClass} border-y border-white/10 bg-black/15 py-10 md:py-14`}
+        {...sectionTransition(0.12)}
       >
-        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-300/80">
-          Portfolio • Jeremy Hayes
-        </p>
-
-        <h1 className="max-w-3xl text-balance text-3xl font-bold leading-tight md:text-5xl">
-          Building polished digital experiences for the web and game platforms.
-        </h1>
-
-        <p className="mt-5 max-w-2xl text-base text-white/80 md:text-lg">
-          I build modern websites, interactive systems, and game projects with a focus
-          on performance, usability, and clean execution.
-        </p>
-
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/projects" className={primaryButtonClassName}>
-            <FaBriefcase aria-hidden="true" className="h-[16px] w-[16px]" />
-            <span>View Projects</span>
-          </Link>
-
-          <Link href="/contact" className={secondaryButtonClassName}>
-            <FaEnvelope aria-hidden="true" className="h-[16px] w-[16px]" />
-            <span>Contact Me</span>
-          </Link>
-        </div>
-      </motion.section>
-
-      <motion.section className={panelClassName} {...sectionTransition(0.08)}>
-        <h2>Featured Projects</h2>
-        <p className="mt-3 max-w-2xl text-white/80">
-          A curated selection of work centered on craftsmanship, usability, and performance.
-        </p>
-
-        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {featuredProjects.map((project, index) => (
-            <ProjectCard key={project.id} {...project} index={index} priority={index === 0} />
-          ))}
-        </div>
-      </motion.section>
-
-      <motion.section className={panelClassName} {...sectionTransition(0.12)}>
-        <h2>Core Skills</h2>
-        <p className="mt-3 max-w-2xl text-white/80">
-          The tools and disciplines I use to build reliable, user-focused projects.
-        </p>
-
-        <div className="mt-8">
-          <Skills />
-        </div>
-      </motion.section>
-
-      <motion.section className={panelClassName} {...sectionTransition(0.16)}>
-       <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <div className={`${frameClass} grid gap-10 lg:grid-cols-[0.72fr_1.28fr]`}>
           <div>
-            <h2>Resume</h2>
-            <p className="mt-3 max-w-2xl text-white/80">
-              View my current resume online, open it full screen, or download a PDF copy.
+            <p className="font-[var(--font-mono)] text-xs uppercase tracking-[0.24em] text-cyan-200/80">
+              quick scan
             </p>
+            <h2 className="mt-4 max-w-md text-[1.75rem] font-bold md:text-[2.25rem]">
+              What I spend time on.
+            </h2>
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="/JeremyHayesResume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="interactive-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3.5 font-semibold text-white transition-all duration-200 hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
-            >
-              <span>Open Full Screen</span>
-            </a>
-
-            <a
-              href="/JeremyHayesResume.pdf"
-              download
-              className="interactive-lift inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-cyan-300/35 bg-cyan-400/10 px-6 py-3.5 font-semibold text-cyan-200 transition-all duration-200 hover:bg-cyan-300/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
-            >
-              <span>Download PDF</span>
-            </a>
+          <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">
+            {selectedImpact.map((item, index) => (
+              <div key={item.title} className="border-t border-white/10 pt-5">
+                <p className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.22em] text-white/40">
+                  {String(index + 1).padStart(2, '0')}
+                </p>
+                <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
+                <p className="mt-3 max-w-xl text-white/68">{item.text}</p>
+              </div>
+            ))}
           </div>
-        </div>
-
-        <div className="mx-auto mt-8 max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-black/30 shadow-xl">
-          <a
-            href="/JeremyHayesResume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              src="/images/JeremyHayesResume.avif"
-              alt="Preview of Jeremy Hayes resume"
-              width={1200}
-              height={1600}
-              className="w-full bg-white"
-              sizes="(max-width: 768px) 100vw, 900px"
-              loading="lazy"
-            />
-          </a>
         </div>
       </motion.section>
 
-      <motion.section
-        className="rounded-3xl border border-cyan-300/15 bg-gradient-to-r from-cyan-500/10 via-sky-500/5 to-transparent p-8 md:p-12"
-        {...sectionTransition(0.2)}
-      >
-        <h2 className="mb-4 text-center after:left-1/2 after:-translate-x-1/2">
-          Stay Updated
-        </h2>
-
-        <p className="mx-auto max-w-xl text-center text-white/85">
-          Subscribe for occasional updates on new projects and lessons learned while building them.
-        </p>
-
-        <form className="mx-auto mt-6 max-w-xl" onSubmit={handleNewsletterSubmit}>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              autoComplete="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              className="min-h-12 flex-1 rounded-xl border border-white/15 bg-black/30 px-5 py-3 text-white placeholder:text-white/45 focus:border-cyan-300/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
-            />
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`inline-flex min-h-12 items-center justify-center rounded-xl px-6 py-3.5 font-semibold transition-all duration-200 ${
-                isSubmitting
-                  ? 'cursor-not-allowed bg-cyan-300 text-black/80 opacity-80'
-                  : 'interactive-lift bg-cyan-400 text-black hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80'
-              }`}
-            >
-              {isSubmitting ? 'Submitting...' : 'Subscribe'}
-            </button>
+      <motion.section className={`${bleedClass} py-10 md:py-14`} {...sectionTransition(0.16)}>
+        <div className={`${frameClass} grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-start`}>
+          <div>
+            <p className="font-[var(--font-mono)] text-xs uppercase tracking-[0.24em] text-cyan-200/80">
+              tools
+            </p>
+            <h2 className="mt-4 max-w-xl text-[1.75rem] font-bold md:text-[2.25rem]">
+              Tools I keep using.
+            </h2>
+            <div className="mt-8">
+              <Skills />
+            </div>
           </div>
 
-          {message && (
-            <p
-              className={`mt-4 text-center font-medium ${
-                message.includes('Thanks') ? 'text-green-400' : 'text-red-400'
-              }`}
-              aria-live="polite"
-            >
-              {message}
+          <div className="border-t border-white/10 pt-6 lg:pt-0">
+            <p className="font-[var(--font-mono)] text-xs uppercase tracking-[0.24em] text-cyan-200/80">
+              resume
             </p>
-          )}
-        </form>
+            <p className="mt-4 max-w-xl text-[0.98rem] leading-8 text-white/70 md:text-[1.04rem]">
+              If you just want the compact version of my background and experience,
+              my resume is here too.
+            </p>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href="/JeremyHayesResume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="interactive-lift inline-flex min-h-12 items-center justify-center rounded-xl bg-cyan-400 px-5 py-3 font-semibold text-black transition-all duration-200 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/90"
+              >
+                Open Resume
+              </a>
+
+              <a
+                href="/JeremyHayesResume.pdf"
+                download
+                className="interactive-lift inline-flex min-h-12 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-5 py-3 font-semibold text-white transition-all duration-200 hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300/80"
+              >
+                Download PDF
+              </a>
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-black/30">
+              <a href="/JeremyHayesResume.pdf" target="_blank" rel="noopener noreferrer">
+                <Image
+                  src="/images/JeremyHayesResume.avif"
+                  alt="Preview of Jeremy Hayes resume"
+                  width={1200}
+                  height={1600}
+                  className="w-full bg-white"
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  loading="lazy"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
       </motion.section>
     </div>
   )

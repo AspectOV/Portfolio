@@ -23,7 +23,10 @@ export const DesktopNav: React.FC<DesktopNavProps> = ({ navItems }) => {
       aria-label="Main navigation"
     >
       {navItems.map((item) => {
-        const isActive = pathname === item.href
+        const isActive =
+          item.href === '/'
+            ? pathname === item.href
+            : pathname === item.href || pathname.startsWith(`${item.href}/`)
 
         return (
           <Link

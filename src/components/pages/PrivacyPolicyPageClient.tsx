@@ -28,10 +28,6 @@ const policySections: PolicySection[] = [
         text: 'If you use the contact form, I may collect your name, email address, subject line, and message content.',
       },
       {
-        label: 'Newsletter Information',
-        text: 'If you subscribe to updates, I may collect your email address.',
-      },
-      {
         label: 'Usage Data',
         text: 'I may collect basic analytics or usage information such as pages visited, approximate time on site, and general interaction patterns.',
       },
@@ -42,7 +38,6 @@ const policySections: PolicySection[] = [
     content: ['Information collected through this site may be used to:'],
     items: [
       { text: 'Respond to messages, questions, or inquiries.' },
-      { text: 'Send updates only if you have chosen to subscribe.' },
       { text: 'Improve site content, usability, and performance.' },
       { text: 'Monitor basic traffic and site behavior.' },
     ],
@@ -71,7 +66,6 @@ const policySections: PolicySection[] = [
       { text: 'Request access to information you submitted.' },
       { text: 'Request corrections to inaccurate information.' },
       { text: 'Request deletion of submitted information, when applicable.' },
-      { text: 'Unsubscribe from updates at any time.' },
     ],
   },
   {
@@ -114,9 +108,7 @@ const PrivacyPolicyPage: React.FC = () => {
           website, how it may be used, and the choices available to visitors.
         </p>
 
-        <p className="mt-4 text-sm text-white/50">
-          Last updated: March 2026
-        </p>
+        <p className="mt-4 text-sm text-white/50">Last updated: April 7, 2026</p>
       </motion.section>
 
       {policySections.map((section, index) => (

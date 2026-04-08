@@ -75,7 +75,7 @@ const itemVariants: Variants = {
 const Skills: React.FC = () => {
   return (
     <motion.ul
-      className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+      className="mt-8 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-3"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -89,10 +89,10 @@ const Skills: React.FC = () => {
           <motion.li
             key={skill.name}
             variants={itemVariants}
-            className="list-none"
+            className="list-none border-b border-white/10 pb-4"
           >
-            <div className="group flex h-full items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm font-medium text-white/90 transition-all duration-200 hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-cyan-400/[0.08]">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-cyan-300/15 bg-cyan-400/10 text-cyan-300 transition-colors duration-200 group-hover:bg-cyan-400/15">
+            <div className="group flex h-full items-center gap-3 text-sm font-medium text-[color:var(--text)] transition-all duration-200">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-cyan-300/15 bg-cyan-400/10 text-cyan-300 transition-colors duration-200 group-hover:bg-cyan-400/15">
                 <Icon aria-hidden="true" className="h-[18px] w-[18px]" />
               </span>
 

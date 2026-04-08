@@ -3,7 +3,8 @@ import PrivacyPolicyPageClient from '@/components/pages/PrivacyPolicyPageClient'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Read how this portfolio site handles and protects visitor information.',
+  description:
+    'Read how this portfolio site handles contact form submissions and visitor information.',
   alternates: { canonical: '/privacy-policy' },
   robots: {
     index: true,

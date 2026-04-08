@@ -16,9 +16,11 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
-    const savedTheme = window.localStorage.getItem(storageKey) as Theme | null
+    const savedTheme = window.localStorage.getItem(storageKey)
+    const normalizedSavedTheme: Theme | null =
+      savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : null
     const preferredTheme =
-      savedTheme ??
+      normalizedSavedTheme ??
       (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
 
     document.documentElement.dataset.theme = preferredTheme

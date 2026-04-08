@@ -17,6 +17,10 @@ export default function WebVitalsReporter() {
     }
 
     const isOverBudget = metric.value > budget
+    if (!isOverBudget && process.env.NODE_ENV !== 'development') {
+      return
+    }
+
     const log = isOverBudget ? console.warn : console.info
 
     log(

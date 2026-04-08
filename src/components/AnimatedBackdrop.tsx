@@ -48,8 +48,8 @@ const AnimatedBackdrop: React.FC = () => {
   const pointerGlow = useMotionTemplate`
     radial-gradient(
       420px circle at ${glowX}px ${glowY}px,
-      rgba(34, 211, 238, 0.18) 0%,
-      rgba(34, 211, 238, 0.06) 35%,
+      color-mix(in oklab, var(--accent) 34%, transparent) 0%,
+      color-mix(in oklab, var(--accent) 14%, transparent) 35%,
       transparent 70%
     )
   `
@@ -57,7 +57,7 @@ const AnimatedBackdrop: React.FC = () => {
   const pointerFocus = useMotionTemplate`
     radial-gradient(
       900px circle at ${glowX}px ${glowY}px,
-      rgba(255, 255, 255, 0.06) 0%,
+      color-mix(in oklab, var(--text) 7%, transparent) 0%,
       transparent 55%
     )
   `
@@ -76,13 +76,18 @@ const AnimatedBackdrop: React.FC = () => {
     setCenter()
 
     window.addEventListener('resize', setCenter)
-    window.addEventListener('pointermove', handlePointerMove, { passive: true })
+
+    if (!reduceMotion) {
+      window.addEventListener('pointermove', handlePointerMove, { passive: true })
+    }
 
     return () => {
       window.removeEventListener('resize', setCenter)
-      window.removeEventListener('pointermove', handlePointerMove)
+      if (!reduceMotion) {
+        window.removeEventListener('pointermove', handlePointerMove)
+      }
     }
-  }, [pointerX, pointerY])
+  }, [pointerX, pointerY, reduceMotion])
 
   const dots = useMemo<Dot[]>(
     () =>
@@ -102,13 +107,7 @@ const AnimatedBackdrop: React.FC = () => {
       <div
         className="absolute inset-0"
         style={{
-          background: `
-            radial-gradient(circle at 15% 10%, rgba(34, 211, 238, 0.12), transparent 32%),
-            radial-gradient(circle at 85% 0%, rgba(56, 189, 248, 0.10), transparent 28%),
-            radial-gradient(circle at 50% 100%, rgba(59, 130, 246, 0.08), transparent 38%),
-            linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 18%),
-            #06080f
-          `,
+          background: 'var(--backdrop-base)',
         }}
       />
 
@@ -116,7 +115,7 @@ const AnimatedBackdrop: React.FC = () => {
         className="absolute inset-0 opacity-[0.08]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)',
+            'linear-gradient(var(--backdrop-grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--backdrop-grid-line) 1px, transparent 1px)',
           backgroundSize: '56px 56px',
           maskImage: 'radial-gradient(circle at center, black 55%, transparent 80%)',
           WebkitMaskImage:

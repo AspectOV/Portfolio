@@ -98,7 +98,10 @@ export const MobileNav: React.FC<MobileNavProps> = ({
           >
             <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 py-4">
               {navItems.map((item) => {
-                const isActive = pathname === item.href
+                const isActive =
+                  item.href === '/'
+                    ? pathname === item.href
+                    : pathname === item.href || pathname.startsWith(`${item.href}/`)
 
                 return (
                   <motion.div key={item.href} variants={itemVariants}>

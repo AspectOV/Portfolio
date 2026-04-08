@@ -2,7 +2,7 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
   ],
@@ -32,8 +32,9 @@ export default {
     },
     // === Fonts ===
     fontFamily: {
-      sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
-      mono: ['var(--font-jetbrains-mono)', ...defaultTheme.fontFamily.mono],
+      sans: ['var(--font-body)', ...defaultTheme.fontFamily.sans],
+      mono: ['var(--font-mono)', ...defaultTheme.fontFamily.mono],
+      display: ['var(--font-display)', ...defaultTheme.fontFamily.sans],
     },
     // === Spacing ===
     spacing: {
@@ -85,3 +86,5 @@ export default {
   },
   plugins: [],
 };
+
+export default config;

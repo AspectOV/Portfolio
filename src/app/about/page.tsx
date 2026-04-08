@@ -4,11 +4,12 @@ import AboutPageClient from '@/components/pages/AboutPageClient'
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Learn about Jeremy Hayes, his technical focus areas, education, and software development experience.',
+    'Learn how Jeremy Hayes approaches secure software, web apps, gameplay systems, and collaborative engineering work.',
   alternates: { canonical: '/about' },
   openGraph: {
     title: 'About | Jeremy Hayes',
-    description: 'Background, experience, and technical interests of Jeremy Hayes.',
+    description:
+      'Background, experience, and working style for Jeremy Hayes.',
     url: '/about',
   },
 }

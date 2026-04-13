@@ -2,6 +2,8 @@
 
 Next.js portfolio site for Jeremy Hayes, focused on project case studies, visual presentation, and a working contact flow.
 
+The current FileLocker case study is updated through the `v1.0.5.2` release notes, and the broader profile content now reflects FileLocker, A.S.P.E.C.T Discord bot/dashboard work, Roblox systems, and privacy-focused desktop experiments.
+
 ## Stack
 
 - Next.js App Router
@@ -35,3 +37,5 @@ npm run test:e2e:smoke
 - The site is configured for static export with `next build`.
 - The contact form posts to a Cloudflare Worker and uses Turnstile for protection.
 - Project pages are generated from structured content in `src/content/siteContent.ts`.
+- FileLocker release copy should be synced from `C:\Users\jerem\PROJECTS\context.txt` and the FileLocker README.
+- A.S.P.E.C.T Discord project copy should be synced from `C:\Users\jerem\PROJECTS\DIscord\DiscordBot` and `C:\Users\jerem\PROJECTS\DIscord\discordbotdash`.

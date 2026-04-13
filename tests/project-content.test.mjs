@@ -13,4 +13,7 @@ test('Project content is structured for case studies instead of placeholder link
   assert.match(file, /problem:\s*'/)
   assert.match(file, /lessons:\s*\[/)
   assert.match(file, /updatedAt:\s*'2026-04-07'/)
+  assert.match(file, /status:\s*'Latest release 1\.0\.5\.2'/)
+  assert.match(file, /releases\/tag\/v1\.0\.5\.2/)
+  assert.match(file, /updatedAt:\s*'2026-04-12'/)
 })

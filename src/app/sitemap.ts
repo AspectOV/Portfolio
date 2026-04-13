@@ -5,10 +5,30 @@ import { getProjectHref, projects } from '@/content/siteContent'
 const baseUrl = 'https://jeremymhayes.com'
 
 const staticRoutes = [
-  { route: '', lastModified: '2026-04-07', changeFrequency: 'weekly', priority: 1 },
-  { route: '/about', lastModified: '2026-04-07', changeFrequency: 'monthly', priority: 0.8 },
-  { route: '/projects', lastModified: '2026-04-07', changeFrequency: 'weekly', priority: 0.9 },
-  { route: '/contact', lastModified: '2026-03-12', changeFrequency: 'monthly', priority: 0.7 },
+  {
+    route: '',
+    lastModified: '2026-04-12',
+    changeFrequency: 'weekly',
+    priority: 1,
+  },
+  {
+    route: '/about',
+    lastModified: '2026-04-12',
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  },
+  {
+    route: '/projects',
+    lastModified: '2026-04-12',
+    changeFrequency: 'weekly',
+    priority: 0.9,
+  },
+  {
+    route: '/contact',
+    lastModified: '2026-03-12',
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  },
   {
     route: '/privacy-policy',
     lastModified: '2026-04-07',

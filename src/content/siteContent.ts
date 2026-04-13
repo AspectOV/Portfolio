@@ -72,7 +72,8 @@ export const projects: Project[] = [
     id: 'vacancy-filled',
     slug: 'vacancy-filled',
     title: 'Vacancy Filled',
-    tagline: 'Freelance Roblox horror work centered on pacing, interaction, and atmosphere.',
+    tagline:
+      'Freelance Roblox horror work centered on pacing, interaction, and atmosphere.',
     description:
       'A private Roblox horror collaboration inspired by late-night tension and slow-burn environmental storytelling.',
     image: '/images/roblox-game.jpg',
@@ -91,7 +92,12 @@ export const projects: Project[] = [
       'Horror projects lose their effect quickly when interactions are inconsistent or progression logic breaks tension. The goal was to support a moody experience with systems that felt stable, reusable, and easy for the team to keep extending.',
     roleSummary:
       'I handled gameplay scripting, systems integration, and technical cleanup across shared mechanics. That included connecting independently built features, standardizing how interactions behaved, and supporting the overall gameplay loop as the project evolved.',
-    stack: ['Luau', 'Roblox Studio', 'Client/server remotes', 'Reusable gameplay modules'],
+    stack: [
+      'Luau',
+      'Roblox Studio',
+      'Client/server remotes',
+      'Reusable gameplay modules',
+    ],
     constraints: [
       'The project was collaborative, so new systems had to fit work built by other contributors.',
       'Roblox performance constraints meant keeping logic lean and predictable.',
@@ -141,7 +147,8 @@ export const projects: Project[] = [
     id: 'portfolio-site',
     slug: 'portfolio-website',
     title: 'Portfolio Website',
-    tagline: 'A case-study driven portfolio built to communicate proof, focus, and availability faster.',
+    tagline:
+      'A case-study driven portfolio built to communicate proof, focus, and availability faster.',
     description:
       'The website you are reading now: a responsive portfolio built with Next.js, TypeScript, and a stronger content model.',
     image: '/images/web-dev-project.png',
@@ -211,8 +218,16 @@ export const projects: Project[] = [
       { label: 'Shipping', value: 'Live on jeremymhayes.com' },
     ],
     links: [
-      { label: 'Visit live site', href: 'https://jeremymhayes.com', external: true },
-      { label: 'View source', href: 'https://github.com/AspectOV/Portfolio', external: true },
+      {
+        label: 'Visit live site',
+        href: 'https://jeremymhayes.com',
+        external: true,
+      },
+      {
+        label: 'View source',
+        href: 'https://github.com/AspectOV/Portfolio',
+        external: true,
+      },
     ],
     updatedAt: '2026-04-07',
   },
@@ -220,78 +235,113 @@ export const projects: Project[] = [
     id: 'filelocker',
     slug: 'filelocker',
     title: 'FileLocker',
-    tagline: 'A Windows encryption tool designed to make strong security feel approachable.',
+    tagline:
+      'A shipped WinUI 3 encryption app with guided modes, safer batch output, and GitHub Releases updates.',
     description:
-      'A WinUI 3 desktop app that uses AES-256-GCM, metadata stripping, compression, and optional steganography to protect files and folders.',
+      'A Windows desktop app for encrypting, decrypting, validating, and managing local files with WinUI 3, AES workflows, NSIS installer releases, and automatic update checks.',
     image: '/images/unity-game.jpg',
     category: 'software-dev',
-    tags: ['C#', 'WinUI 3', 'AES-256-GCM', 'Desktop Security'],
-    year: '2025',
+    tags: ['C#', 'WinUI 3', 'AES-GCM', 'NSIS', 'GitHub Releases'],
+    year: '2025-2026',
     role: 'Solo Developer',
     teamSize: 'Solo build',
-    status: 'Shipped desktop app',
+    status: 'Latest release 1.0.5.2',
     featured: true,
     impact:
-      'Combined strong encryption primitives with a drag-and-drop desktop workflow so the security model stayed usable instead of intimidating.',
+      'Moved FileLocker from a crypto-focused desktop utility into a more supportable shipped product with guided modes, safer output controls, installer distribution, and a tested updater path.',
     summary:
-      'FileLocker is a Windows application built around secure file and folder protection. The goal was to pair modern cryptography with a workflow that feels understandable for real users, not only technical ones.',
+      'FileLocker is a Windows 10/11 desktop app for protecting local files and folders. The current release line, up through 1.0.5.2, combines AES-GCM and AES-CBC workflows with a cleaner WinUI 3 interface, Beginner / Intermediate / Advanced modes, queue-level feedback, custom encrypt output destinations, NSIS installation, and GitHub Releases based updates.',
     problem:
-      'A lot of security tools are powerful but unfriendly. I wanted to build something that preserved strong encryption choices while making the experience practical for everyday file protection.',
+      'Security tools can become risky when the workflow is unclear. FileLocker needed to keep strong file-protection controls available while making the app easier to understand, safer around destructive actions, and easier to install, update, and troubleshoot after release.',
     roleSummary:
-      'I built the application as a solo project, shaping the UX, cryptographic workflow, and desktop implementation details around clarity, safety, and a streamlined encryption flow.',
-    stack: ['C#', 'WinUI 3', 'Windows App SDK', 'AES-256-GCM', 'Desktop file handling'],
+      'I built and maintained the app as a solo project, covering the desktop UX, encryption and decryption workflow, queue processing, metadata restoration behavior, installer packaging, updater integration, documentation, and release support details.',
+    stack: [
+      'C#',
+      'WinUI 3',
+      'Windows App SDK',
+      'AES-GCM',
+      'AES-CBC',
+      'PBKDF2-SHA256',
+      'NSIS',
+      'GitHub Releases',
+    ],
     constraints: [
-      'Security-sensitive features needed to be understandable without oversimplifying the underlying risks.',
-      'The app had to support both single-file and folder-based workflows.',
-      'Metadata exposure and storage overhead both mattered, not just raw encryption.',
+      'File operations needed safer defaults because verification, backups, source removal, and secure delete can affect user data directly.',
+      'Background encryption work had to avoid unsafe WinUI-bound object updates from worker threads.',
+      'Release assets, version tags, and updater metadata had to stay consistent so automatic updates could read GitHub Releases correctly.',
+      'The app had to support both approachable beginner flows and advanced controls without overwhelming the main workspace.',
     ],
     decisions: [
       {
-        title: 'Use authenticated encryption by default',
+        title: 'Use guided modes instead of hiding complexity randomly',
         description:
-          'AES-256-GCM gave the project a strong baseline for confidentiality and integrity instead of treating encryption as a checkbox feature.',
+          'Beginner, Intermediate, and Advanced modes now change behavior and disclosure so newer users get a clearer path while advanced users still have direct access to profiles, keyfiles, recovery options, and safety controls.',
       },
       {
-        title: 'Reduce leakage beyond file contents',
+        title: 'Make output destinations explicit',
         description:
-          'Metadata stripping and optional renaming focused on limiting information leaks that many basic tools ignore.',
+          'Encryption can save next to source files or into a custom folder, with validation and persistence so batch workflows are flexible without changing the safer default behavior unexpectedly.',
       },
       {
-        title: 'Build around a simple desktop workflow',
+        title: 'Treat release support as part of the product',
         description:
-          'Drag-and-drop support, password validation, and folder handling helped the app stay practical instead of feeling like a crypto demo.',
+          'The unpackaged NSIS install flow, GitHub Releases update checks, installer naming rules, and Help menu shortcuts make it easier to confirm the installed build and inspect updater downloads.',
+      },
+      {
+        title: 'Keep failures visible and recoverable',
+        description:
+          'Queue item status, structured details, fallback error text, and failed-item visibility help users understand what happened instead of losing context after a partial failure.',
       },
     ],
     outcomes: [
-      'Implemented AES-256-GCM encryption for files and folders.',
-      'Added password protection, optional password strength validation, and metadata stripping.',
-      'Included compression and optional steganography mode as part of the workflow.',
+      'Shipped v1.0.5.2 with updated release metadata, Help menu shortcuts for the installed app folder and updater cache, and documentation aligned with the installer/update process.',
+      'Shipped the 1.0.5 line with Beginner / Intermediate / Advanced modes, built-in help, queue metrics, collapsible inspector sections, custom encrypt output directories, and improved layout behavior.',
+      'Fixed updater tag parsing in v1.0.5.1 so GitHub release tags like v1.0.5.2 are read correctly.',
+      'Moved distribution to an unpackaged NSIS installer and GitHub Releases updater flow in v1.0.4.0.',
+      'Improved encryption reliability by keeping UI-bound state updates out of background worker callbacks and tightening metadata restoration during decrypt.',
     ],
     lessons: [
-      'Security tooling earns trust through both correctness and clarity.',
-      'UX details matter even more when users are making irreversible decisions like encryption.',
-      'Thinking about metadata and side channels leads to better product choices.',
+      'Desktop security tooling needs product support details, not just cryptographic features.',
+      'Guidance belongs in the workflow when users are making high-impact file handling decisions.',
+      'Installer naming, release tags, and update metadata are part of the user experience once the app is public.',
+      'Background processing and UI state need a clear boundary in WinUI apps.',
     ],
     nextSteps: [
-      'Add more recovery guidance and guardrails around destructive actions.',
-      'Expand automated verification around encryption and restore flows.',
-      'Refine release packaging and documentation for easier adoption.',
+      'Keep expanding regression coverage around encryption, decryption, output collisions, and updater behavior.',
+      'Continue improving recovery guidance and failure detail copy for less technical users.',
+      'Tighten release automation so version numbers, tags, installer names, and README details stay in sync.',
     ],
     highlights: [
-      { label: 'Encryption', value: 'AES-256-GCM' },
-      { label: 'UX', value: 'Drag-and-drop file handling' },
-      { label: 'Repo', value: 'Public on GitHub' },
+      { label: 'Latest release', value: 'v1.0.5.2' },
+      {
+        label: 'Distribution',
+        value: 'NSIS installer with GitHub Releases updates',
+      },
+      {
+        label: 'Workflow',
+        value: 'Guided modes, queue metrics, and custom output destinations',
+      },
     ],
     links: [
-      { label: 'View GitHub repo', href: 'https://github.com/AspectOV/FileLocker', external: true },
+      {
+        label: 'View GitHub repo',
+        href: 'https://github.com/AspectOV/FileLocker',
+        external: true,
+      },
+      {
+        label: 'Latest release',
+        href: 'https://github.com/AspectOV/FileLocker/releases/tag/v1.0.5.2',
+        external: true,
+      },
     ],
-    updatedAt: '2026-04-07',
+    updatedAt: '2026-04-12',
   },
   {
     id: 'privacylens',
     slug: 'privacylens',
     title: 'PrivacyLens',
-    tagline: 'A privacy-focused desktop experiment for real-time screen redaction.',
+    tagline:
+      'A privacy-focused desktop experiment for real-time screen redaction.',
     description:
       'A WinUI 3 desktop application that explores real-time screen capture, detection pipelines, and censor overlays for sensitive content.',
     image: '/images/web-dev-project.png',
@@ -303,14 +353,20 @@ export const projects: Project[] = [
     status: 'Early prototype',
     featured: false,
     impact:
-      'Established a modular capture → detection → overlay architecture that can grow into a practical privacy tool instead of a one-off computer vision demo.',
+      'Established a modular capture -> detection -> overlay architecture that can grow into a practical privacy tool instead of a one-off computer vision demo.',
     summary:
       'PrivacyLens explores how to analyze on-screen content in real time and visually redact sensitive areas. The project is early, but the architecture is designed to make experimentation with models, overlays, and capture sources easier over time.',
     problem:
       'Real-time privacy tooling has to balance responsiveness, clarity, and extensibility. I wanted to build a pipeline that could eventually support both pretrained and custom ONNX models without tightly coupling every piece together.',
     roleSummary:
       'I designed the architecture, built the app lifecycle and overlay system, and structured the pipeline so capture, detection, and rendering could evolve independently.',
-    stack: ['C#', 'WinUI 3', 'Windows App SDK', 'ONNX Runtime (planned)', 'Real-time overlays'],
+    stack: [
+      'C#',
+      'WinUI 3',
+      'Windows App SDK',
+      'ONNX Runtime (planned)',
+      'Real-time overlays',
+    ],
     constraints: [
       'The system needs to stay responsive while processing live visual data.',
       'Future model support should not require rewriting the app shell or overlay layer.',
@@ -339,7 +395,7 @@ export const projects: Project[] = [
       'Set up a modular service pipeline for later screen capture and inference work.',
     ],
     lessons: [
-      'Real-time systems benefit from strong seams between pipeline stages.',
+      'Real-time systems benefit from clear boundaries between pipeline stages.',
       'Prototype visibility layers early so model work has a clear target.',
       'Privacy tooling needs thoughtful controls, not just a working detector.',
     ],
@@ -354,7 +410,11 @@ export const projects: Project[] = [
       { label: 'Direction', value: 'Privacy-focused CV tooling' },
     ],
     links: [
-      { label: 'View GitHub repo', href: 'https://github.com/AspectOV/PrivacyLens', external: true },
+      {
+        label: 'View GitHub repo',
+        href: 'https://github.com/AspectOV/PrivacyLens',
+        external: true,
+      },
     ],
     updatedAt: '2026-04-07',
   },
@@ -365,19 +425,22 @@ export const featuredProjects = projects.filter((project) => project.featured)
 export const homeFocusItems: FocusItem[] = [
   {
     label: 'Currently',
-    value: 'Publishing stronger case studies and privacy-minded tooling.',
+    value:
+      'Publishing stronger case studies and polishing FileLocker releases.',
     detail:
-      'The current push is making the portfolio prove how I think, not just what I can list.',
+      'The current push is making the portfolio prove how I think while keeping shipped desktop work documented.',
   },
   {
     label: 'Available for',
-    value: 'Internships, freelance web work, and gameplay systems collaboration.',
+    value:
+      'Internships, freelance web work, and gameplay systems collaboration.',
     detail:
       'I am especially interested in roles where product quality and systems thinking both matter.',
   },
   {
     label: 'Focused on',
-    value: 'Secure software, modern web apps, and scalable game systems.',
+    value:
+      'Secure software, modern web apps, Discord tooling, and scalable game systems.',
     detail:
       'The through-line in my work is building software that stays reliable as complexity increases.',
   },
@@ -386,31 +449,31 @@ export const homeFocusItems: FocusItem[] = [
 export const selectedImpact: ImpactItem[] = [
   {
     title: 'Roblox systems work',
-    text:
-      'Built reusable Luau systems and integration support for private collaborator projects instead of one-off scripting.',
+    text: 'Built reusable Luau systems and integration support for private collaborator projects instead of one-off scripting.',
   },
   {
     title: 'Security-minded desktop tools',
-    text:
-      'Shipped FileLocker around AES-256-GCM, metadata stripping, and an easier desktop workflow.',
+    text: 'Shipped FileLocker through v1.0.5.2 with guided modes, safer batch output controls, NSIS distribution, and GitHub Releases updates.',
+  },
+  {
+    title: 'Discord bot and dashboard work',
+    text: 'Connected a Python Discord bot to a Cloudflare Workers dashboard with Discord OAuth, D1 settings storage, and bot sync endpoints.',
   },
   {
     title: 'Privacy pipeline experimentation',
-    text:
-      'Structured PrivacyLens around a modular capture, detection, and overlay pipeline to support future ONNX-based iteration.',
+    text: 'Structured PrivacyLens around a modular capture, detection, and overlay pipeline to support future ONNX-based iteration.',
   },
   {
     title: 'Clearer portfolio proof',
-    text:
-      'Reworked this site around dedicated case studies, stronger messaging, and more intentional visitor paths.',
+    text: 'Reworked this site around dedicated case studies, stronger messaging, and more intentional visitor paths.',
   },
 ]
 
 export const aboutNarrative = {
   intro:
-    'I got into building software through the same thing that still motivates me now: I like making systems feel understandable. That started with gameplay scripting and experimentation, then expanded into modern web apps, privacy-focused desktop tools, and infrastructure-minded problem solving.',
+    'I got into building software through the same thing that still motivates me now: I like making systems feel understandable. That started with gameplay scripting and experimentation, then expanded into modern web apps, Discord tooling, privacy-focused desktop tools, and infrastructure-minded problem solving.',
   bridge:
-    'What ties my work together is a systems mindset. Whether I am shaping a Roblox mechanic, building a Next.js product surface, or thinking through secure file handling, I care about the way the parts fit together over time.',
+    'What ties my work together is a systems mindset. Whether I am shaping a Roblox mechanic, building a Next.js product surface, syncing a Discord dashboard, or thinking through secure file handling, I care about the way the parts fit together over time.',
   closing:
     'I am especially interested in the overlap between product quality, technical depth, and maintainability. The best projects, to me, are the ones that feel polished to the user because the underlying engineering is thoughtful.',
 }
